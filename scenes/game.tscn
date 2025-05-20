@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://cdy4hsh1l3udc"]
+
+[node name="Game" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-88.0]
