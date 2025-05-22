@@ -14,3 +14,16 @@ config/name="Air Traffic Manager"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1900
+window/size/viewport_height=1080
+window/size/initial_position=Vector2i(-185, 95)
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[gui]
+
+theme/default_font_subpixel_positioning=3
+theme/default_font_multichannel_signed_distance_field=true

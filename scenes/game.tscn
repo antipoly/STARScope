@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://cdy4hsh1l3udc"]
+[gd_scene load_steps=2 format=3 uid="uid://cdy4hsh1l3udc"]
+
+[ext_resource type="PackedScene" uid="uid://d3oqpoewd74ve" path="res://scenes/title_screen.tscn" id="1_uwrxv"]
 
 [node name="Game" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-88.0]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleScreen" parent="CanvasLayer" instance=ExtResource("1_uwrxv")]
