@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://saukvnfrf4ef"]
+
+[ext_resource type="Theme" uid="uid://b0ahbsqigdcpj" path="res://assets/themes/menu.tres" id="1_isnoh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isnoh"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 1920.0
+offset_bottom = 154.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_isnoh")
+
+[node name="Topbar" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_bottom = 45
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Topbar"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Topbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_isnoh")
+theme_type_variation = &"HeaderLarge"
+text = "STARScope"

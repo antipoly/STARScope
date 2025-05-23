@@ -1,7 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c157nxrr4srdq"]
-
-[ext_resource type="FontFile" uid="uid://ctn7k38b5tl7t" path="res://assets/fonts/KodeMono-Bold.ttf" id="1_wpiup"]
-
-[resource]
-Label/font_sizes/font_size = 50
-Label/fonts/font = ExtResource("1_wpiup")

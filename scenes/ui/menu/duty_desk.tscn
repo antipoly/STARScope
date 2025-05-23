@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba0srjdon8egk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twwit"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 1920.0
+offset_bottom = 917.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_twwit")

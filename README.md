@@ -1,4 +1,4 @@
-Air Traffic Manager is a gameified STARS (Standard Terminal Automation Replacement System) simulator[^stars], which is the program that real TRACON (Approach) controllers[^tracon] use to see aircraft, weather and procedures on their radar scopes[^stars_faa].
+STARScope is a gameified STARS (Standard Terminal Automation Replacement System) simulator[^stars], which is the program that real TRACON (Approach) controllers[^tracon] use to see aircraft, weather and procedures on their radar scopes[^stars_faa].
 
 The Terminal Control Workstation (TCW) is the primary interface with which controllers see aircraft. The Radar Data Processor (RDP) produces different symbols on the TCW:
 - **Primary Target Symbol:** represents the aircraft's current location and speed, 
