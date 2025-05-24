@@ -114,16 +114,16 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="DivisionInput" type="VBoxContainer" parent="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer"]
+[node name="SpecialisationInput" type="VBoxContainer" parent="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer/DivisionInput"]
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer/SpecialisationInput"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 23
-text = "Select your starting division"
+text = "Choose your specialisation"
 
-[node name="OptionButton" type="OptionButton" parent="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer/DivisionInput"]
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer/SpecialisationInput"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 item_count = 5
@@ -217,6 +217,6 @@ size_flags_vertical = 8
 text = "Press any key to continue..."
 
 [connection signal="text_changed" from="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer/NameInput/LineEdit" to="PanelContainer/HBoxContainer" method="_on_name_submitted"]
-[connection signal="item_selected" from="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer/DivisionInput/OptionButton" to="PanelContainer/HBoxContainer" method="_on_division_selected"]
+[connection signal="item_selected" from="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer/SpecialisationInput/OptionButton" to="PanelContainer/HBoxContainer" method="_on_specialisation_selected"]
 [connection signal="toggled" from="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer/AgreeToTerms/CheckBox" to="PanelContainer/HBoxContainer" method="_on_terms_toggled"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer/Button" to="PanelContainer/HBoxContainer" method="_on_contract_signed"]

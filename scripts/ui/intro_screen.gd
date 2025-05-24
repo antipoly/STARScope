@@ -2,17 +2,15 @@ extends HBoxContainer
 
 @onready var contractContainer: Control = $EmploymentContract
 @onready var continueText: Control = $ContinueText
-
-# @onready var nameInput: Control = $EmploymentContract/MarginContainer/VBoxContainer/NameInput/LineEdit
-# @onready var selectedDivision: Control = $EmploymentContract/MarginContainer/VBoxContainer/DivisionInput/OptionButton
-# @onready var termsAgreement: Control = $EmploymentContract/MarginContainer/VBoxContainer/AgreeToTerms/CheckBox
 @onready var signHereButton: Button = $EmploymentContract/MarginContainer/VBoxContainer/Button
 
 var input_handled := false;
+var contractSigned := false;
 
-var nameInput = "";
-var agreedToTerms = false;
-var divisionId = -1;
+var nameInput := "";
+var agreedToTerms := false;
+var specId := -1;
+
 
 func _ready() -> void:
   updateSignHereButtonState();
@@ -32,7 +30,7 @@ func _input(event):
     contractContainer.visible = true;
 
 func updateSignHereButtonState() -> void:
-  if !nameInput.is_empty() && agreedToTerms && divisionId >= 0:
+  if !nameInput.is_empty() && agreedToTerms && specId >= 0:
     signHereButton.disabled = false;
   else:
     signHereButton.disabled = true;
@@ -41,8 +39,8 @@ func _on_terms_toggled(toggled_on: bool) -> void:
   agreedToTerms = toggled_on;
   updateSignHereButtonState();
 
-func _on_division_selected(index: int) -> void:
-  divisionId = index;
+func _on_specialisation_selected(index: int) -> void:
+  specId = index;
   updateSignHereButtonState();
 
 func _on_name_submitted(new_text: String) -> void:
@@ -53,4 +51,19 @@ func _on_name_submitted(new_text: String) -> void:
 Handles the event when the 'Sign Here' button is pressed in the intro screen
 """
 func _on_contract_signed() -> void:
-  pass
+  if contractSigned:
+    return;
+
+  var player = ResourceManager.get_player();
+  player.player_name = nameInput;
+  player.active_specialisation = specId;
+  player.facility_level = 5;
+
+  var rating = Rating.new();
+  rating.specialisation = 3; # TRACON. Todo: Use the specialisation resource
+  rating.experience = 1;
+
+  player.ratings.push_back(rating);
+
+  ResourceManager.save_player();
+  contractSigned = true;

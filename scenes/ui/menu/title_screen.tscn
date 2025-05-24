@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0pkpig4a12tv"]
+[gd_scene load_steps=10 format=3 uid="uid://c0pkpig4a12tv"]
 
+[ext_resource type="Script" uid="uid://c2h85yrvonkyg" path="res://scripts/ui/title_screen.gd" id="2_t0v0j"]
 [ext_resource type="Theme" uid="uid://b0ahbsqigdcpj" path="res://assets/themes/menu.tres" id="2_w8uqo"]
 
 [sub_resource type="Theme" id="Theme_aw7pl"]
@@ -62,6 +63,7 @@ theme_override_constants/margin_bottom = 150
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 theme = ExtResource("2_w8uqo")
+script = ExtResource("2_t0v0j")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -108,61 +110,67 @@ alignment = 0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+[node name="PlayerPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(450, 500)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_w8uqo")
 theme_override_styles/panel = SubResource("StyleBoxFlat_bqml5")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerPanel/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Name" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="PlayerName" type="Label" parent="MarginContainer/HBoxContainer/PlayerPanel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "John Doe"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerPanel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="SpecialisationLevel" type="Label" parent="MarginContainer/HBoxContainer/PlayerPanel/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Certified TRACON Controller"
 
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="FacilityLevel" type="Label" parent="MarginContainer/HBoxContainer/PlayerPanel/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Facility Level 9"
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/PlayerPanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/PlayerPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_bo8uf")
 
-[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/PlayerPanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="Ratings" type="Button" parent="MarginContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Ratings" type="Button" parent="MarginContainer/HBoxContainer/PlayerPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_s4lrb")
 text = "Ratings"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Duty Desk" to="MarginContainer/HBoxContainer" method="_on_duty_desk_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Multiplayer" to="MarginContainer/HBoxContainer" method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Settings" to="MarginContainer/HBoxContainer" method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Stats" to="MarginContainer/HBoxContainer" method="_on_stats_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Help" to="MarginContainer/HBoxContainer" method="_on_help_pressed"]
