@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d3oqpoewd74ve" path="res://scenes/ui/menu.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bwpn8aaiinymf" path="res://scenes/ui/menu/intro.tscn" id="2_yqjtg"]
-[ext_resource type="Script" uid="uid://yelnknxtm4u1" path="res://scripts/Menu.gd" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://08seytu2tm41" path="res://scripts/utils/resource_manager.gd" id="4_lbhrr"]
 
 [node name="Game" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-88.0]
@@ -10,9 +10,11 @@ metadata/_edit_horizontal_guides_ = [-88.0]
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("1_uwrxv")]
-visible = false
 
 [node name="Intro" parent="CanvasLayer" instance=ExtResource("2_yqjtg")]
+visible = false
 
-[node name="Node" type="Node" parent="."]
-script = ExtResource("3_lnu2h")
+[node name="Utilities" type="Node" parent="."]
+
+[node name="ResourceManager" type="Node" parent="Utilities"]
+script = ExtResource("4_lbhrr")

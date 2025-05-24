@@ -48,8 +48,15 @@ Video maps are a group of maps that can be displayed on the STARS scope, that gi
   - Sign on list
 
 
+---
+
 **Charts, Mapping, and Aeronautical Data**
 https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/
+
+**Sector Files**
+https://forum.vatsim.net/t/creating-a-sector-file/5785
+https://crc.virtualnas.net/docs/#/README
+<!-- https://www.euroscope.hu/wp/download-sectorfiles/ -->
 
 **Speech Recognition**
 https://kaldi-asr.org/doc/kaldi_for_dummies.html
@@ -60,13 +67,15 @@ https://stt.readthedocs.io/en/latest/TRAINING_INTRO.html
 
 **Lore**
 *you sit infront of a black screen waiting for green blips to pass by*
-This is you, and you're an an air traffic controller at one of the largest airports in the whole world. Your job is to facilitate the departure and arrival of aircraft, by maintaining separation and keeping them moving, while staying FREE... free from incidents. Think you're up for the job?
+This is you, and you're an an air traffic control specialist at one of the largest airports in the whole world. Your job is to facilitate the departure and arrival of aircraft, by maintaining separation and keeping them moving, while staying FREE... free from incidents. Think you're up for the job?
 
 **Inspiration**
 https://www.openscope.co/
+https://vnas.vatsim.net/crc
+https://pharr.org/vice/#section-stars
 https://www.youtube.com/watch?v=lylTmuhfLME
-https://github.com/openscope/openscope
 https://www.youtube.com/@ATCpro
+
 
 
 [^stars]: https://en.wikipedia.org/wiki/Standard_Terminal_Automation_Replacement_System
