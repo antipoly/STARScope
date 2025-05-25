@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3oqpoewd74ve"]
+[gd_scene load_steps=8 format=3 uid="uid://d3oqpoewd74ve"]
 
+[ext_resource type="Script" uid="uid://kuitv6fph3wb" path="res://scripts/ui/menu.gd" id="1_w6y0u"]
 [ext_resource type="PackedScene" uid="uid://saukvnfrf4ef" path="res://scenes/ui/menu/topbar.tscn" id="1_wedc3"]
 [ext_resource type="PackedScene" uid="uid://c0pkpig4a12tv" path="res://scenes/ui/menu/title_screen.tscn" id="2_c2n5p"]
 [ext_resource type="Texture2D" uid="uid://bh8jujh5se5w" path="res://assets/images/menu_background.png" id="2_mgrm8"]
@@ -33,6 +34,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_83fn4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
+script = ExtResource("1_w6y0u")
 
 [node name="Topbar" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_wedc3")]
 layout_mode = 2

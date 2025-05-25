@@ -2,7 +2,7 @@ extends Node
 
 var player: Player = null;
 
-func json_file(path: String) -> Variant:
+func load_json(path: String) -> Variant:
   if !FileAccess.file_exists(path):
     return null;
 

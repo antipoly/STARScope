@@ -4,11 +4,11 @@
     "name": "Clearance Delivery",
     "acr": "CD",
     "levels": [
-      { "name": "Student Controller", "experience": 0 },
-      { "name": "Developmental Controller [DC 1]", "experience": 250 },
-      { "name": "Developmental Controller [DC 2]", "experience": 450 },
-      { "name": "Certified Professional Controller [CPC]", "experience": 700 },
-      { "name": "Supervisor", "experience": 2500 }
+      { "name": "Student Controller", "threshold": 0 },
+      { "name": "Developmental Controller [DC 1]", "threshold": 250 },
+      { "name": "Developmental Controller [DC 2]", "threshold": 450 },
+      { "name": "Certified Professional Controller [CPC]", "threshold": 700 },
+      { "name": "Supervisor", "threshold": 2500 }
     ]
   },
   {
@@ -16,11 +16,11 @@
     "name": "Ground",
     "acr": "ATCT",
     "levels": [
-      { "name": "Student Controller", "experience": 0 },
-      { "name": "Developmental Controller [DC 1]", "experience": 250 },
-      { "name": "Developmental Controller [DC 2]", "experience": 450 },
-      { "name": "Certified Professional Controller [CPC]", "experience": 700 },
-      { "name": "Supervisor", "experience": 2500 }
+      { "name": "Student Controller", "threshold": 0 },
+      { "name": "Developmental Controller [DC 1]", "threshold": 250 },
+      { "name": "Developmental Controller [DC 2]", "threshold": 450 },
+      { "name": "Certified Professional Controller [CPC]", "threshold": 700 },
+      { "name": "Supervisor", "threshold": 2500 }
     ]
   },
   {
@@ -28,11 +28,11 @@
     "name": "Tower",
     "acr": "ATCT",
     "levels": [
-      { "name": "Student Controller", "experience": 0 },
-      { "name": "Developmental Controller [DC 1]", "experience": 250 },
-      { "name": "Developmental Controller [DC 2]", "experience": 450 },
-      { "name": "Certified Professional Controller [CPC]", "experience": 700 },
-      { "name": "Supervisor", "experience": 2500 }
+      { "name": "Student Controller", "threshold": 0 },
+      { "name": "Developmental Controller [DC 1]", "threshold": 250 },
+      { "name": "Developmental Controller [DC 2]", "threshold": 450 },
+      { "name": "Certified Professional Controller [CPC]", "threshold": 700 },
+      { "name": "Supervisor", "threshold": 2500 }
     ]
   },
   {
@@ -40,11 +40,11 @@
     "name": "Terminal Area Control",
     "acr": "TRACON",
     "levels": [
-      { "name": "Student Controller", "experience": 0 },
-      { "name": "Developmental Controller [DC 1]", "experience": 250 },
-      { "name": "Developmental Controller [DC 2]", "experience": 450 },
-      { "name": "Certified Professional Controller [CPC]", "experience": 700 },
-      { "name": "Supervisor", "experience": 2500 }
+      { "name": "Student Controller", "threshold": 0 },
+      { "name": "Developmental Controller [DC 1]", "threshold": 250 },
+      { "name": "Developmental Controller [DC 2]", "threshold": 450 },
+      { "name": "Certified Professional Controller [CPC]", "threshold": 700 },
+      { "name": "Supervisor", "threshold": 2500 }
     ]
   },
   {
@@ -52,11 +52,11 @@
     "name": "Area Control",
     "acr": "ARTCC",
     "levels": [
-      { "name": "Student Controller", "experience": 0 },
-      { "name": "Developmental Controller [DC 1]", "experience": 250 },
-      { "name": "Developmental Controller [DC 2]", "experience": 450 },
-      { "name": "Certified Professional Controller [CPC]", "experience": 700 },
-      { "name": "Supervisor", "experience": 2500 }
+      { "name": "Student Controller", "threshold": 0 },
+      { "name": "Developmental Controller [DC 1]", "threshold": 250 },
+      { "name": "Developmental Controller [DC 2]", "threshold": 450 },
+      { "name": "Certified Professional Controller [CPC]", "threshold": 700 },
+      { "name": "Supervisor", "threshold": 2500 }
     ]
   }
 ]

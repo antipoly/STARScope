@@ -13,7 +13,6 @@ A handoff between a Tower TRACON and ARTCC is facilitated via the Interfacility 
 In the sim, handoffs are performed by pressing the letter of the controller identifier, then clicking on the aircraft you wish to handoff; it will then turn green.
 To receive a handoff, click the flashing aircraft, with a controller identifier letter that is not yours, then it will switch to your identifier and turn white.
 
-
 **Features**
 - **Controller Briefing (Position Relief)**
 - **Flight Strips**
@@ -32,7 +31,7 @@ Video maps are a group of maps that can be displayed on the STARS scope, that gi
 **Aircraft Commands**
 **Scope Commands**
 
-**Terminal Control Workstation (TCB)**
+**Terminal Control Workstation (TCW)**
 - Display Control Bar (DCB)
 - Display Control Panels (DCP)
 - Range Rings

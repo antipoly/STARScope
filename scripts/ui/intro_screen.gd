@@ -4,21 +4,20 @@ extends HBoxContainer
 @onready var continueText: Control = $ContinueText
 @onready var signHereButton: Button = $EmploymentContract/MarginContainer/VBoxContainer/Button
 
-var input_handled := false;
+var enable_input := true;
 var contractSigned := false;
 
 var nameInput := "";
 var agreedToTerms := false;
 var specId := -1;
 
-
 func _ready() -> void:
   updateSignHereButtonState();
-  pass
+  Utils.fade(get_parent(), "in", 1);
 
 func _input(event):
-  if !input_handled && event is InputEventKey:
-    input_handled = true;
+  if enable_input && event is InputEventKey:
+    enable_input = false;
     var text_tween = continueText.create_tween().set_parallel();
     # text_tween.tween_property(continueText, "position:x", 50, 1.5).from_current(); # sigh
     text_tween.tween_property(continueText, "modulate:a", 0.0, 1.5).from(1.0);
@@ -60,10 +59,13 @@ func _on_contract_signed() -> void:
   player.facility_level = 5;
 
   var rating = Rating.new();
-  rating.specialisation = 3; # TRACON. Todo: Use the specialisation resource
+  rating.specialisation = specId;
   rating.experience = 1;
 
   player.ratings.push_back(rating);
 
   ResourceManager.save_player();
   contractSigned = true;
+
+  await Utils.fade(get_parent(), "out").finished;
+  get_tree().change_scene_to_file("res://scenes/ui/menu.tscn");

@@ -7,19 +7,23 @@ extends HBoxContainer
 func _ready() -> void:
   var player = ResourceManager.get_player(false);
   if !player:
-    return;
+    return ;
 
   PlayerName.text = player.player_name;
   FacilityLevel.text = "Facility Level %d" % player.facility_level;
 
-  var specialisations = ResourceManager.json_file("res://data/game/specialisations.json");
+  var specialisations = ResourceManager.load_json("res://data/game/specialisations.json");
   var spec = null;
 
   for specialisation in specialisations:
     if player.active_specialisation == specialisation.id:
       spec = specialisation;
 
-  SpecialisationLevel.text = "%s %s" % [spec.acr, 'getLevelFromExperience()']
+  var level = Utils.getPlayerLevel(player);
+  if level == null:
+    level = { "name": "N/A", "threshold": 0 }
+
+  SpecialisationLevel.text = "%s %s" % [spec.acr, level.name];
 
 func _on_duty_desk_pressed() -> void:
   pass # Replace with function body.
