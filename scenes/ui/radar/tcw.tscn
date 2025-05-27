@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6ybs3vw148me"]
+
+[ext_resource type="PackedScene" uid="uid://ch2hvaf1r6mu2" path="res://scenes/ui/radar/display_control_board.tscn" id="1_e0lde"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(471, 26)
+
+[node name="DisplayControlBoard" parent="CanvasGroup" instance=ExtResource("1_e0lde")]
+offset_left = -1431.0
+offset_top = -566.0
+offset_right = -1431.0
+offset_bottom = -566.0

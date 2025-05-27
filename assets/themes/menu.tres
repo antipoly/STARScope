@@ -740,6 +740,7 @@ Button/styles/pressed = SubResource("StyleBoxEmpty_2dn5r")
 HeaderLarge/font_sizes/font_size = 50
 HeaderLarge/fonts/font = ExtResource("2_bolle")
 HeaderMedium/font_sizes/font_size = 37
+HeaderSmall/font_sizes/font_size = 20
 Label/font_sizes/font_size = 25
 Label/fonts/font = ExtResource("1_1n65e")
 LineEdit/fonts/font = ExtResource("1_1n65e")

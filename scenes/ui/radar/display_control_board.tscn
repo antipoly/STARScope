@@ -1,0 +1,260 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch2hvaf1r6mu2"]
+
+[ext_resource type="Theme" uid="uid://cs0qe7mlqm5a" path="res://assets/themes/dcb.tres" id="1_bkyw0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vohng"]
+
+[node name="DisplayControlBoard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1920, 90)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_bkyw0")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vohng")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Range" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "RANGE
+40"
+autowrap_mode = 2
+
+[node name="CenterConf" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PlaceCenter" type="Button" parent="PanelContainer/HBoxContainer/CenterConf"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "PLACE
+CNTR"
+autowrap_mode = 2
+
+[node name="OffCenter" type="Button" parent="PanelContainer/HBoxContainer/CenterConf"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "OFF
+CNTR"
+autowrap_mode = 2
+
+[node name="RangeRings" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "RR
+5"
+autowrap_mode = 2
+
+[node name="RangeRingsConf" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PlaceRangRings" type="Button" parent="PanelContainer/HBoxContainer/RangeRingsConf"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "PLACE
+RR"
+autowrap_mode = 2
+
+[node name="RangeRingsCenter" type="Button" parent="PanelContainer/HBoxContainer/RangeRingsConf"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "RR
+CNTR"
+autowrap_mode = 2
+
+[node name="Maps" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "MAPS"
+autowrap_mode = 2
+
+[node name="MapContainer" type="GridContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="Map1" type="Button" parent="PanelContainer/HBoxContainer/MapContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "221
+J_RNAV"
+autowrap_mode = 2
+
+[node name="Map2" type="Button" parent="PanelContainer/HBoxContainer/MapContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "851
+COAST"
+autowrap_mode = 2
+
+[node name="Map3" type="Button" parent="PanelContainer/HBoxContainer/MapContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "849
+CLASS_B"
+autowrap_mode = 2
+
+[node name="Map4" type="Button" parent="PanelContainer/HBoxContainer/MapContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "220
+F_RNAV"
+autowrap_mode = 2
+
+[node name="Map5" type="Button" parent="PanelContainer/HBoxContainer/MapContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+autowrap_mode = 2
+
+[node name="Map6" type="Button" parent="PanelContainer/HBoxContainer/MapContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "803
+3NM_MVA"
+autowrap_mode = 2
+
+[node name="Weather" type="HBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Weather1" type="Button" parent="PanelContainer/HBoxContainer/Weather"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "WX1"
+autowrap_mode = 2
+
+[node name="Weather2" type="Button" parent="PanelContainer/HBoxContainer/Weather"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "WX2"
+autowrap_mode = 2
+
+[node name="Weather3" type="Button" parent="PanelContainer/HBoxContainer/Weather"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "WX3"
+autowrap_mode = 2
+
+[node name="Weather4" type="Button" parent="PanelContainer/HBoxContainer/Weather"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "WX4"
+autowrap_mode = 2
+
+[node name="Weather5" type="Button" parent="PanelContainer/HBoxContainer/Weather"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "WX5"
+autowrap_mode = 2
+
+[node name="Weather6" type="Button" parent="PanelContainer/HBoxContainer/Weather"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "WX6"
+autowrap_mode = 2
+
+[node name="Brite" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "BRITE"
+autowrap_mode = 2
+
+[node name="LeaderLine" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LeaderLineDirection" type="Button" parent="PanelContainer/HBoxContainer/LeaderLine"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "LDR DIR
+N"
+autowrap_mode = 2
+
+[node name="LeaderLineLength" type="Button" parent="PanelContainer/HBoxContainer/LeaderLine"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "LDR
+2"
+autowrap_mode = 2
+
+[node name="CharSize" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "CHAR
+SIZE"
+autowrap_mode = 2
+
+[node name="Mode" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "MODE
+FSL"
+autowrap_mode = 2
+
+[node name="Pref" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "PREF"
+autowrap_mode = 2
+
+[node name="Site" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "SITE
+FUSED"
+autowrap_mode = 2
+
+[node name="Filters" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SSAFilters" type="Button" parent="PanelContainer/HBoxContainer/Filters"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "SSA
+FILTERS"
+autowrap_mode = 2
+
+[node name="GITextFilters" type="Button" parent="PanelContainer/HBoxContainer/Filters"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "GI TEXT
+FILTER"
+autowrap_mode = 2
+
+[node name="Shift" type="Button" parent="PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "SHIFT"
+autowrap_mode = 2

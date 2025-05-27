@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="STARSCope"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="uid://d3oqpoewd74ve"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,7 +25,6 @@ Main="res://scripts/main.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=4
-window/size/initial_position=Vector2i(-185, 95)
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -33,3 +32,7 @@ window/stretch/aspect="expand"
 
 theme/default_font_subpixel_positioning=3
 theme/default_font_multichannel_signed_distance_field=true
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
