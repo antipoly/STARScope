@@ -54,7 +54,7 @@ func _on_contract_signed() -> void:
     return;
 
   var player = ResourceManager.get_player();
-  player.player_name = nameInput;
+  player.player_name = nameInput.strip_edges();
   player.active_specialisation = specId;
   player.facility_level = 5;
 

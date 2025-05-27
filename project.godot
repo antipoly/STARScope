@@ -28,6 +28,10 @@ window/size/mode=4
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+track="All the aircraft tracks which are managed by the radar scope."
+
 [gui]
 
 theme/default_font_subpixel_positioning=3

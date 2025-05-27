@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://cprpktyl8dh3o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxu2s"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[node name="CompassRose" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="PanelContainer"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dxu2s")

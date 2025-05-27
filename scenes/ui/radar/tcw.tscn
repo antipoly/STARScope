@@ -1,16 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6ybs3vw148me"]
+[gd_scene load_steps=6 format=3 uid="uid://b6ybs3vw148me"]
 
+[ext_resource type="PackedScene" uid="uid://cprpktyl8dh3o" path="res://scenes/ui/radar/compass_rose.tscn" id="1_7fiud"]
 [ext_resource type="PackedScene" uid="uid://ch2hvaf1r6mu2" path="res://scenes/ui/radar/display_control_board.tscn" id="1_e0lde"]
+[ext_resource type="PackedScene" uid="uid://c32ku4r6oto5g" path="res://scenes/ui/radar/aircraft_track.tscn" id="3_oe57e"]
+[ext_resource type="Script" uid="uid://cxshgg0hjlm4o" path="res://scripts/radar/radar.gd" id="3_xm8qa"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oe57e"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.333333, 0.333333, 0.333333, 1)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="TerminalControlWorkspace" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
-position = Vector2(471, 26)
+[node name="CompassRose" parent="." instance=ExtResource("1_7fiud")]
+layout_mode = 1
 
-[node name="DisplayControlBoard" parent="CanvasGroup" instance=ExtResource("1_e0lde")]
-offset_left = -1431.0
-offset_top = -566.0
-offset_right = -1431.0
-offset_bottom = -566.0
+[node name="DisplayControlBoard" parent="." instance=ExtResource("1_e0lde")]
+layout_mode = 1
+
+[node name="Radar" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 90.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oe57e")
+script = ExtResource("3_xm8qa")
+
+[node name="AircraftTrack" parent="Radar" instance=ExtResource("3_oe57e")]
+layout_mode = 1
+offset_left = 721.0
+offset_top = 256.0
+offset_right = 721.0
+offset_bottom = 256.0
+
+[node name="AircraftTrack2" parent="Radar" instance=ExtResource("3_oe57e")]
+layout_mode = 1
+offset_left = 1001.0
+offset_top = 474.0
+offset_right = 1001.0
+offset_bottom = 474.0
+
+[node name="AircraftTrack3" parent="Radar" instance=ExtResource("3_oe57e")]
+layout_mode = 1
+offset_left = 490.0
+offset_top = 399.0
+offset_right = 490.0
+offset_bottom = 399.0
+
+[node name="AircraftTrack4" parent="Radar" instance=ExtResource("3_oe57e")]
+layout_mode = 1
+offset_left = 1089.0
+offset_top = 358.0
+offset_right = 1089.0
+offset_bottom = 358.0
+
+[node name="AircraftTrack5" parent="Radar" instance=ExtResource("3_oe57e")]
+layout_mode = 1
+offset_left = 620.0
+offset_top = 602.0
+offset_right = 620.0
+offset_bottom = 602.0
+
+[node name="AircraftTrack6" parent="Radar" instance=ExtResource("3_oe57e")]
+layout_mode = 1
+offset_left = 1546.0
+offset_top = 433.0
+offset_right = 1546.0
+offset_bottom = 433.0

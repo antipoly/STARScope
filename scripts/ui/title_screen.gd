@@ -12,7 +12,7 @@ func _ready() -> void:
   if !player:
     return;
 
-  player_name.text = player.player_name;
+  player_name.text = player.player_name.strip_edges();
   facility_level.text = "Facility Level %d" % player.facility_level;
 
   var specialisations = ResourceManager.load_json("res://data/game/specialisations.json");
