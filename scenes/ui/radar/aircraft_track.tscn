@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c32ku4r6oto5g"]
+[gd_scene load_steps=7 format=3 uid="uid://c32ku4r6oto5g"]
 
 [ext_resource type="Script" uid="uid://dospnuw4kmr27" path="res://scripts/radar/aircraft_track.gd" id="1_cgvli"]
 [ext_resource type="FontFile" uid="uid://ow60na5gn5py" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_htqcd"]
@@ -6,11 +6,16 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htqcd"]
 bg_color = Color(0.12549, 0.537255, 1, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_cwp5w"]
+font_size = 12
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwp5w"]
 
@@ -22,30 +27,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cgvli")
+aircraft_position = null
+aircraft_groundspeed = null
+aircraft_airspeed = null
+aircraft_direction = null
+aircraft_altitude_msl = null
+wind_speed = null
+wind_direction = null
+distance_scale = null
 
 [node name="Target" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 17.0
-offset_bottom = 17.0
+offset_right = 16.0
+offset_bottom = 16.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_htqcd")
 
-[node name="Symbol" type="Label" parent="Target"]
+[node name="PositionSymbol" type="Label" parent="Target"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -3.0
-offset_top = -6.0
-offset_right = 3.0
-offset_bottom = 6.0
+offset_left = -6.0
+offset_top = -5.0
+offset_right = 6.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_htqcd")
 theme_override_font_sizes/font_size = 11
 text = "N"
+label_settings = SubResource("LabelSettings_cwp5w")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DatablockConnector" type="Panel" parent="."]
 layout_mode = 2
@@ -55,12 +70,22 @@ offset_right = 9.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cwp5w")
 
 [node name="Datablock" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = -18.0
-offset_top = -57.0
-offset_right = 35.0
-offset_bottom = -19.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0140625
+anchor_top = -0.0675926
+anchor_right = 0.0223958
+anchor_bottom = -0.0166667
 theme_override_constants/separation = 0
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SPC" type="Label" parent="Datablock"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cwp5w")
+theme_override_font_sizes/font_size = 14
+text = "CA"
 
 [node name="AircraftID" type="Label" parent="Datablock"]
 layout_mode = 2
@@ -68,18 +93,41 @@ theme_override_fonts/font = ExtResource("3_cwp5w")
 theme_override_font_sizes/font_size = 14
 text = "SWA231"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Datablock"]
+[node name="PrimaryGroup" type="HBoxContainer" parent="Datablock"]
+visible = false
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 6
 
-[node name="Altitude" type="Label" parent="Datablock/HBoxContainer"]
+[node name="Altitude" type="Label" parent="Datablock/PrimaryGroup"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_cwp5w")
 theme_override_font_sizes/font_size = 14
 text = "010"
 
-[node name="Speed" type="Label" parent="Datablock/HBoxContainer"]
+[node name="Speed" type="Label" parent="Datablock/PrimaryGroup"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_cwp5w")
 theme_override_font_sizes/font_size = 14
 text = "23"
+
+[node name="WTC" type="Label" parent="Datablock/PrimaryGroup"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cwp5w")
+theme_override_font_sizes/font_size = 14
+text = "F"
+
+[node name="SecondaryGroup" type="HBoxContainer" parent="Datablock"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="DestinationIATA" type="Label" parent="Datablock/SecondaryGroup"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cwp5w")
+theme_override_font_sizes/font_size = 14
+text = "GUP"
+
+[node name="AircraftType" type="Label" parent="Datablock/SecondaryGroup"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cwp5w")
+theme_override_font_sizes/font_size = 14
+text = "B737"
