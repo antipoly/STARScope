@@ -2,7 +2,7 @@ extends Camera2D
 
 @export var zoom_speed: float = 0.1;
 @export var pan_speed: float = 300;
-@export var min_range: float = 0.5#1;
+@export var min_range: float = 0.1#1;
 @export var max_range: float = 2#256;
 
 var is_panning: bool = false;

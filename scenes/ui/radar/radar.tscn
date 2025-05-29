@@ -6,8 +6,6 @@
 [node name="Radar" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("1_aicmt")
 
 [node name="AircraftTrack" parent="." instance=ExtResource("2_6qds8")]

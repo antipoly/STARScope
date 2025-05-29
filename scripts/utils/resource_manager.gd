@@ -4,6 +4,7 @@ var player: Player = null;
 
 func load_json(path: String) -> Variant:
   if !FileAccess.file_exists(path):
+    push_error("File does not exist: %s" % path);
     return null;
 
   var file = FileAccess.open(path, FileAccess.READ);
