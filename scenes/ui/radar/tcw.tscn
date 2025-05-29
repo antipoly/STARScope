@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6ybs3vw148me"]
+[gd_scene load_steps=7 format=3 uid="uid://b6ybs3vw148me"]
 
 [ext_resource type="PackedScene" uid="uid://cprpktyl8dh3o" path="res://scenes/ui/radar/compass_rose.tscn" id="1_7fiud"]
 [ext_resource type="PackedScene" uid="uid://ch2hvaf1r6mu2" path="res://scenes/ui/radar/display_control_board.tscn" id="1_e0lde"]
@@ -12,6 +12,9 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xm8qa"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="TerminalControlWorkspace" type="Control"]
 layout_mode = 3
@@ -38,3 +41,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_oe57e")
 visible = false
 
 [node name="DisplayControlBoard" parent="Camera2D/CanvasGroup" instance=ExtResource("1_e0lde")]
+
+[node name="Panel" type="Panel" parent="Camera2D/CanvasGroup/DisplayControlBoard"]
+z_index = -1
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 90.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xm8qa")

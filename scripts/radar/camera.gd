@@ -14,7 +14,7 @@ func _input(event: InputEvent) -> void:
   var min_zoom = Vector2(normalize_range(min_range), normalize_range(min_range));
   var max_zoom = Vector2(normalize_range(max_range), normalize_range(max_range));
 
-  # Todo fix
+  # Todo fix - very broken bad
   if event is InputEventMouseButton:
     if event.button_index == MOUSE_BUTTON_WHEEL_DOWN && !is_panning:
       zoom = (zoom - Vector2(zoom_speed, zoom_speed)).clamp(min_zoom, max_zoom);
@@ -32,4 +32,4 @@ func _input(event: InputEvent) -> void:
     last_mouse_position = event.position;
 
 func normalize_range(dcb_range: float) -> float:
-  return dcb_range / 12;
+  return dcb_range / 2;

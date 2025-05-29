@@ -6,7 +6,7 @@ extends Control
 @export var aircraft_direction: int;
 @export var aircraft_altitude_msl: int;
 
-@export var wind_speed: float = 300.0;
+@export var wind_speed: float = 3.0;
 @export var wind_direction: int = 270; # Defines the direction the winds are coming from
 
 # How many nautical miles = 1 pixel
@@ -28,8 +28,8 @@ var datablock_phase := 1;
 
 func _ready() -> void:
   aircraft_position = position;
-  aircraft_groundspeed = 250# randf_range(220, 280);
-  aircraft_direction =  90#randi_range(1, 360);
+  aircraft_groundspeed = randf_range(220, 280);
+  aircraft_direction = randi_range(1, 360);
 
 func _process(delta: float) -> void:
   var wind = get_wind();
@@ -61,8 +61,15 @@ func update_position() -> void:
   pass
 
 func update_datablock() -> void:
-  pass
+  if datablock_phase == 1:
+    db_primary_group.show();
+    db_secondary_group.hide();
+  elif datablock_phase == 4:
+    db_primary_group.hide();
+    db_secondary_group.show();
+
+  if datablock_phase >= 4: datablock_phase = 0;
+  datablock_phase += 1;
 
 func turn_left(deg: int) -> void:
-
   pass
