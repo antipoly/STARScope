@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @export var update_interval: float = 1.0;
 @export var rr_count: int = 15;
@@ -24,4 +24,4 @@ func _update_radar() -> void:
 func _draw() -> void:
   for i in range(1, rr_count + 1):
     var radius = i * rr_spacing;
-    draw_arc(Vector2.ZERO, radius, 0, TAU, 100, Color(0.5, 0.5, 0.5, 0.5), 1.0)
+    draw_arc(Vector2.ZERO, radius, 0, TAU, 100, Color(0.5, 0.5, 0.5, 0.3), 1.0)

@@ -10,7 +10,7 @@ extends Control
 @export var wind_direction: int = 270; # Defines the direction the winds are coming from
 
 # How many nautical miles = 1 pixel
-@export var distance_scale: float = 90.0;
+@export var distance_scale: float = 85.0;
 
 # Datablock Nodes
 @onready var db_spc = $Datablock/SPC;
@@ -24,15 +24,28 @@ extends Control
 @onready var db_primary_group = $Datablock/PrimaryGroup;
 @onready var db_secondary_group = $Datablock/SecondaryGroup;
 
-var datablock_phase := 1;
+var datablock_phase = 1;
+var is_turning = false;
+var target_heading = 0;
 
 func _ready() -> void:
   aircraft_position = position;
   aircraft_groundspeed = randf_range(220, 280);
   aircraft_direction = randi_range(1, 360);
+  aircraft_altitude_msl = randi_range(5000, 18000);
+
+  update_datablock();
+  # await get_tree().create_timer(5.0).timeout
+  # turn_by(30);
 
 func _process(delta: float) -> void:
   var wind = get_wind();
+
+  if is_turning:
+    # This does not work
+    aircraft_direction = int(lerp_angle(float(aircraft_direction), float(target_heading), delta * aircraft_airspeed));
+    if aircraft_direction == target_heading:
+      is_turning = false;
 
   # Normalize the unit circle coordinate to a real-life bearing
   var direction_bearing = (90 - aircraft_direction) % 360;
@@ -61,6 +74,10 @@ func update_position() -> void:
   pass
 
 func update_datablock() -> void:
+  # Update the actual datablock fields here pls
+  db_speed.text = str(int(aircraft_groundspeed) / 10).pad_zeros(2);
+  db_altitude.text = str(aircraft_altitude_msl / 100).pad_zeros(3);
+
   if datablock_phase == 1:
     db_primary_group.show();
     db_secondary_group.hide();
@@ -71,5 +88,13 @@ func update_datablock() -> void:
   if datablock_phase >= 4: datablock_phase = 0;
   datablock_phase += 1;
 
-func turn_left(deg: int) -> void:
-  pass
+"""
+Turns the track to a specified heating (+/-) the current heading
+"""
+func turn_by(deg: int) -> void:
+  if is_turning:
+    return;
+  
+  target_heading = abs((aircraft_direction + deg) % 360);
+  # print(aircraft_direction, target_heading)
+  is_turning = true;

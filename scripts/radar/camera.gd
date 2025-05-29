@@ -2,8 +2,8 @@ extends Camera2D
 
 @export var zoom_speed: float = 0.1;
 @export var pan_speed: float = 300;
-@export var min_range: float = 1;
-@export var max_range: float = 256;
+@export var min_range: float = 0.5#1;
+@export var max_range: float = 2#256;
 
 var is_panning: bool = false;
 var last_mouse_position: Vector2;
@@ -16,9 +16,9 @@ func _input(event: InputEvent) -> void:
 
   # Todo fix - very broken bad
   if event is InputEventMouseButton:
-    if event.button_index == MOUSE_BUTTON_WHEEL_DOWN && !is_panning:
+    if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
       zoom = (zoom - Vector2(zoom_speed, zoom_speed)).clamp(min_zoom, max_zoom);
-    elif event.button_index == MOUSE_BUTTON_WHEEL_UP && !is_panning:
+    elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
       zoom = (zoom + Vector2(zoom_speed, zoom_speed)).clamp(min_zoom, max_zoom);
     elif event.button_index == MOUSE_BUTTON_RIGHT:
       if event.pressed:
@@ -32,4 +32,4 @@ func _input(event: InputEvent) -> void:
     last_mouse_position = event.position;
 
 func normalize_range(dcb_range: float) -> float:
-  return dcb_range / 2;
+  return dcb_range# / 2;
