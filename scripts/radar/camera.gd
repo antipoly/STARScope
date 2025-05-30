@@ -1,25 +1,39 @@
 extends Camera2D
 
-@export var zoom_speed: float = 0.1;
-@export var pan_speed: float = 300;
-@export var min_range: float = 0.1#1;
-@export var max_range: float = 2#256;
+
+signal range_changed(range: int)
+@export var current_range := 20;
+
+const min_zoom: float = 0.05;
+const max_zoom: float = 2;
+const min_range: float = 1;
+const max_range: float = 256;
 
 var is_panning: bool = false;
 var last_mouse_position: Vector2;
 
-# Zooming with mouse scroll
-# Panning with right-click
+func _ready() -> void:
+  zoom = Vector2(range_to_zoom(current_range), range_to_zoom(current_range));
+
+# Zooming should be even
+# Video maps, range rings should always be 1px
+# Aircraft tracks should always be the same size
+
 func _input(event: InputEvent) -> void:
-  var min_zoom = Vector2(normalize_range(min_range), normalize_range(min_range));
-  var max_zoom = Vector2(normalize_range(max_range), normalize_range(max_range));
+  var min_zoom_vec = Vector2(min_zoom, min_zoom);
+  var max_zoom_vec = Vector2(max_zoom, max_zoom);
 
   # Todo fix - very broken bad
   if event is InputEventMouseButton:
+    var zoom_increment = (max_zoom - min_zoom) / (max_range - min_range);
     if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-      zoom = (zoom - Vector2(zoom_speed, zoom_speed)).clamp(min_zoom, max_zoom);
+      zoom = (zoom - Vector2(zoom_increment, zoom_increment)).clamp(min_zoom_vec, max_zoom_vec);
+      emit_signal("range_changed", zoom_to_range(zoom.x));
+
     elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
-      zoom = (zoom + Vector2(zoom_speed, zoom_speed)).clamp(min_zoom, max_zoom);
+      zoom = (zoom + Vector2(zoom_increment, zoom_increment)).clamp(min_zoom_vec, max_zoom_vec);
+      emit_signal("range_changed", zoom_to_range(zoom.x));
+
     elif event.button_index == MOUSE_BUTTON_RIGHT:
       if event.pressed:
         is_panning = true;
@@ -31,5 +45,8 @@ func _input(event: InputEvent) -> void:
     global_position -= (event.position - last_mouse_position) / zoom;
     last_mouse_position = event.position;
 
-func normalize_range(dcb_range: float) -> float:
-  return dcb_range# / 2;
+func range_to_zoom(dcb_range: float) -> float:
+  return max_zoom - ((dcb_range - min_range) / (max_range - min_range)) * (max_zoom - min_zoom);
+
+func zoom_to_range(cam_zoom: float) -> int:
+  return roundi(min_range + ((max_zoom - cam_zoom) / (max_zoom - min_zoom)) * (max_range - min_range))

@@ -37,5 +37,6 @@ offset_bottom = 1080.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_oe57e")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 offset = Vector2(960, 540)
 script = ExtResource("2_xm8qa")

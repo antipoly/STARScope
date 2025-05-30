@@ -1,8 +1,8 @@
 extends Control
 
 @export var update_interval: float = 1.0;
-@export var rr_count: int = 15;
 @export var rr_spacing: float = 100.0;
+@export var rr_count: int = 30;
 
 var radar_pass: Timer;
 
@@ -17,6 +17,7 @@ func _ready() -> void:
   add_child(radar_pass);
 
   MapManager.loadVideoMap(self, "ZNY/01G66ETNBBVPD0812MB31HJCBZ", [-74.12753592427075, 40.68075933728596]);
+  MapManager.loadVideoMap(self, "ZNY/01G90NPTFQ2DK0CXJB8Q3GBPE4", [-74.12753592427075, 40.68075933728596]);
 
 func _update_radar() -> void:
   var tracks = get_tree().get_nodes_in_group("track");

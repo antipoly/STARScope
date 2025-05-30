@@ -2,7 +2,7 @@ class_name MapManager
 extends Object
 
 const EARTH_RADIUS = 6378137;
-const SCALE_FACTOR = 0.01;
+const SCALE_FACTOR = 120;
 
 static func loadVideoMap(node: Control, video_map: String, center: Array[float]) -> void:
   var geojson = ResourceManager.load_json("res://data/nav/VideoMaps/%s.geojson" % video_map);
@@ -36,10 +36,11 @@ static func draw_line(node: Control, points: Array) -> void:
   var line = Line2D.new();
   line.points = points;
   line.width = 1;
+  line.antialiased = true;
   node.add_child(line);
 
 static func scale_coordinates(x, y) -> Array:
-  return [x * SCALE_FACTOR, y * SCALE_FACTOR];
+  return [x / SCALE_FACTOR, -y / SCALE_FACTOR];
 
 static func to_relative(lng, lat, center_coordinates) -> Array[float]:
   var center_projected = to_mercator(center_coordinates[0], center_coordinates[1]);
