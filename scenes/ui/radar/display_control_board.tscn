@@ -39,6 +39,7 @@ theme_override_constants/separation = 0
 [node name="Range" type="Button" parent="PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+toggle_mode = true
 text = "RANGE
 40"
 autowrap_mode = 2
@@ -67,6 +68,7 @@ autowrap_mode = 2
 [node name="RangeRings" type="Button" parent="PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+toggle_mode = true
 text = "RR
 5"
 autowrap_mode = 2
@@ -270,3 +272,8 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "SHIFT"
 autowrap_mode = 2
+
+[connection signal="gui_input" from="PanelContainer/HBoxContainer/Range" to="." method="_on_range_gui_input"]
+[connection signal="toggled" from="PanelContainer/HBoxContainer/Range" to="." method="_on_range_toggled"]
+[connection signal="gui_input" from="PanelContainer/HBoxContainer/RangeRings" to="." method="_on_range_rings_gui_input"]
+[connection signal="toggled" from="PanelContainer/HBoxContainer/RangeRings" to="." method="_on_range_rings_toggled"]

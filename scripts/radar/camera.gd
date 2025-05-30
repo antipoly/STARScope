@@ -25,14 +25,14 @@ func _input(event: InputEvent) -> void:
 
   # Todo fix - very broken bad
   if event is InputEventMouseButton:
-    var zoom_increment = (max_zoom - min_zoom) / (max_range - min_range);
-    if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-      zoom = (zoom - Vector2(zoom_increment, zoom_increment)).clamp(min_zoom_vec, max_zoom_vec);
-      emit_signal("range_changed", zoom_to_range(zoom.x));
+    if event.button_index == MOUSE_BUTTON_WHEEL_DOWN or event.button_index == MOUSE_BUTTON_WHEEL_UP:
+      var zoom_increment = (max_zoom - min_zoom) / (max_range - min_range);
+      if event.button_index == MOUSE_BUTTON_WHEEL_DOWN: zoom_increment *= -1;
+      # print(zoom_increment)
 
-    elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
       zoom = (zoom + Vector2(zoom_increment, zoom_increment)).clamp(min_zoom_vec, max_zoom_vec);
-      emit_signal("range_changed", zoom_to_range(zoom.x));
+      current_range = zoom_to_range(zoom.x);
+      emit_signal("range_changed", current_range);
 
     elif event.button_index == MOUSE_BUTTON_RIGHT:
       if event.pressed:

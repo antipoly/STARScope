@@ -42,3 +42,13 @@ offset_left = 587.0
 offset_top = 333.0
 offset_right = 587.0
 offset_bottom = 333.0
+
+[node name="RangeRings" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VideoMaps" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
