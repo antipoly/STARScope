@@ -68,13 +68,14 @@ theme_override_constants/separation = 20
 [node name="Duty Desk" type="Button" parent="MC/HBC/VBC"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme = ExtResource("2_w8uqo")
+theme_type_variation = &"FlatButton"
 text = "Duty Desk"
 alignment = 0
 
 [node name="Multiplayer" type="Button" parent="MC/HBC/VBC"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_type_variation = &"FlatButton"
 theme_override_styles/focus = SubResource("StyleBoxEmpty_aw7pl")
 text = "Multiplayer"
 alignment = 0
@@ -82,6 +83,7 @@ alignment = 0
 [node name="Settings" type="Button" parent="MC/HBC/VBC"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_type_variation = &"FlatButton"
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8f6ox")
 text = "Settings"
 alignment = 0
@@ -89,6 +91,7 @@ alignment = 0
 [node name="Stats" type="Button" parent="MC/HBC/VBC"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_type_variation = &"FlatButton"
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8f6ox")
 text = "Stats"
 alignment = 0
@@ -96,6 +99,7 @@ alignment = 0
 [node name="Help" type="Button" parent="MC/HBC/VBC"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_type_variation = &"FlatButton"
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8f6ox")
 text = "Help"
 alignment = 0

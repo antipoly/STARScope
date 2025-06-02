@@ -191,6 +191,7 @@ text = "Do you agree to the terms and conditions?"
 
 [node name="CheckBox" type="CheckBox" parent="PanelContainer/HBoxContainer/EmploymentContract/MarginContainer/VBoxContainer/AgreeToTerms"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 25
 text = "Yes"
 
