@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh3n6od3lud3l"]
+
+[ext_resource type="FontFile" uid="uid://bvnm0kyjog80g" path="res://assets/fonts/OxygenMono-Regular.ttf" id="1_i0cju"]
+
+[sub_resource type="Theme" id="Theme_4ghwy"]
+Label/colors/font_color = Color(0.11441, 0.482657, 0.113603, 1)
+Label/font_sizes/font_size = 13
+Label/fonts/font = ExtResource("1_i0cju")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4wdpw"]
+
+[node name="StatusArea" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 90.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_4ghwy")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 990.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4wdpw")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 170
+
+[node name="SystemStatusArea" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "1500/21  30.22
+15NM PTL: 3.0
+001 160 U 001 160 A
+EWR 29.81 LGA 29.81 JFK 29.82
+CDW 29.81 MMU 29.81 TEB 29.80
+HPN 29.80 DXR 29.81 FRG 29.81"
+
+[node name="PreviewArea" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "IC
+N925RC"
+
+[node name="FlightPlans" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "FLIGHT PLANS
+    ENY3172 6521 053   D
+     N890NE 6416 053   F"
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 205
+
+[node name="SystemStatusArea2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "SIGN ON
+1N  127.4  ABQ_APP AI
+1S  123.9  ABQ_APP AI"
+
+[node name="TowerLists" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="TowerList" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/TowerLists"]
+layout_mode = 2
+text = "LGA TOWER
+AAL100   CRJ7"
+
+[node name="TowerList2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/TowerLists"]
+visible = false
+layout_mode = 2
+text = "LGA TOWER
+AAL100   CRJ7"

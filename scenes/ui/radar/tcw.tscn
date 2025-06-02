@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6ybs3vw148me"]
+[gd_scene load_steps=7 format=3 uid="uid://b6ybs3vw148me"]
 
 [ext_resource type="PackedScene" uid="uid://cprpktyl8dh3o" path="res://scenes/ui/radar/compass_rose.tscn" id="1_7fiud"]
 [ext_resource type="PackedScene" uid="uid://ch2hvaf1r6mu2" path="res://scenes/ui/radar/display_control_board.tscn" id="1_e0lde"]
 [ext_resource type="Script" uid="uid://q00nhow2yebr" path="res://scripts/radar/camera.gd" id="2_xm8qa"]
 [ext_resource type="PackedScene" uid="uid://bcmj8ymtek7v2" path="res://scenes/ui/radar/radar.tscn" id="3_oe57e"]
+[ext_resource type="PackedScene" uid="uid://bh3n6od3lud3l" path="res://scenes/ui/radar/status_area.tscn" id="4_lsbfv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oe57e"]
 bg_color = Color(0, 0, 0, 0)
@@ -31,6 +32,8 @@ unique_name_in_owner = true
 
 [node name="CompassRose" parent="CanvasLayer" instance=ExtResource("1_7fiud")]
 visible = false
+
+[node name="StatusArea" parent="CanvasLayer" instance=ExtResource("4_lsbfv")]
 
 [node name="RadarBorder" type="Panel" parent="CanvasLayer"]
 offset_top = 90.0

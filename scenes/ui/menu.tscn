@@ -56,4 +56,5 @@ expand_mode = 2
 stretch_mode = 6
 
 [node name="TitleScreen" parent="PanelContainer/VBoxContainer/Content" instance=ExtResource("2_c2n5p")]
+unique_name_in_owner = true
 layout_mode = 2

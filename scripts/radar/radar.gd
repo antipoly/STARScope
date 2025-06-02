@@ -27,6 +27,10 @@ func _ready() -> void:
   _redraw_range_rings();
   dcb.connect("dcb_rr", Callable(self, "_redraw_range_rings"));
 
+  # await get_tree().create_timer(10).timeout;
+  # rr_spacing = 50.0;
+  # _redraw_range_rings()
+
 func _update_radar() -> void:
   var tracks = get_tree().get_nodes_in_group("track");
 
@@ -34,6 +38,7 @@ func _update_radar() -> void:
     if track.has_method("update_position"): track.update_position();
     if track.has_method("update_datablock"): track.update_datablock();
 
+# Todo fix the arc on the right side; its incomplete
 func _redraw_range_rings() -> void:
   print('redrawing')
   for c in range_rings.get_children():

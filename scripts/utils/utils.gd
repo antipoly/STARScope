@@ -18,21 +18,3 @@ static func fade(node: Node, direction: String, duration = 0.5) -> Tween:
   if direction == "in": tween.tween_callback(Callable(black_overlay, "queue_free"));
 
   return tween;
-
-static func getPlayerLevel(player: Player) -> Variant:
-  var matchedRatings = player.ratings.filter(func(rating): return rating.specialisation == player.active_specialisation);
-  if matchedRatings.is_empty():
-    return null;
-
-  var spec = matchedRatings[0];
-  var specialisations = ResourceManager.load_json("res://data/game/specialisations.json");
-
-  var specLevels = specialisations[player.active_specialisation].levels as Array;
-  var currentLevel = specLevels[0];
-
-  for level in specLevels:
-    if level.threshold <= spec.experience:
-      if level.threshold > currentLevel.threshold:
-        currentLevel = level;
-
-  return currentLevel;

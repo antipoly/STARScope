@@ -1,26 +1,76 @@
-[gd_scene load_steps=3 format=3 uid="uid://saukvnfrf4ef"]
+[gd_scene load_steps=5 format=3 uid="uid://saukvnfrf4ef"]
 
+[ext_resource type="Script" uid="uid://5ukkhakl5cmq" path="res://scripts/ui/topbar.gd" id="1_0krot"]
 [ext_resource type="Theme" uid="uid://b0ahbsqigdcpj" path="res://assets/themes/menu.tres" id="1_isnoh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isnoh"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="PanelContainer" type="PanelContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0krot"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.254902, 0.254902, 0.254902, 1)
+expand_margin_left = 30.0
+expand_margin_top = 20.0
+expand_margin_right = 30.0
+expand_margin_bottom = 20.0
+
+[node name="Topbar" type="PanelContainer"]
 offset_right = 1920.0
 offset_bottom = 154.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_isnoh")
+script = ExtResource("1_0krot")
 
-[node name="Topbar" type="MarginContainer" parent="."]
+[node name="MC" type="MarginContainer" parent="."]
 layout_mode = 2
+theme_override_constants/margin_left = 140
 theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 90
 theme_override_constants/margin_bottom = 45
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Topbar"]
+[node name="HBC" type="HBoxContainer" parent="MC"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Topbar/HBoxContainer"]
+[node name="Title" type="Label" parent="MC/HBC"]
 layout_mode = 2
 size_flags_horizontal = 6
+size_flags_vertical = 1
 theme = ExtResource("1_isnoh")
 theme_type_variation = &"HeaderLarge"
 text = "STARScope"
+
+[node name="CurrentMenu" type="Label" parent="MC/HBC"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("1_isnoh")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_0krot")
+text = "Duty Desk"
+
+[node name="PlayerInfo" type="VBoxContainer" parent="MC/HBC"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="MC/HBC/PlayerInfo"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_isnoh")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 16
+text = "John Doe | TRACON Student Controller"
+
+[node name="FacilityLevel" type="Label" parent="MC/HBC/PlayerInfo"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_isnoh")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 16
+text = "Facility Level 9"

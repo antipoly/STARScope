@@ -1,34 +1,32 @@
-extends HBoxContainer
+extends PanelContainer
 
-@onready var player_name: Label = $PlayerPanel/MarginContainer/VBoxContainer/VBoxContainer/PlayerName
-@onready var specialisation_level: Label = $PlayerPanel/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/SpecialisationLevel
-@onready var facility_level: Label = $PlayerPanel/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/FacilityLevel
+@onready var player_name: Label = $MC/HBC/PlayerPanel/MC/VBC/VBC/PlayerName
+@onready var specialisation_level: Label = $MC/HBC/PlayerPanel/MC/VBC/VBC/VBC/SpecialisationLevel
+@onready var facility_level: Label = $MC/HBC/PlayerPanel/MC/VBC/VBC/VBC/FacilityLevel
 
-@onready var menu_content = $"../../../";
+@onready var menu_content = $"../";
+
+# Signals
+signal menu_changed(menu_name: String);
+
+# Scenes
 var duty_desk := preload("res://scenes/ui/menu/duty_desk.tscn");
 
 func _ready() -> void:
   var player = ResourceManager.get_player(false);
   if !player:
-    return;
+    return ;
 
   player_name.text = player.player_name.strip_edges();
   facility_level.text = "Facility Level %d" % player.facility_level;
 
-  var specialisations = ResourceManager.load_json("res://data/game/specialisations.json");
-  var spec = null;
-
-  for specialisation in specialisations:
-    if player.active_specialisation == specialisation.id:
-      spec = specialisation;
-
-  var level = Utils.getPlayerLevel(player);
-  if level == null:
-    level = { "name": "N/A", "threshold": 0 }
+  var spec = ResourceManager.get_specialisation();
+  var level = ResourceManager.get_player_level();
 
   specialisation_level.text = "%s %s" % [spec.acr, level.name];
 
 func _on_duty_desk_pressed() -> void:
+  emit_signal("menu_changed", "Duty Desk");
   change_menu_screen(duty_desk);
 
 func _on_multiplayer_pressed() -> void:
