@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=24 format=3 uid="uid://b0ahbsqigdcpj"]
+[gd_resource type="Theme" load_steps=26 format=3 uid="uid://b0ahbsqigdcpj"]
 
 [ext_resource type="FontFile" uid="uid://bvnm0kyjog80g" path="res://assets/fonts/OxygenMono-Regular.ttf" id="1_1n65e"]
 [ext_resource type="FontFile" uid="uid://ctn7k38b5tl7t" path="res://assets/fonts/KodeMono-Bold.ttf" id="2_bolle"]
@@ -140,7 +140,7 @@ content_margin_right = 20.0
 content_margin_bottom = 17.0
 bg_color = Color(0.101961, 0.101961, 0.101961, 0.6)
 
-[sub_resource type="Image" id="Image_d8yde"]
+[sub_resource type="Image" id="Image_bolle"]
 data = {
 "data": PackedByteArray(177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 178, 178, 178, 0, 178, 178, 178, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 178, 178, 178, 0, 178, 178, 178, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 178, 178, 178, 0, 178, 178, 178, 0, 177, 177, 177, 0, 177, 177, 177, 0, 177, 177, 177, 0, 178, 178, 178, 0, 178, 178, 178, 0, 177, 177, 177, 0, 177, 177, 177, 153, 177, 177, 177, 166, 177, 177, 177, 18, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 177, 177, 177, 18, 177, 177, 177, 166, 178, 178, 178, 151, 178, 178, 178, 0, 177, 177, 177, 0, 177, 177, 177, 166, 178, 178, 178, 217, 178, 178, 178, 178, 178, 178, 178, 18, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 18, 178, 178, 178, 179, 178, 178, 178, 217, 178, 178, 178, 165, 178, 178, 178, 0, 177, 177, 177, 0, 177, 177, 177, 18, 178, 178, 178, 178, 178, 178, 178, 217, 178, 178, 178, 178, 178, 178, 178, 18, 178, 178, 178, 18, 178, 178, 178, 179, 178, 178, 178, 217, 178, 178, 178, 178, 178, 178, 178, 17, 178, 178, 178, 0, 177, 177, 177, 0, 178, 178, 178, 0, 178, 178, 178, 18, 178, 178, 178, 178, 178, 178, 178, 217, 178, 178, 178, 197, 178, 178, 178, 197, 178, 178, 178, 217, 178, 178, 178, 178, 178, 178, 178, 17, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 18, 178, 178, 178, 178, 178, 178, 178, 217, 178, 178, 178, 217, 178, 178, 178, 178, 178, 178, 178, 17, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 18, 178, 178, 178, 165, 178, 178, 178, 165, 178, 178, 178, 17, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0, 178, 178, 178, 0),
 "format": "RGBA8",
@@ -150,7 +150,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_toaso"]
-image = SubResource("Image_d8yde")
+image = SubResource("Image_bolle")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aj403"]
 content_margin_left = 20.0
@@ -174,6 +174,19 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iglxc"]
+content_margin_left = 20.0
+content_margin_top = 25.0
+content_margin_right = 20.0
+content_margin_bottom = 25.0
+bg_color = Color(0, 0, 0, 0.6)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.254902, 0.254902, 0.254902, 1)
 corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bj4ao"]
@@ -204,7 +217,20 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cycc"]
+content_margin_left = 25.0
+content_margin_top = 10.0
+content_margin_right = 25.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.254902, 0.254902, 0.254902, 1)
+
 [resource]
+default_font = ExtResource("1_1n65e")
 Button/colors/focus = Color(0, 0, 0, 1)
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -264,8 +290,14 @@ OptionButton/fonts/font = ExtResource("1_1n65e")
 OptionButton/icons/arrow = SubResource("ImageTexture_toaso")
 OptionButton/styles/hover = SubResource("StyleBoxFlat_aj403")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_g66m1")
+OptionButtonSpecial/base_type = &"OptionButton"
+OptionButtonSpecial/font_sizes/font_size = 25
+OptionButtonSpecial/styles/normal = SubResource("StyleBoxFlat_iglxc")
 PopupMenu/constants/h_separation = 20
 PopupMenu/constants/v_separation = 15
 PopupMenu/fonts/font = ExtResource("1_1n65e")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_bj4ao")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_8qyg0")
+SpecialButton/base_type = &"Button"
+SpecialButton/font_sizes/font_size = 35
+SpecialButton/styles/normal = SubResource("StyleBoxFlat_3cycc")

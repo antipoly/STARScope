@@ -27,5 +27,5 @@ func _on_menu_changed(menu_name: String) -> void:
   current_menu.show();
   player_info.show();
 
-  Utils.fade(current_menu, "in", 1.0);
-  Utils.fade(player_info, "in", 1.0);
+  Utils.fade(current_menu, "in", 1.5);
+  Utils.fade(player_info, "in", 1.5);

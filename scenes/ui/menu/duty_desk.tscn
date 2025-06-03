@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba0srjdon8egk"]
+[gd_scene load_steps=8 format=3 uid="uid://ba0srjdon8egk"]
 
 [ext_resource type="Theme" uid="uid://b0ahbsqigdcpj" path="res://assets/themes/menu.tres" id="1_6n8hh"]
 [ext_resource type="Script" uid="uid://dw4eh6f5d3wyi" path="res://scripts/ui/duty_desk.gd" id="2_amnyy"]
@@ -20,6 +20,14 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rn3on"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.254902, 0.254902, 0.254902, 1)
+
 [node name="DutyDesk" type="PanelContainer"]
 offset_right = 1920.0
 offset_bottom = 917.0
@@ -38,8 +46,7 @@ theme_override_constants/margin_bottom = 70
 layout_mode = 2
 theme_override_constants/separation = 100
 
-[node name="ModeSelection" type="PanelContainer" parent="MC/HBC"]
-visible = false
+[node name="ModeSelection" type="PanelContainer" parent="MC/HBC" groups=["duty_desk_page"]]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.45
@@ -75,41 +82,53 @@ autowrap_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 75
 
-[node name="VBC" type="VBoxContainer" parent="MC/HBC/ModeSelection/SC/VBC/HBC"]
+[node name="Sandbox" type="VBoxContainer" parent="MC/HBC/ModeSelection/SC/VBC/HBC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 35
 
-[node name="Button" type="CheckBox" parent="MC/HBC/ModeSelection/SC/VBC/HBC/VBC"]
+[node name="Button" type="CheckBox" parent="MC/HBC/ModeSelection/SC/VBC/HBC/Sandbox"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+button_pressed = true
+button_group = ExtResource("3_08gim")
 text = "Sandbox"
+alignment = 1
 
-[node name="Label" type="Label" parent="MC/HBC/ModeSelection/SC/VBC/HBC/VBC"]
+[node name="Label" type="Label" parent="MC/HBC/ModeSelection/SC/VBC/HBC/Sandbox"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="VBC2" type="VBoxContainer" parent="MC/HBC/ModeSelection/SC/VBC/HBC"]
+[node name="Career" type="VBoxContainer" parent="MC/HBC/ModeSelection/SC/VBC/HBC"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 35
 
-[node name="Button" type="CheckBox" parent="MC/HBC/ModeSelection/SC/VBC/HBC/VBC2"]
+[node name="Button" type="CheckBox" parent="MC/HBC/ModeSelection/SC/VBC/HBC/Career"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+button_group = ExtResource("3_08gim")
 text = "Career"
+alignment = 1
 
-[node name="Label" type="Label" parent="MC/HBC/ModeSelection/SC/VBC/HBC/VBC2"]
+[node name="Label" type="Label" parent="MC/HBC/ModeSelection/SC/VBC/HBC/Career"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="FacilitySelection" type="PanelContainer" parent="MC/HBC"]
+[node name="FacilitySelection" type="PanelContainer" parent="MC/HBC" groups=["duty_desk_page"]]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.45
@@ -122,18 +141,18 @@ size_flags_horizontal = 3
 [node name="VBC" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 150
+theme_override_constants/separation = 60
 
-[node name="VBC" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC"]
+[node name="Info" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Title" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/VBC"]
+[node name="Title" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/Info"]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "TRACON Facility"
 
-[node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/VBC"]
+[node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/Info"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
@@ -141,54 +160,416 @@ theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 autowrap_mode = 2
 
-[node name="HBC" type="HBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC"]
+[node name="MC" type="MarginContainer" parent="MC/HBC/FacilitySelection/SC/VBC"]
 layout_mode = 2
-theme_override_constants/separation = 75
+theme_override_constants/margin_right = 200
 
-[node name="Sandbox" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/HBC"]
+[node name="VBC" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 35
+theme_override_constants/separation = 30
 
-[node name="Button" type="CheckBox" parent="MC/HBC/FacilitySelection/SC/VBC/HBC/Sandbox"]
+[node name="Facility" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-button_group = ExtResource("3_08gim")
-text = "Sandbox"
-alignment = 1
+theme_override_constants/separation = 25
 
-[node name="Label" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/HBC/Sandbox"]
-custom_minimum_size = Vector2(80, 0)
+[node name="OptionButton" type="OptionButton" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Facility"]
+layout_mode = 2
+theme_type_variation = &"OptionButtonSpecial"
+selected = 0
+item_count = 1
+popup/item_0/text = "[KDAB] Daytona Beach Intl (9)"
+popup/item_0/id = 0
+
+[node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Facility"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
-horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Career" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/HBC"]
+[node name="HBC" type="HBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
+layout_mode = 2
+
+[node name="FacilityLevel" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/HBC"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 35
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Facility Level: 9"
+autowrap_mode = 2
 
-[node name="Button" type="CheckBox" parent="MC/HBC/FacilitySelection/SC/VBC/HBC/Career"]
+[node name="PlayerFacilityLevel" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/HBC"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-button_group = ExtResource("3_08gim")
-text = "Career"
-alignment = 1
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Your Facility Level: 9"
+horizontal_alignment = 2
+autowrap_mode = 2
 
-[node name="Label" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/HBC/Career"]
-custom_minimum_size = Vector2(80, 0)
+[node name="HBC2" type="HBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
+layout_mode = 2
+
+[node name="Runways" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Runways: 3"
+autowrap_mode = 2
+
+[node name="SIDs" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "SIDs: 5"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="STARs" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "STARs: 7"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
+layout_mode = 2
+
+[node name="Sectors" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Title" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Sectors"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sector Selection"
+
+[node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Sectors"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+autowrap_mode = 2
+
+[node name="AvailableSectors" type="MarginContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
+layout_mode = 2
+theme_override_constants/margin_right = 460
+
+[node name="VBC" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/AvailableSectors"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Sector1" type="CheckBox" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/AvailableSectors/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "North Radar"
+
+[node name="Weather&Time" type="PanelContainer" parent="MC/HBC" groups=["duty_desk_page"]]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.45
+theme_override_styles/panel = SubResource("StyleBoxEmpty_08gim")
+
+[node name="SC" type="ScrollContainer" parent="MC/HBC/Weather&Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBC" type="VBoxContainer" parent="MC/HBC/Weather&Time/SC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 60
+
+[node name="Info" type="VBoxContainer" parent="MC/HBC/Weather&Time/SC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="MC/HBC/Weather&Time/SC/VBC/Info"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Weather and Time"
+
+[node name="Description" type="Label" parent="MC/HBC/Weather&Time/SC/VBC/Info"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+autowrap_mode = 2
+
+[node name="MC" type="MarginContainer" parent="MC/HBC/Weather&Time/SC/VBC"]
+layout_mode = 2
+theme_override_constants/margin_right = 200
+
+[node name="VBC" type="VBoxContainer" parent="MC/HBC/Weather&Time/SC/VBC/MC"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Facility" type="VBoxContainer" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="OptionButton" type="OptionButton" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/Facility"]
+layout_mode = 2
+theme_type_variation = &"OptionButtonSpecial"
+selected = 0
+item_count = 1
+popup/item_0/text = "[KDAB] Daytona Beach Intl (9)"
+popup/item_0/id = 0
+
+[node name="Description" type="Label" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/Facility"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+autowrap_mode = 2
+
+[node name="HBC" type="HBoxContainer" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC"]
+layout_mode = 2
+
+[node name="FacilityLevel" type="Label" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Facility Level: 9"
+autowrap_mode = 2
+
+[node name="PlayerFacilityLevel" type="Label" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Your Facility Level: 9"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="HBC2" type="HBoxContainer" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC"]
+layout_mode = 2
+
+[node name="Runways" type="Label" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Runways: 3"
+autowrap_mode = 2
+
+[node name="SIDs" type="Label" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "SIDs: 5"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="STARs" type="Label" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "STARs: 7"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC"]
+layout_mode = 2
+
+[node name="Sectors" type="VBoxContainer" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Title" type="Label" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/Sectors"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sector Selection"
+
+[node name="Description" type="Label" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/Sectors"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+autowrap_mode = 2
+
+[node name="AvailableSectors" type="MarginContainer" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC"]
+layout_mode = 2
+theme_override_constants/margin_right = 460
+
+[node name="VBC" type="VBoxContainer" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/AvailableSectors"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Sector1" type="CheckBox" parent="MC/HBC/Weather&Time/SC/VBC/MC/VBC/AvailableSectors/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "North Radar"
+
+[node name="Traffic" type="PanelContainer" parent="MC/HBC" groups=["duty_desk_page"]]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.45
+theme_override_styles/panel = SubResource("StyleBoxEmpty_08gim")
+
+[node name="SC" type="ScrollContainer" parent="MC/HBC/Traffic"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBC" type="VBoxContainer" parent="MC/HBC/Traffic/SC"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 60
+
+[node name="Info" type="VBoxContainer" parent="MC/HBC/Traffic/SC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="MC/HBC/Traffic/SC/VBC/Info"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Traffic"
+
+[node name="Description" type="Label" parent="MC/HBC/Traffic/SC/VBC/Info"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+autowrap_mode = 2
+
+[node name="MC" type="MarginContainer" parent="MC/HBC/Traffic/SC/VBC"]
+layout_mode = 2
+theme_override_constants/margin_right = 200
+
+[node name="VBC" type="VBoxContainer" parent="MC/HBC/Traffic/SC/VBC/MC"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Facility" type="VBoxContainer" parent="MC/HBC/Traffic/SC/VBC/MC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="OptionButton" type="OptionButton" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/Facility"]
+layout_mode = 2
+theme_type_variation = &"OptionButtonSpecial"
+selected = 0
+item_count = 1
+popup/item_0/text = "[KDAB] Daytona Beach Intl (9)"
+popup/item_0/id = 0
+
+[node name="Description" type="Label" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/Facility"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+autowrap_mode = 2
+
+[node name="HBC" type="HBoxContainer" parent="MC/HBC/Traffic/SC/VBC/MC/VBC"]
+layout_mode = 2
+
+[node name="FacilityLevel" type="Label" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Facility Level: 9"
+autowrap_mode = 2
+
+[node name="PlayerFacilityLevel" type="Label" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/HBC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Your Facility Level: 9"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="HBC2" type="HBoxContainer" parent="MC/HBC/Traffic/SC/VBC/MC/VBC"]
+layout_mode = 2
+
+[node name="Runways" type="Label" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Runways: 3"
+autowrap_mode = 2
+
+[node name="SIDs" type="Label" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "SIDs: 5"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="STARs" type="Label" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/HBC2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "STARs: 7"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="MC/HBC/Traffic/SC/VBC/MC/VBC"]
+layout_mode = 2
+
+[node name="Sectors" type="VBoxContainer" parent="MC/HBC/Traffic/SC/VBC/MC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Title" type="Label" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/Sectors"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sector Selection"
+
+[node name="Description" type="Label" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/Sectors"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+autowrap_mode = 2
+
+[node name="AvailableSectors" type="MarginContainer" parent="MC/HBC/Traffic/SC/VBC/MC/VBC"]
+layout_mode = 2
+theme_override_constants/margin_right = 460
+
+[node name="VBC" type="VBoxContainer" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/AvailableSectors"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Sector1" type="CheckBox" parent="MC/HBC/Traffic/SC/VBC/MC/VBC/AvailableSectors/VBC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "North Radar"
 
 [node name="RightColumn" type="VBoxContainer" parent="MC/HBC"]
 layout_mode = 2
@@ -199,20 +580,23 @@ custom_minimum_size = Vector2(0, 600)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_08gim")
 
-[node name="Button" type="Button" parent="MC/HBC/RightColumn"]
+[node name="NextButton" type="Button" parent="MC/HBC/RightColumn"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 10
+theme = ExtResource("1_6n8hh")
+theme_type_variation = &"SpecialButton"
 text = "Next"
 
-[node name="Weather&Time" type="Control" parent="MC/HBC"]
+[node name="Panel" type="Panel" parent="MC/HBC/RightColumn/NextButton"]
 visible = false
-layout_mode = 2
-size_flags_horizontal = 3
+clip_children = 2
+z_index = -1
+layout_mode = 0
+offset_left = -15.0
+offset_top = 15.0
+offset_right = 120.0
+offset_bottom = 82.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rn3on")
 
-[node name="Traffic" type="Control" parent="MC/HBC"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-
-[connection signal="pressed" from="MC/HBC/RightColumn/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MC/HBC/RightColumn/NextButton" to="." method="_on_next_button_pressed"]
