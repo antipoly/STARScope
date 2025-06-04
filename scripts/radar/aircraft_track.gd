@@ -38,8 +38,12 @@ var distance_scale: float = 85.0;
 # Track Nodes
 @onready var ptl = $PTL;
 @onready var position_symbol = $Target/PositionSymbol
+@onready var trail_parent = $HistoryTrails;
 
+var trail_length = 5;
+var trail_phase = 1;
 var datablock_phase = 1;
+
 var target_heading = aircraft_heading;
 var target_altitude = aircraft_altitude_msl;
 
@@ -55,11 +59,14 @@ func _ready() -> void:
   update_datablock();
   await get_tree().create_timer(1.0).timeout;
 
-  altitude_to(5000, 2500);
+  # altitude_to(5000, 2500);
+  turn_by(90);
+
 
 func _process(delta: float) -> void:
   var wind = get_wind();
 
+  # Target Aircraft Heading
   if target_heading != aircraft_heading:
     # This does not work
     aircraft_heading = lerp_angle(deg_to_rad(aircraft_heading), deg_to_rad(target_heading), turn_elapsed);
@@ -68,6 +75,7 @@ func _process(delta: float) -> void:
     if aircraft_heading == target_heading:
       turn_elapsed = 0;
 
+  # Target Aircraft Altitude
   if target_altitude != aircraft_altitude_msl:
     var altitude_change = vertical_speed * (delta / 60);
 
@@ -90,7 +98,7 @@ func _process(delta: float) -> void:
   var speed = Vector2(speed_x, speed_y) / distance_scale;
   var total_velocity = speed + wind;
   
-  # ptl.rotation = deg_to_rad()
+  ptl.rotation = deg_to_rad((180 + int(aircraft_heading)) % 360);
   aircraft_position += total_velocity * delta;
 
 func get_wind() -> Vector2:
@@ -105,6 +113,28 @@ func get_wind() -> Vector2:
 func update_position() -> void:
   position = aircraft_position;
 
+  if trail_phase >= 6:
+    var trail = Panel.new();
+    trail.position = position;
+    trail.size = Vector2(5, 5);
+
+    var style = StyleBoxFlat.new();
+    style.bg_color = Color(1, 0, 0, 1);
+    style.corner_radius_top_left = 5;
+    style.corner_radius_top_right = 5;
+    style.corner_radius_bottom_left = 5;
+    style.corner_radius_bottom_right = 5;
+
+    trail.add_theme_stylebox_override("panel", style);
+
+    trail_parent.add_child(trail);
+    trail_phase = 0;
+
+    if trail_parent.get_child_count() > trail_length:
+      trail_parent.get_child(0).queue_free();
+
+  trail_phase += 1;
+
 func update_datablock() -> void:
   db_speed.text = str(int(aircraft_groundspeed) / 10).pad_zeros(2);
   db_altitude.text = str(aircraft_altitude_msl / 100).pad_zeros(3);
@@ -112,11 +142,12 @@ func update_datablock() -> void:
   if datablock_phase == 1:
     db_primary_group.show();
     db_secondary_group.hide();
-  elif datablock_phase == 4:
+
+  elif datablock_phase >= 4:
     db_primary_group.hide();
     db_secondary_group.show();
+    datablock_phase = 0;
 
-  if datablock_phase >= 4: datablock_phase = 0;
   datablock_phase += 1;
 
 """
@@ -134,6 +165,7 @@ func altitude_to(msl: int, vs: float) -> void:
   target_altitude = msl;
   vertical_speed = vs;
 
+# Iteration 2
 # To increase altitude:
 #   We increase the pitch, depending on the pitch (angle of elevation) and airspeed, that determines how much altitude to gain.
 #   The pitch is inversely proportional to airspeed and altitude gain because of the gravitational force.
