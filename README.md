@@ -52,6 +52,10 @@ Video maps are a group of maps that can be displayed on the STARS scope, that gi
 **Charts, Mapping, and Aeronautical Data**
 https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/
 
+**Aeronautics**
+https://aerospaceweb.org/question/performance/q0146.shtml
+https://www.grc.nasa.gov/www/k-12/BGP/climb.html
+
 **Sector Files**
 https://forum.vatsim.net/t/creating-a-sector-file/5785
 https://crc.virtualnas.net/docs/#/README

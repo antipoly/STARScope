@@ -15,34 +15,6 @@ offset_top = 139.0
 offset_right = -667.0
 offset_bottom = 139.0
 
-[node name="AircraftTrack2" parent="." instance=ExtResource("2_6qds8")]
-layout_mode = 1
-offset_left = -295.0
-offset_top = 150.0
-offset_right = -295.0
-offset_bottom = 150.0
-
-[node name="AircraftTrack3" parent="." instance=ExtResource("2_6qds8")]
-layout_mode = 1
-offset_left = -421.0
-offset_top = -203.0
-offset_right = -421.0
-offset_bottom = -203.0
-
-[node name="AircraftTrack4" parent="." instance=ExtResource("2_6qds8")]
-layout_mode = 1
-offset_left = 581.0
-offset_top = -211.0
-offset_right = 581.0
-offset_bottom = -211.0
-
-[node name="AircraftTrack5" parent="." instance=ExtResource("2_6qds8")]
-layout_mode = 1
-offset_left = 587.0
-offset_top = 333.0
-offset_right = 587.0
-offset_bottom = 333.0
-
 [node name="RangeRings" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0

@@ -13,7 +13,7 @@ var specId := -1;
 
 func _ready() -> void:
   updateSignHereButtonState();
-  Utils.fade(get_parent(), "in", 1);
+  Utils.fade_opaque(get_parent(), "in", 1);
 
 func _input(event):
   if enable_input && event is InputEventKey:
@@ -51,7 +51,7 @@ Handles the event when the 'Sign Here' button is pressed in the intro screen
 """
 func _on_contract_signed() -> void:
   if contractSigned:
-    return;
+    return ;
 
   var player = ResourceManager.get_player();
   player.player_name = nameInput.strip_edges();
@@ -67,5 +67,5 @@ func _on_contract_signed() -> void:
   ResourceManager.save_player();
   contractSigned = true;
 
-  await Utils.fade(get_parent(), "out").finished;
+  await Utils.fade_opaque(get_parent(), "out").finished;
   get_tree().change_scene_to_file("res://scenes/ui/menu.tscn");

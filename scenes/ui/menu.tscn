@@ -37,6 +37,7 @@ layout_mode = 2
 script = ExtResource("1_w6y0u")
 
 [node name="Topbar" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_wedc3")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]

@@ -585,7 +585,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 10
 theme = ExtResource("1_6n8hh")
-theme_type_variation = &"SpecialButton"
+theme_override_font_sizes/font_size = 30
 text = "Next"
 
 [node name="Panel" type="Panel" parent="MC/HBC/RightColumn/NextButton"]

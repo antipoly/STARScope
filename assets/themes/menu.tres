@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=26 format=3 uid="uid://b0ahbsqigdcpj"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://b0ahbsqigdcpj"]
 
 [ext_resource type="FontFile" uid="uid://bvnm0kyjog80g" path="res://assets/fonts/OxygenMono-Regular.ttf" id="1_1n65e"]
 [ext_resource type="FontFile" uid="uid://ctn7k38b5tl7t" path="res://assets/fonts/KodeMono-Bold.ttf" id="2_bolle"]
@@ -217,18 +217,6 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cycc"]
-content_margin_left = 25.0
-content_margin_top = 10.0
-content_margin_right = 25.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.254902, 0.254902, 0.254902, 1)
-
 [resource]
 default_font = ExtResource("1_1n65e")
 Button/colors/focus = Color(0, 0, 0, 1)
@@ -298,6 +286,3 @@ PopupMenu/constants/v_separation = 15
 PopupMenu/fonts/font = ExtResource("1_1n65e")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_bj4ao")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_8qyg0")
-SpecialButton/base_type = &"Button"
-SpecialButton/font_sizes/font_size = 35
-SpecialButton/styles/normal = SubResource("StyleBoxFlat_3cycc")

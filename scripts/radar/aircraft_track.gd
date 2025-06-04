@@ -3,16 +3,27 @@ extends Control
 @export var aircraft_position: Vector2;
 @export var aircraft_groundspeed: float;
 @export var aircraft_airspeed: float;
-@export var aircraft_direction: int;
+@export var aircraft_heading: float;
 @export var aircraft_altitude_msl: int;
 
 @export var wind_speed: float = 3.0;
 @export var wind_direction: int = 270; # Defines the direction the winds are coming from
 
-# How many nautical miles = 1 pixel
-@export var distance_scale: float = 85.0;
+# Constants
+const G = 9.80665;
+@export var aircraft_weight: float; # Technically weight decreases as fuel burns but whatev
 
-# Datablock Nodes
+# Controi Inputs
+@export var pitch: float;
+@export var thrust: float;
+
+@export var turn_rate: float;
+@export var vertical_speed: float;
+
+# How many nautical miles = 1 pixel
+var distance_scale: float = 85.0;
+
+# Data Block Nodes
 @onready var db_spc = $Datablock/SPC;
 @onready var db_aircraft_id = $Datablock/AircraftID;
 @onready var db_altitude = $Datablock/PrimaryGroup/Altitude;
@@ -24,31 +35,52 @@ extends Control
 @onready var db_primary_group = $Datablock/PrimaryGroup;
 @onready var db_secondary_group = $Datablock/SecondaryGroup;
 
+# Track Nodes
+@onready var ptl = $PTL;
+@onready var position_symbol = $Target/PositionSymbol
+
 var datablock_phase = 1;
-var is_turning = false;
-var target_heading = 0;
+var target_heading = aircraft_heading;
+var target_altitude = aircraft_altitude_msl;
+
+var turn_elapsed = 0.0;
 
 func _ready() -> void:
   aircraft_position = position;
   aircraft_groundspeed = randf_range(220, 280);
-  aircraft_direction = randi_range(1, 360);
+  aircraft_heading = randi_range(1, 360);
   aircraft_altitude_msl = randi_range(5000, 18000);
+  pitch = 0;
 
   update_datablock();
-  # await get_tree().create_timer(5.0).timeout
-  # turn_by(30);
+  await get_tree().create_timer(1.0).timeout;
+
+  altitude_to(5000, 2500);
 
 func _process(delta: float) -> void:
   var wind = get_wind();
 
-  if is_turning:
+  if target_heading != aircraft_heading:
     # This does not work
-    aircraft_direction = int(lerp_angle(float(aircraft_direction), float(target_heading), delta * aircraft_airspeed));
-    if aircraft_direction == target_heading:
-      is_turning = false;
+    aircraft_heading = lerp_angle(deg_to_rad(aircraft_heading), deg_to_rad(target_heading), turn_elapsed);
+    turn_elapsed += delta;
+
+    if aircraft_heading == target_heading:
+      turn_elapsed = 0;
+
+  if target_altitude != aircraft_altitude_msl:
+    var altitude_change = vertical_speed * (delta / 60);
+
+    if abs(target_altitude - aircraft_altitude_msl) <= abs(altitude_change):
+      aircraft_altitude_msl = target_altitude;
+      vertical_speed = 0;
+    else:
+      aircraft_altitude_msl += sign(target_altitude - aircraft_altitude_msl) * altitude_change;
+  else:
+    vertical_speed = 0;
 
   # Normalize the unit circle coordinate to a real-life bearing
-  var direction_bearing = (90 - aircraft_direction) % 360;
+  var direction_bearing = (90 - int(aircraft_heading)) % 360;
   var direction_rad = deg_to_rad(direction_bearing);
 
   # Calculate the velocity components using the unit circle
@@ -58,6 +90,7 @@ func _process(delta: float) -> void:
   var speed = Vector2(speed_x, speed_y) / distance_scale;
   var total_velocity = speed + wind;
   
+  # ptl.rotation = deg_to_rad()
   aircraft_position += total_velocity * delta;
 
 func get_wind() -> Vector2:
@@ -71,10 +104,8 @@ func get_wind() -> Vector2:
 
 func update_position() -> void:
   position = aircraft_position;
-  pass
 
 func update_datablock() -> void:
-  # Update the actual datablock fields here pls
   db_speed.text = str(int(aircraft_groundspeed) / 10).pad_zeros(2);
   db_altitude.text = str(aircraft_altitude_msl / 100).pad_zeros(3);
 
@@ -92,9 +123,20 @@ func update_datablock() -> void:
 Turns the track to a specified heating (+/-) the current heading
 """
 func turn_by(deg: int) -> void:
-  if is_turning:
-    return;
-  
-  target_heading = abs((aircraft_direction + deg) % 360);
-  # print(aircraft_direction, target_heading)
-  is_turning = true;
+  target_heading = abs((int(aircraft_heading) + deg) % 360);
+  print("[HEADING CHANGE]: %f to %f" % [aircraft_heading, target_heading])
+
+func altitude_to(msl: int, vs: float) -> void:
+  if vs <= 0: return;
+  if msl <= 100: return;
+
+  print("[ALTITUDE CHANGE]: %f to %f at %f ft/m" % [aircraft_altitude_msl, msl, vs]);
+  target_altitude = msl;
+  vertical_speed = vs;
+
+# To increase altitude:
+#   We increase the pitch, depending on the pitch (angle of elevation) and airspeed, that determines how much altitude to gain.
+#   The pitch is inversely proportional to airspeed and altitude gain because of the gravitational force.
+
+func pitch_to(deg: int) -> void:
+  pass

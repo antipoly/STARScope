@@ -7,6 +7,8 @@ extends PanelContainer
 @onready var player_name = $MC/HBC/PlayerInfo/Name;
 @onready var facility_level = $MC/HBC/PlayerInfo/FacilityLevel
 
+signal current_menu_pressed()
+
 func _ready() -> void:
   title_screen.connect("menu_changed", Callable(self, "_on_menu_changed"));
 
@@ -24,8 +26,15 @@ func _on_menu_changed(menu_name: String) -> void:
   player_name.text = "%s | %s %s" % [player.player_name, spec.acr, level.name];
   facility_level.text = "Facility Level %d" % player.facility_level;
 
+  current_menu.modulate = Color(1, 1, 1, 0);
   current_menu.show();
+
+  player_info.modulate = Color(1, 1, 1, 0);
   player_info.show();
 
-  Utils.fade(current_menu, "in", 1.5);
-  Utils.fade(player_info, "in", 1.5);
+  Utils.fade_alpha(current_menu, "in", 1.0);
+  Utils.fade_alpha(player_info, "in", 1.0);
+
+
+func _on_current_menu_pressed() -> void:
+  emit_signal("current_menu_pressed");

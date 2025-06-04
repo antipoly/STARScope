@@ -1,8 +1,7 @@
 extends Camera2D
 
-
 signal range_changed(range: int)
-@export var current_range := 20;
+@export var current_range := 100; # Todo fix scaling
 
 const min_zoom: float = 0.05;
 const max_zoom: float = 2;
