@@ -36,9 +36,10 @@ var distance_scale: float = 85.0;
 @onready var db_secondary_group = $Datablock/SecondaryGroup;
 
 # Track Nodes
-@onready var ptl = $PTL;
-@onready var position_symbol = $Target/PositionSymbol
-@onready var trail_parent = $HistoryTrails;
+@onready var ptl = $PTL as Panel;
+@onready var track_target = $Target as Panel;
+@onready var position_symbol = $Target/PositionSymbol as Label;
+@onready var trail_parent = $HistoryTrails as Control;
 
 var trail_length = 5;
 var trail_phase = 1;
@@ -62,18 +63,25 @@ func _ready() -> void:
   # altitude_to(5000, 2500);
   turn_by(90);
 
-
 func _process(delta: float) -> void:
   var wind = get_wind();
 
   # Target Aircraft Heading
   if target_heading != aircraft_heading:
     # This does not work
-    aircraft_heading = lerp_angle(deg_to_rad(aircraft_heading), deg_to_rad(target_heading), turn_elapsed);
-    turn_elapsed += delta;
+    # print(lerp_angle(deg_to_rad(aircraft_heading), deg_to_rad(target_heading), turn_elapsed), "               ",turn_elapsed)
+    turn_elapsed += delta * 50 # clampf(turn_elapsed + delta, 0.0, 1.0);
+    # var t_smooth = smoothstep(0, 1, turn_elapsed);
 
-    if aircraft_heading == target_heading:
-      turn_elapsed = 0;
+    aircraft_heading = lerp_angle(
+      deg_to_rad(aircraft_heading),
+      deg_to_rad(target_heading),
+      turn_elapsed
+    );
+
+    # if turn_elapsed >= 1.0:
+      # aircraft_heading = target_heading;
+      # turn_elapsed = 0;
 
   # Target Aircraft Altitude
   if target_altitude != aircraft_altitude_msl:
@@ -99,6 +107,10 @@ func _process(delta: float) -> void:
   var total_velocity = speed + wind;
   
   ptl.rotation = deg_to_rad((180 + int(aircraft_heading)) % 360);
+  var ptl_x = (cos(ptl.rotation)) + (track_target.size.x / 2.0);
+  var ptl_y = (sin(ptl.rotation)) + (track_target.size.y / 2.0);
+
+  ptl.position = Vector2(ptl_x, ptl_y);
   aircraft_position += total_velocity * delta;
 
 func get_wind() -> Vector2:

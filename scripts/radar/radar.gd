@@ -1,6 +1,6 @@
 extends Control
 
-@export var update_interval: float = 1.0;
+@export var update_interval: float = 0.1;
 @export var rr_spacing: float = 100.0;
 @export var rr_count: int = 30;
 

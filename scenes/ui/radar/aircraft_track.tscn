@@ -4,6 +4,9 @@
 [ext_resource type="FontFile" uid="uid://ow60na5gn5py" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_htqcd"]
 [ext_resource type="FontFile" uid="uid://71qqhsasvglw" path="res://assets/fonts/KodeMono-Medium.ttf" id="3_cwp5w"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwp5w"]
+bg_color = Color(0.99558, 0.99558, 0.99558, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htqcd"]
 bg_color = Color(0.12549, 0.537255, 1, 1)
 corner_radius_top_left = 7
@@ -18,9 +21,6 @@ font_size = 10
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwp5w"]
-bg_color = Color(0.99558, 0.99558, 0.99558, 1)
-
 [node name="AircraftTrack" type="Control" groups=["track"]]
 layout_mode = 3
 anchors_preset = 15
@@ -29,6 +29,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cgvli")
+
+[node name="HistoryTrails" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Datablock" type="VBoxContainer" parent="."]
 visibility_layer = 2
@@ -94,6 +99,22 @@ theme_override_fonts/font = ExtResource("3_cwp5w")
 theme_override_font_sizes/font_size = 14
 text = "B737"
 
+[node name="PTL" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.00833333
+anchor_right = 0.5
+anchor_bottom = 0.00833333
+offset_left = -953.0
+offset_top = 7.0
+offset_right = -951.0
+offset_bottom = 40.0
+grow_horizontal = 2
+pivot_offset = Vector2(1, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_cwp5w")
+metadata/_edit_use_anchors_ = true
+
 [node name="Target" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 16.0
@@ -124,16 +145,3 @@ offset_left = 7.0
 offset_top = -16.0
 offset_right = 8.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cwp5w")
-
-[node name="PTL" type="Panel" parent="."]
-layout_mode = 2
-offset_left = 7.0
-offset_top = 16.0
-offset_right = 9.0
-offset_bottom = 49.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_cwp5w")
-
-[node name="HistoryTrails" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0

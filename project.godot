@@ -11,6 +11,8 @@ config_version=5
 [application]
 
 config/name="STARSCope"
+config/description="STARScope is a gameified STARS (Standard Terminal Automation Replacement System) simulator, which is the program that real TRACON (Approach) controllers use to see aircraft, weather and procedures on their radar scopes."
+config/version="0.1.0-dev"
 run/main_scene="uid://d3oqpoewd74ve"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
@@ -39,4 +41,5 @@ theme/default_font_multichannel_signed_distance_field=true
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
