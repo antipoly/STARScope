@@ -24,16 +24,13 @@ const G = 9.80665;
 var distance_scale: float = 85.0;
 
 # Data Block Nodes
-@onready var db_spc = $Datablock/SPC;
-@onready var db_aircraft_id = $Datablock/AircraftID;
-@onready var db_altitude = $Datablock/PrimaryGroup/Altitude;
-@onready var db_speed = $Datablock/PrimaryGroup/Speed;
-@onready var db_wtc = $Datablock/PrimaryGroup/WTC;
-@onready var db_dest = $Datablock/SecondaryGroup/DestinationIATA;
-@onready var db_aircraft_type = $Datablock/SecondaryGroup/AircraftType;
-
-@onready var db_primary_group = $Datablock/PrimaryGroup;
-@onready var db_secondary_group = $Datablock/SecondaryGroup;
+@onready var db_spc = $Datablock/SPC as Label;
+@onready var db_aircraft_id = $Datablock/AircraftID as Label;
+@onready var db_altitude = $Datablock/HBC/Altitude as Label;
+@onready var db_speed = $Datablock/HBC/Speed as Label;
+@onready var db_wtc = $Datablock/HBC/WTC as Label;
+@onready var db_aircraft_type = $Datablock/HBC/AircraftType as Label;
+# @onready var db_dest = $Datablock/HBC/DestinationIATA;
 
 # Track Nodes
 @onready var ptl = $PTL as Panel;
@@ -70,7 +67,7 @@ func _process(delta: float) -> void:
   if target_heading != aircraft_heading:
     # This does not work
     # print(lerp_angle(deg_to_rad(aircraft_heading), deg_to_rad(target_heading), turn_elapsed), "               ",turn_elapsed)
-    turn_elapsed += delta * 50 # clampf(turn_elapsed + delta, 0.0, 1.0);
+    turn_elapsed += delta # clampf(turn_elapsed + delta, 0.0, 1.0);
     # var t_smooth = smoothstep(0, 1, turn_elapsed);
 
     aircraft_heading = lerp_angle(
@@ -151,13 +148,10 @@ func update_datablock() -> void:
   db_speed.text = str(int(aircraft_groundspeed) / 10).pad_zeros(2);
   db_altitude.text = str(aircraft_altitude_msl / 100).pad_zeros(3);
 
-  if datablock_phase == 1:
-    db_primary_group.show();
-    db_secondary_group.hide();
-
-  elif datablock_phase >= 4:
-    db_primary_group.hide();
-    db_secondary_group.show();
+  if datablock_phase == 2:
+    db_speed.visible = !db_speed.visible;
+    db_wtc.visible = !db_wtc.visible;
+    db_aircraft_type.visible = !db_aircraft_type.visible;
     datablock_phase = 0;
 
   datablock_phase += 1;

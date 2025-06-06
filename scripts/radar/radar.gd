@@ -1,12 +1,13 @@
 extends Control
 
-@export var update_interval: float = 0.1;
+@export var update_interval: float = 1.0;
 @export var rr_spacing: float = 100.0;
 @export var rr_count: int = 30;
 
 var radar_pass: Timer;
 @onready var range_rings = $RangeRings;
 @onready var video_maps = $VideoMaps;
+@onready var tracks = $Tracks;
 
 @onready var dcb = %DisplayControlBoard
 
@@ -20,9 +21,15 @@ func _ready() -> void:
   radar_pass.connect("timeout", Callable(self, "_update_radar"));
   add_child(radar_pass);
 
+  # Hardcoded Videomaps
   MapManager.loadVideoMap(video_maps, "ZNY/01G66ETNBBVPD0812MB31HJCBZ", center_coordinates);
   MapManager.loadVideoMap(video_maps, "ZNY/01G90NPTFQ2DK0CXJB8Q3GBPE4", center_coordinates);
   MapManager.loadVideoMap(video_maps, "ZNY/01G90QP1RZH8T82E79EXHPZG0B", center_coordinates);
+
+  # Hardcoded Aircraft Spawns
+  AircraftManager.spawn_arrival(tracks, "LCXX");
+  AircraftManager.spawn_arrival(tracks, "LCXX");
+  AircraftManager.spawn_arrival(tracks, "LCXX");
   
   _redraw_range_rings();
   dcb.connect("dcb_rr", Callable(self, "_redraw_range_rings"));

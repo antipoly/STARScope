@@ -1,0 +1,117 @@
+[
+  {
+    "icao": "AAL",
+    "iata": "AA",
+    "name": "American Airlines",
+    "callsign": "AMERICAN",
+    "fleet": [
+      {"designator": "B738", "count": 304},
+      {"designator": "A321", "count": 218},
+      {"designator": "B772", "count": 47},
+      {"designator": "B789", "count": 22}
+    ]
+  },
+  {
+    "icao": "DAL",
+    "iata": "DL",
+    "name": "Delta Air Lines",
+    "callsign": "DELTA",
+    "fleet": [
+      {"designator": "B739", "count": 159},
+      {"designator": "A321", "count": 127},
+      {"designator": "B752", "count": 111},
+      {"designator": "A333", "count": 31}
+    ]
+  },
+  {
+    "icao": "UAL",
+    "iata": "UA",
+    "name": "United Airlines",
+    "callsign": "UNITED",
+    "fleet": [
+      {"designator": "B739", "count": 136},
+      {"designator": "B738", "count": 141},
+      {"designator": "B772", "count": 55},
+      {"designator": "B789", "count": 38}
+    ]
+  },
+  {
+    "icao": "BAW",
+    "iata": "BA",
+    "name": "British Airways",
+    "callsign": "SPEEDBIRD",
+    "fleet": [
+      {"designator": "A320", "count": 67},
+      {"designator": "A321", "count": 18},
+      {"designator": "B789", "count": 18},
+      {"designator": "A388", "count": 12}
+    ]
+  },
+  {
+    "icao": "AFR",
+    "iata": "AF",
+    "name": "Air France",
+    "callsign": "AIRFRANS",
+    "fleet": [
+      {"designator": "A320", "count": 43},
+      {"designator": "A321", "count": 15},
+      {"designator": "B772", "count": 18},
+      {"designator": "A359", "count": 22}
+    ]
+  },
+  {
+    "icao": "DLH",
+    "iata": "LH",
+    "name": "Lufthansa",
+    "callsign": "LUFTHANSA",
+    "fleet": [
+      {"designator": "A320", "count": 81},
+      {"designator": "A321", "count": 60},
+      {"designator": "A359", "count": 21},
+      {"designator": "B748", "count": 19}
+    ]
+  },
+  {
+    "icao": "UAE",
+    "iata": "EK",
+    "name": "Emirates",
+    "callsign": "EMIRATES",
+    "fleet": [
+      {"designator": "A388", "count": 116},
+      {"designator": "B77W", "count": 124}
+    ]
+  },
+  {
+    "icao": "QFA",
+    "iata": "QF",
+    "name": "Qantas",
+    "callsign": "QANTAS",
+    "fleet": [
+      {"designator": "B738", "count": 75},
+      {"designator": "A332", "count": 18},
+      {"designator": "B789", "count": 14}
+    ]
+  },
+  {
+    "icao": "ANA",
+    "iata": "NH",
+    "name": "All Nippon Airways",
+    "callsign": "ALL NIPPON",
+    "fleet": [
+      {"designator": "B789", "count": 36},
+      {"designator": "B772", "count": 19},
+      {"designator": "A320", "count": 29}
+    ]
+  },
+  {
+    "icao": "SIA",
+    "iata": "SQ",
+    "name": "Singapore Airlines",
+    "callsign": "SINGAPORE",
+    "fleet": [
+      {"designator": "A359", "count": 63},
+      {"designator": "B77W", "count": 26},
+      {"designator": "A388", "count": 12}
+    ]
+  }
+]

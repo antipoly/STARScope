@@ -1,19 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcmj8ymtek7v2"]
+[gd_scene load_steps=2 format=3 uid="uid://bcmj8ymtek7v2"]
 
 [ext_resource type="Script" uid="uid://cxshgg0hjlm4o" path="res://scripts/radar/radar.gd" id="1_aicmt"]
-[ext_resource type="PackedScene" uid="uid://c32ku4r6oto5g" path="res://scenes/ui/radar/aircraft_track.tscn" id="2_6qds8"]
 
 [node name="Radar" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_aicmt")
 
-[node name="AircraftTrack" parent="." instance=ExtResource("2_6qds8")]
-layout_mode = 1
-offset_left = -667.0
-offset_top = 139.0
-offset_right = -667.0
-offset_bottom = 139.0
+[node name="Tracks" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="RangeRings" type="Control" parent="."]
 anchors_preset = 0

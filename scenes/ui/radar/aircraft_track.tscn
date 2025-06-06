@@ -60,40 +60,30 @@ theme_override_fonts/font = ExtResource("3_cwp5w")
 theme_override_font_sizes/font_size = 14
 text = "SWA231"
 
-[node name="PrimaryGroup" type="HBoxContainer" parent="Datablock"]
+[node name="HBC" type="HBoxContainer" parent="Datablock"]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Altitude" type="Label" parent="Datablock/PrimaryGroup"]
+[node name="Altitude" type="Label" parent="Datablock/HBC"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_cwp5w")
 theme_override_font_sizes/font_size = 14
 text = "010"
 
-[node name="Speed" type="Label" parent="Datablock/PrimaryGroup"]
+[node name="Speed" type="Label" parent="Datablock/HBC"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_cwp5w")
 theme_override_font_sizes/font_size = 14
 text = "23"
 
-[node name="WTC" type="Label" parent="Datablock/PrimaryGroup"]
+[node name="WTC" type="Label" parent="Datablock/HBC"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_cwp5w")
 theme_override_font_sizes/font_size = 14
 text = "F"
 
-[node name="SecondaryGroup" type="HBoxContainer" parent="Datablock"]
+[node name="AircraftType" type="Label" parent="Datablock/HBC"]
 visible = false
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="DestinationIATA" type="Label" parent="Datablock/SecondaryGroup"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_cwp5w")
-theme_override_font_sizes/font_size = 14
-text = "GUP"
-
-[node name="AircraftType" type="Label" parent="Datablock/SecondaryGroup"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_cwp5w")
 theme_override_font_sizes/font_size = 14
