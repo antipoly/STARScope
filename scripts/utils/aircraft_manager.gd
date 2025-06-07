@@ -113,7 +113,7 @@ func filter_by_code(code: String) -> Array[Dictionary]:
     for i in range(4):
       if code[i] != "X" && code[i] != aircraft["code"][i]:
         flag = false;
-    
+
     if flag == true:
       filtered_aircraft.push_back(aircraft);
 
@@ -180,3 +180,15 @@ func get_wind() -> Vector2:
   var wind_y = -wind_speed * sin(wind_direction_rad);
 
   return Vector2(wind_x, wind_y) / distance_scale;
+
+#region Cmd Parsing
+
+# Going to parse commands from a JSON file, which will define aliases, description, parameters, etc
+# We'll use this JSON file to handle autocomplete later
+func parse_command_args(track, args: Array) -> void:
+  pass
+
+func execute_command(track, code) -> void:
+  pass
+
+#endregion

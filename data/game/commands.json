@@ -1,0 +1,43 @@
+{
+  "aircraft": [
+    {
+      "name": "Heading",
+      "description": "",
+      "command": "H",
+      "aliases": ["HDG", "HEADING", "TURN", "T", "FH"],
+      "params": [
+        {
+          "name": "bearing",
+          "value": "heading"
+        }
+      ],
+      "subcommands": [
+        {
+          "name": "Left",
+          "command": "L",
+          "aliases": ["LEFT"],
+          "params": [
+            {
+              "name": "by",
+              "value": "heading"
+            }
+          ]
+        },
+        {
+          "name": "Right",
+          "command": "R",
+          "aliases": ["RIGHT"],
+          "params": [
+            {
+              "name": "by",
+              "value": "heading"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scope": [
+
+  ]
+}

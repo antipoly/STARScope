@@ -29,6 +29,15 @@ Video maps are a group of maps that can be displayed on the STARS scope, that gi
 [^video_map]: https://www.reddit.com/r/ATC/comments/n03k8i
 
 **Aircraft Commands**
+H [*] - To Heading [bearing]
+TL/ TR [*] - Turn [degrees] Left/Right
+DIR [*] - Direct to [waypoint]
+
+C [*] - Climb to [altitude]
+D [*] - Descend to [altitude]
+CVS - Climb via SID
+DVS - Descend via STAR
+
 **Scope Commands**
 
 **Terminal Control Workstation (TCW)**

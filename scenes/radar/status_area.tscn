@@ -1,12 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh3n6od3lud3l"]
 
 [ext_resource type="FontFile" uid="uid://bvnm0kyjog80g" path="res://assets/fonts/OxygenMono-Regular.ttf" id="1_i0cju"]
+[ext_resource type="Theme" uid="uid://b0ahbsqigdcpj" path="res://assets/themes/menu.tres" id="1_yuec1"]
 [ext_resource type="Script" uid="uid://jgd5yh4aogus" path="res://scripts/radar/status_area.gd" id="2_4ghwy"]
-
-[sub_resource type="Theme" id="Theme_4ghwy"]
-Label/colors/font_color = Color(0.11441, 0.482657, 0.113603, 1)
-Label/font_sizes/font_size = 13
-Label/fonts/font = ExtResource("1_i0cju")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4wdpw"]
 
@@ -19,7 +15,7 @@ offset_top = 90.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_4ghwy")
+theme = ExtResource("1_yuec1")
 script = ExtResource("2_4ghwy")
 
 [node name="PC" type="PanelContainer" parent="."]
@@ -49,24 +45,39 @@ theme_override_constants/separation = 2
 
 [node name="Date-Altimeter" type="Label" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
 text = "1500/21  30.22"
 
 [node name="Range-PTL" type="Label" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
 text = "15NM  PTL: 3.0"
 
 [node name="AltitudeFilters" type="Label" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
 text = "001 160 U 001 160 A"
 
 [node name="FacilityInfo" type="Label" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
 text = "EWR 29.81 LGA 29.81 JFK 29.82
 CDW 29.81 MMU 29.81 TEB 29.80
 HPN 29.80 DXR 29.81 FRG 29.81"
 
 [node name="FlightPlans" type="Label" parent="PC/MC/HBC/VBC"]
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
 text = "FLIGHT PLANS
     ENY3172 6521 053   D
      N890NE 6416 053   F"
@@ -77,13 +88,17 @@ size_flags_vertical = 10
 
 [node name="Response" type="Label" parent="PC/MC/HBC/VBC/Commands"]
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
 theme_override_fonts/font = ExtResource("1_i0cju")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 15
 
 [node name="Preview" type="Label" parent="PC/MC/HBC/VBC/Commands"]
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
 theme_override_fonts/font = ExtResource("1_i0cju")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 15
 
 [node name="Control" type="Control" parent="PC/MC/HBC"]
 layout_mode = 2
@@ -95,6 +110,9 @@ theme_override_constants/separation = 205
 
 [node name="SignOnList" type="Label" parent="PC/MC/HBC/VBC2"]
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
 text = "SIGN ON
 1N  127.4  ABQ_APP AI
 1S  123.9  ABQ_APP AI"
@@ -105,11 +123,17 @@ theme_override_constants/separation = 25
 
 [node name="TowerList" type="Label" parent="PC/MC/HBC/VBC2/TowerLists"]
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
 text = "LGA TOWER
 AAL100   CRJ7"
 
 [node name="TowerList2" type="Label" parent="PC/MC/HBC/VBC2/TowerLists"]
 visible = false
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
 text = "LGA TOWER
 AAL100   CRJ7"

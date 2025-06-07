@@ -6,7 +6,8 @@ extends Control
 # Nodes
 @onready var range_ptl = $"PC/MC/HBC/VBC/VBC/Range-PTL"
 
-@onready var preview_area = $PC/MC/HBC/VBC/Commands/Preview
+@onready var response_area = $PC/MC/HBC/VBC/Commands/Response;
+@onready var preview_area = $PC/MC/HBC/VBC/Commands/Preview;
 
 var preview_text = "";
 
@@ -15,10 +16,10 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
   if event is InputEventKey and event.is_pressed() and not event.is_echo():
-    var char = OS.get_keycode_string(event.keycode);
+    var character = OS.get_keycode_string(event.keycode);
 
-    if char.length() == 1: # Printable characters only
-      preview_text += char;
+    if character.length() == 1: # Printable characters only
+      preview_text += character;
     elif event.keycode == KEY_BACKSPACE and preview_text.length() > 0:
       preview_text = preview_text.left(preview_text.length() - 1);
     elif event.keycode == KEY_SPACE and preview_text.length() > 0 and preview_text[preview_text.length() - 1] != " ":
@@ -35,8 +36,10 @@ func parse_command(cmd: String) -> void:
   var acft_id = args[0];
 
   var track = AircraftManager.get_track(acft_id);
+  # todo: check if the first arg was a scope command, before giving this err
   if track == null:
-    print("Invalid aircraft id");
+    response_area.text = "Invalid aircraft id";
     return;
 
-  print(track)
+  response_area.text = "%s %s" % [track["id"], track["track"]["model_name"]];
+  AircraftManager.parse_command_args(track, args.slice(1));

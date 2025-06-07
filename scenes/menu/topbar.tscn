@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://saukvnfrf4ef"]
 
-[ext_resource type="Script" uid="uid://5ukkhakl5cmq" path="res://scripts/ui/topbar.gd" id="1_0krot"]
+[ext_resource type="Script" uid="uid://5ukkhakl5cmq" path="res://scripts/menu/topbar.gd" id="1_0krot"]
 [ext_resource type="Theme" uid="uid://b0ahbsqigdcpj" path="res://assets/themes/menu.tres" id="1_isnoh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isnoh"]

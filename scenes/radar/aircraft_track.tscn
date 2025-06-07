@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c32ku4r6oto5g"]
+[gd_scene load_steps=7 format=3 uid="uid://c32ku4r6oto5g"]
 
 [ext_resource type="Script" uid="uid://dospnuw4kmr27" path="res://scripts/radar/aircraft_track.gd" id="1_p1vb6"]
 [ext_resource type="FontFile" uid="uid://71qqhsasvglw" path="res://assets/fonts/KodeMono-Medium.ttf" id="2_ysxbh"]
 [ext_resource type="FontFile" uid="uid://ow60na5gn5py" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_gondt"]
-[ext_resource type="Script" uid="uid://b32rxtksbsnir" path="res://addons/godot_whisper/capture_stream_to_text.gd" id="4_aunq7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwp5w"]
 bg_color = Color(0.99558, 0.99558, 0.99558, 1)

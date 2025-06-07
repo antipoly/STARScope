@@ -36,8 +36,8 @@ var trail_length = 5;
 var trail_phase = 1;
 var datablock_phase = 1;
 
-var target_heading = aircraft_heading;
-var target_altitude = aircraft_altitude_msl;
+var target_heading: float;
+var target_altitude: int;
 
 var turn_elapsed = 0.0;
 
@@ -45,6 +45,9 @@ func _ready() -> void:
   aircraft_position = position;
   aircraft_groundspeed = calc_groundspeed(aircraft_heading, aircraft_airspeed).length();
   pitch = 0;
+
+  target_heading = aircraft_heading;
+  target_altitude = aircraft_altitude_msl;
 
   update_datablock();
 
