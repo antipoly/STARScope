@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://b0ahbsqigdcpj" path="res://assets/themes/menu.tres" id="1_6n8hh"]
 [ext_resource type="Script" uid="uid://dw4eh6f5d3wyi" path="res://scripts/ui/duty_desk.gd" id="2_amnyy"]
-[ext_resource type="ButtonGroup" uid="uid://temq3drshlye" path="res://scenes/ui/misc/mode_btn_group.tres" id="3_08gim"]
+[ext_resource type="ButtonGroup" uid="uid://temq3drshlye" path="res://scenes/misc/mode_btn_group.tres" id="3_08gim"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_amnyy"]
 

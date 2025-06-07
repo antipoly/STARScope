@@ -46,9 +46,7 @@ func _on_name_submitted(new_text: String) -> void:
   nameInput = new_text;
   updateSignHereButtonState();
 
-"""
-Handles the event when the 'Sign Here' button is pressed in the intro screen
-"""
+## Handles the event when the 'Sign Here' button is pressed in the intro screen
 func _on_contract_signed() -> void:
   if contractSigned:
     return ;
@@ -68,4 +66,4 @@ func _on_contract_signed() -> void:
   contractSigned = true;
 
   await Utils.fade_opaque(get_parent(), "out").finished;
-  get_tree().change_scene_to_file("res://scenes/ui/menu.tscn");
+  get_tree().change_scene_to_file("res://scenes/menu.tscn");

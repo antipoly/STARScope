@@ -10,7 +10,7 @@ extends PanelContainer
 signal menu_changed(menu_name: String);
 
 # Scenes
-var duty_desk := preload("res://scenes/ui/menu/duty_desk.tscn");
+var duty_desk := preload("res://scenes/menu/duty_desk.tscn");
 
 func _ready() -> void:
   var player = ResourceManager.get_player(false);

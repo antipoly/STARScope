@@ -1,13 +1,10 @@
 extends Control
 
 @export var aircraft_position: Vector2;
-@export var aircraft_groundspeed: float;
 @export var aircraft_airspeed: float;
 @export var aircraft_heading: float;
 @export var aircraft_altitude_msl: int;
-
-@export var wind_speed: float = 3.0;
-@export var wind_direction: int = 270; # Defines the direction the winds are coming from
+@export var aircraft_groundspeed: float; # Derived from winds
 
 # Constants
 const G = 9.80665;
@@ -19,9 +16,6 @@ const G = 9.80665;
 
 @export var turn_rate: float;
 @export var vertical_speed: float;
-
-# How many nautical miles = 1 pixel
-var distance_scale: float = 85.0;
 
 # Data Block Nodes
 @onready var db_spc = $Datablock/SPC as Label;
@@ -49,20 +43,16 @@ var turn_elapsed = 0.0;
 
 func _ready() -> void:
   aircraft_position = position;
-  aircraft_groundspeed = randf_range(220, 280);
-  aircraft_heading = randi_range(1, 360);
-  aircraft_altitude_msl = randi_range(5000, 18000);
+  aircraft_groundspeed = calc_groundspeed(aircraft_heading, aircraft_airspeed).length();
   pitch = 0;
 
   update_datablock();
-  await get_tree().create_timer(1.0).timeout;
 
+  # await get_tree().create_timer(1.0).timeout
   # altitude_to(5000, 2500);
-  turn_by(90);
+  # turn_by(90);
 
 func _process(delta: float) -> void:
-  var wind = get_wind();
-
   # Target Aircraft Heading
   if target_heading != aircraft_heading:
     # This does not work
@@ -92,32 +82,25 @@ func _process(delta: float) -> void:
   else:
     vertical_speed = 0;
 
-  # Normalize the unit circle coordinate to a real-life bearing
-  var direction_bearing = (90 - int(aircraft_heading)) % 360;
-  var direction_rad = deg_to_rad(direction_bearing);
+  var groundspeed = calc_groundspeed(aircraft_heading, aircraft_airspeed);
+  aircraft_groundspeed = groundspeed.length();
 
-  # Calculate the velocity components using the unit circle
-  var speed_x = aircraft_groundspeed * cos(direction_rad);
-  var speed_y = -aircraft_groundspeed * sin(direction_rad); # Godot's y-axis increases downward
+  aircraft_position += (groundspeed / AircraftManager.distance_scale) * delta;
 
-  var speed = Vector2(speed_x, speed_y) / distance_scale;
-  var total_velocity = speed + wind;
-  
+  # Predicted Track Line
   ptl.rotation = deg_to_rad((180 + int(aircraft_heading)) % 360);
   var ptl_x = (cos(ptl.rotation)) + (track_target.size.x / 2.0);
-  var ptl_y = (sin(ptl.rotation)) + (track_target.size.y / 2.0);
+  var ptl_y = -(sin(ptl.rotation)) + (track_target.size.y / 2.0);
 
   ptl.position = Vector2(ptl_x, ptl_y);
-  aircraft_position += total_velocity * delta;
 
-func get_wind() -> Vector2:
-  var wind_bearing = (90 - wind_direction) % 360;
-  var wind_direction_rad = deg_to_rad(wind_bearing);
 
-  var wind_x = wind_speed * cos(wind_direction_rad);
-  var wind_y = -wind_speed * sin(wind_direction_rad);
+func calc_groundspeed(heading: float, airspeed: float) -> Vector2:
+  var direction_rad = Math.normalize_bearing(heading);
+  var speed := Math.vectorize(direction_rad, airspeed);
+  var wind := AircraftManager.get_wind();
 
-  return Vector2(wind_x, wind_y) / distance_scale;
+  return speed + wind;
 
 func update_position() -> void:
   position = aircraft_position;
@@ -156,9 +139,7 @@ func update_datablock() -> void:
 
   datablock_phase += 1;
 
-"""
-Turns the track to a specified heating (+/-) the current heading
-"""
+## Turns the track to a specified heating (+/-) the current heading
 func turn_by(deg: int) -> void:
   target_heading = abs((int(aircraft_heading) + deg) % 360);
   print("[HEADING CHANGE]: %f to %f" % [aircraft_heading, target_heading])

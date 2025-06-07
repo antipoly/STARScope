@@ -3,9 +3,9 @@ extends Node
 func _ready() -> void:
   var player = ResourceManager.get_player(false);
   if player == null:
-    call_deferred("change_scene", "res://scenes/ui/menu/intro.tscn");
+    call_deferred("change_scene", "res://scenes/menu/intro.tscn");
   else:
-    call_deferred("change_scene", "res://scenes/ui/menu.tscn");
+    call_deferred("change_scene", "res://scenes/menu.tscn");
 
 
 func change_scene(scene_path: String) -> void:

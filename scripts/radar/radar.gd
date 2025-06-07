@@ -30,6 +30,8 @@ func _ready() -> void:
   AircraftManager.spawn_arrival(tracks, "LCXX");
   AircraftManager.spawn_arrival(tracks, "LCXX");
   AircraftManager.spawn_arrival(tracks, "LCXX");
+  AircraftManager.spawn_arrival(tracks, "LCXX");
+  AircraftManager.spawn_arrival(tracks, "LCXX");
   
   _redraw_range_rings();
   dcb.connect("dcb_rr", Callable(self, "_redraw_range_rings"));

@@ -42,7 +42,6 @@
 {"model_name":"C-137","code":"LM4J","WTC":"H","designator":"B703","manufacturer":"BOEING","class":"LandPlane","engine_count":4,"engine_type":"Jet"},
 {"model_name":"CH-47 Chinook","code":"HM2T","WTC":"M","designator":"H47","manufacturer":"BOEING","class":"Helicopter","engine_count":2,"engine_type":"Turboprop/Turboshaft"},
 {"model_name":"Chinook","code":"HM2T","WTC":"M","designator":"H47","manufacturer":"BOEING","class":"Helicopter","engine_count":2,"engine_type":"Turboprop/Turboshaft"},
-{"model_name":"Clipper","code":"LC2J","WTC":"M","designator":"B737","manufacturer":"BOEING","class":"LandPlane","engine_count":2,"engine_type":"Jet"},
 {"model_name":"CT-43","code":"LM2J","WTC":"M","designator":"B732","manufacturer":"BOEING","class":"LandPlane","engine_count":2,"engine_type":"Jet"},
 {"model_name":"Defender","code":"HM1T","WTC":"L","designator":"H500","manufacturer":"BOEING","class":"Helicopter","engine_count":1,"engine_type":"Turboprop/Turboshaft"},
 {"model_name":"Hornet","code":"LM2J","WTC":"M","designator":"F18H","manufacturer":"BOEING","class":"LandPlane","engine_count":2,"engine_type":"Jet"},

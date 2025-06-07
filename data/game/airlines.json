@@ -5,10 +5,10 @@
     "name": "American Airlines",
     "callsign": "AMERICAN",
     "fleet": [
-      {"designator": "B738", "count": 304},
-      {"designator": "A321", "count": 218},
-      {"designator": "B772", "count": 47},
-      {"designator": "B789", "count": 22}
+      {"model_name": "737-800", "count": 304},
+      {"model_name": "A-321", "count": 218},
+      {"model_name": "777-200", "count": 47},
+      {"model_name": "787-9 Dreamliner", "count": 22}
     ]
   },
   {
@@ -17,10 +17,10 @@
     "name": "Delta Air Lines",
     "callsign": "DELTA",
     "fleet": [
-      {"designator": "B739", "count": 159},
-      {"designator": "A321", "count": 127},
-      {"designator": "B752", "count": 111},
-      {"designator": "A333", "count": 31}
+      {"model_name": "737-900", "count": 159},
+      {"model_name": "A-321", "count": 127},
+      {"model_name": "757-200", "count": 111},
+      {"model_name": "A-330-300", "count": 31}
     ]
   },
   {
@@ -29,10 +29,10 @@
     "name": "United Airlines",
     "callsign": "UNITED",
     "fleet": [
-      {"designator": "B739", "count": 136},
-      {"designator": "B738", "count": 141},
-      {"designator": "B772", "count": 55},
-      {"designator": "B789", "count": 38}
+      {"model_name": "737-900", "count": 136},
+      {"model_name": "737-800", "count": 141},
+      {"model_name": "777-200", "count": 55},
+      {"model_name": "787-9 Dreamliner", "count": 38}
     ]
   },
   {
@@ -41,10 +41,10 @@
     "name": "British Airways",
     "callsign": "SPEEDBIRD",
     "fleet": [
-      {"designator": "A320", "count": 67},
-      {"designator": "A321", "count": 18},
-      {"designator": "B789", "count": 18},
-      {"designator": "A388", "count": 12}
+      {"model_name": "A-320", "count": 67},
+      {"model_name": "A-321", "count": 18},
+      {"model_name": "787-9 Dreamliner", "count": 18},
+      {"model_name": "A-380-800", "count": 12}
     ]
   },
   {
@@ -53,10 +53,10 @@
     "name": "Air France",
     "callsign": "AIRFRANS",
     "fleet": [
-      {"designator": "A320", "count": 43},
-      {"designator": "A321", "count": 15},
-      {"designator": "B772", "count": 18},
-      {"designator": "A359", "count": 22}
+      {"model_name": "A-320", "count": 43},
+      {"model_name": "A-321", "count": 15},
+      {"model_name": "777-200", "count": 18},
+      {"model_name": "A-350-900 XWB", "count": 22}
     ]
   },
   {
@@ -65,10 +65,10 @@
     "name": "Lufthansa",
     "callsign": "LUFTHANSA",
     "fleet": [
-      {"designator": "A320", "count": 81},
-      {"designator": "A321", "count": 60},
-      {"designator": "A359", "count": 21},
-      {"designator": "B748", "count": 19}
+      {"model_name": "A-320", "count": 81},
+      {"model_name": "A-321", "count": 60},
+      {"model_name": "A-350-900 XWB", "count": 21},
+      {"model_name": "747-8", "count": 19}
     ]
   },
   {
@@ -77,8 +77,8 @@
     "name": "Emirates",
     "callsign": "EMIRATES",
     "fleet": [
-      {"designator": "A388", "count": 116},
-      {"designator": "B77W", "count": 124}
+      {"model_name": "A-380-800", "count": 116},
+      {"model_name": "777-300ER", "count": 124}
     ]
   },
   {
@@ -87,9 +87,9 @@
     "name": "Qantas",
     "callsign": "QANTAS",
     "fleet": [
-      {"designator": "B738", "count": 75},
-      {"designator": "A332", "count": 18},
-      {"designator": "B789", "count": 14}
+      {"model_name": "737-800", "count": 75},
+      {"model_name": "A-330-200", "count": 18},
+      {"model_name": "787-9 Dreamliner", "count": 14}
     ]
   },
   {
@@ -98,9 +98,9 @@
     "name": "All Nippon Airways",
     "callsign": "ALL NIPPON",
     "fleet": [
-      {"designator": "B789", "count": 36},
-      {"designator": "B772", "count": 19},
-      {"designator": "A320", "count": 29}
+      {"model_name": "787-9 Dreamliner", "count": 36},
+      {"model_name": "777-200", "count": 19},
+      {"model_name": "A-320", "count": 29}
     ]
   },
   {
@@ -109,9 +109,177 @@
     "name": "Singapore Airlines",
     "callsign": "SINGAPORE",
     "fleet": [
-      {"designator": "A359", "count": 63},
-      {"designator": "B77W", "count": 26},
-      {"designator": "A388", "count": 12}
+      {"model_name": "A-350-900 XWB", "count": 63},
+      {"model_name": "777-300ER", "count": 26},
+      {"model_name": "A380-800", "count": 12}
+    ]
+  },
+  {
+    "icao": "SWA",
+    "iata": "WN",
+    "name": "Southwest Airlines",
+    "callsign": "SOUTHWEST",
+    "fleet": [
+      {"model_name": "737-700", "count": 512},
+      {"model_name": "737-800", "count": 207},
+      {"model_name": "737 MAX 8", "count": 78}
+    ]
+  },
+  {
+    "icao": "ACA",
+    "iata": "AC",
+    "name": "Air Canada",
+    "callsign": "AIR CANADA",
+    "fleet": [
+      {"model_name": "A220-300", "count": 33},
+      {"model_name": "737 MAX 8", "count": 40},
+      {"model_name": "777-300ER", "count": 19},
+      {"model_name": "787-9 Dreamliner", "count": 29}
+    ]
+  },
+  {
+    "icao": "JAL",
+    "iata": "JL",
+    "name": "Japan Airlines",
+    "callsign": "JAPAN AIR",
+    "fleet": [
+      {"model_name": "737-800", "count": 62},
+      {"model_name": "767-300", "count": 29},
+      {"model_name": "777-200", "count": 13},
+      {"model_name": "787-9 Dreamliner", "count": 22}
+    ]
+  },
+  {
+    "icao": "KLM",
+    "iata": "KL",
+    "name": "KLM Royal Dutch Airlines",
+    "callsign": "KLM",
+    "fleet": [
+      {"model_name": "737-800", "count": 31},
+      {"model_name": "737-700", "count": 18},
+      {"model_name": "777-300ER", "count": 16},
+      {"model_name": "787-9 Dreamliner", "count": 13}
+    ]
+  },
+  {
+    "icao": "THY",
+    "iata": "TK",
+    "name": "Turkish Airlines",
+    "callsign": "TURKISH",
+    "fleet": [
+      {"model_name": "737-800", "count": 88},
+      {"model_name": "737-900", "count": 15},
+      {"model_name": "777-300ER", "count": 33},
+      {"model_name": "A-321", "count": 66}
+    ]
+  },
+  {
+    "icao": "QTR",
+    "iata": "QR",
+    "name": "Qatar Airways",
+    "callsign": "QATARI",
+    "fleet": [
+      {"model_name": "A-350-900 XWB", "count": 34},
+      {"model_name": "777-300ER", "count": 57},
+      {"model_name": "787-8 Dreamliner", "count": 30},
+      {"model_name": "A-380-800", "count": 10}
+    ]
+  },
+  {
+    "icao": "EZY",
+    "iata": "U2",
+    "name": "easyJet",
+    "callsign": "EASY",
+    "fleet": [
+      {"model_name": "A-320", "count": 163},
+      {"model_name": "A-319", "count": 93},
+      {"model_name": "A-321", "count": 41}
+    ]
+  },
+  {
+    "icao": "RYR",
+    "iata": "FR",
+    "name": "Ryanair",
+    "callsign": "RYANAIR",
+    "fleet": [
+      {"model_name": "737-800", "count": 409},
+      {"model_name": "737 MAX 8", "count": 28}
+    ]
+  },
+  {
+    "icao": "SAS",
+    "iata": "SK",
+    "name": "Scandinavian Airlines",
+    "callsign": "SCANDINAVIAN",
+    "fleet": [
+      {"model_name": "A-320", "count": 30},
+      {"model_name": "A-321", "count": 8},
+      {"model_name": "A-350-900 XWB", "count": 4}
+    ]
+  },
+  {
+    "icao": "CPA",
+    "iata": "CX",
+    "name": "Cathay Pacific",
+    "callsign": "CATHAY",
+    "fleet": [
+      {"model_name": "A-350-900 XWB", "count": 28},
+      {"model_name": "777-300ER", "count": 40},
+      {"model_name": "A-330-300", "count": 32}
+    ]
+  },
+  {
+    "icao": "AIC",
+    "iata": "AI",
+    "name": "Air India",
+    "callsign": "AIR INDIA",
+    "fleet": [
+      {"model_name": "787-8 Dreamliner", "count": 27},
+      {"model_name": "777-300ER", "count": 15},
+      {"model_name": "A-320", "count": 28}
+    ]
+  },
+  {
+    "icao": "VOZ",
+    "iata": "VA",
+    "name": "Virgin Australia",
+    "callsign": "VIRGIN",
+    "fleet": [
+      {"model_name": "737-800", "count": 75},
+      {"model_name": "737 MAX 8", "count": 8}
+    ]
+  },
+  {
+    "icao": "JBU",
+    "iata": "B6",
+    "name": "JetBlue Airways",
+    "callsign": "JETBLUE",
+    "fleet": [
+      {"model_name": "A-320", "count": 130},
+      {"model_name": "A-321", "count": 80},
+      {"model_name": "A-220-300", "count": 14}
+    ]
+  },
+  {
+    "icao": "ASA",
+    "iata": "AS",
+    "name": "Alaska Airlines",
+    "callsign": "ALASKA",
+    "fleet": [
+      {"model_name": "737-900", "count": 79},
+      {"model_name": "737-800", "count": 61},
+      {"model_name": "737-700", "count": 11}
+    ]
+  },
+  {
+    "icao": "IBE",
+    "iata": "IB",
+    "name": "Iberia",
+    "callsign": "IBERIA",
+    "fleet": [
+      {"model_name": "A-320", "count": 14},
+      {"model_name": "A-321", "count": 11},
+      {"model_name": "A-350-900 XWB", "count": 12}
     ]
   }
 ]

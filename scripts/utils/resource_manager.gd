@@ -2,6 +2,7 @@
 extends Node
 
 var player: Player = null;
+var specialisations: Array;
 
 func load_json(path: String) -> Variant:
   if !FileAccess.file_exists(path):
@@ -9,18 +10,18 @@ func load_json(path: String) -> Variant:
     return null;
 
   var file = FileAccess.open(path, FileAccess.READ);
-  if file:
-    var data = JSON.parse_string(file.get_as_text());
-    file.close();
-    return data;
-  else:
+  if not file:
     push_error("Failed to open file: %s" % path);
     return null;
 
-"""
-Returns a Player resource, or null
-@param force - Forces returning a Player resource no matter if it didn't exist
-"""
+  var data = JSON.parse_string(file.get_as_text());
+  file.close();
+
+  print_debug("Loaded %s" % path);
+  return data;
+
+## Returns a Player resource, or null
+## @param force - Forces returning a Player resource no matter if it didn't exist
 func get_player(force = true) -> Player:
   if player == null:
     if FileAccess.file_exists("user://player.tres"):
@@ -40,7 +41,8 @@ func get_player_level() -> Dictionary:
     return {"name": "N/A", "threshold": 0};
 
   var spec = matchedRatings[0];
-  var specialisations = ResourceManager.load_json("res://data/game/specialisations.json");
+  if not specialisations:
+    specialisations = ResourceManager.load_json("res://data/game/specialisations.json");
 
   var specLevels = specialisations[player.active_specialisation].levels as Array;
   var currentLevel = specLevels[0];
@@ -55,10 +57,8 @@ func get_player_level() -> Dictionary:
 func get_specialisation() -> Dictionary:
   var spec = { "id": 0, "name": "N/A", "acr": "N/A", "levels": [] };
 
-  var specialisations = load_json("res://data/game/specialisations.json");
-  if !specialisations:
-    return spec;
-
+  if not specialisations:
+    specialisations = ResourceManager.load_json("res://data/game/specialisations.json");
 
   for specialisation in specialisations:
     if player.active_specialisation == specialisation.id:

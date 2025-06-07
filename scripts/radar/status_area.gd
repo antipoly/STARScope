@@ -29,8 +29,14 @@ func _input(event: InputEvent) -> void:
 
     preview_area.text = preview_text;
 
-"""
-Aircraft Commands: Must start with a valid aircraft identifier.
-"""
+## Aircraft Commands: Must start with a valid aircraft identifier.
 func parse_command(cmd: String) -> void:
-  pass
+  var args = cmd.split(" ");
+  var acft_id = args[0];
+
+  var track = AircraftManager.get_track(acft_id);
+  if track == null:
+    print("Invalid aircraft id");
+    return;
+
+  print(track)

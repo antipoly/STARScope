@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c32ku4r6oto5g"]
+[gd_scene load_steps=8 format=3 uid="uid://c32ku4r6oto5g"]
 
-[ext_resource type="Script" uid="uid://dospnuw4kmr27" path="res://scripts/radar/aircraft_track.gd" id="1_cgvli"]
-[ext_resource type="FontFile" uid="uid://ow60na5gn5py" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_htqcd"]
-[ext_resource type="FontFile" uid="uid://71qqhsasvglw" path="res://assets/fonts/KodeMono-Medium.ttf" id="3_cwp5w"]
+[ext_resource type="Script" uid="uid://dospnuw4kmr27" path="res://scripts/radar/aircraft_track.gd" id="1_p1vb6"]
+[ext_resource type="FontFile" uid="uid://71qqhsasvglw" path="res://assets/fonts/KodeMono-Medium.ttf" id="2_ysxbh"]
+[ext_resource type="FontFile" uid="uid://ow60na5gn5py" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_gondt"]
+[ext_resource type="Script" uid="uid://b32rxtksbsnir" path="res://addons/godot_whisper/capture_stream_to_text.gd" id="4_aunq7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwp5w"]
 bg_color = Color(0.99558, 0.99558, 0.99558, 1)
@@ -16,7 +17,7 @@ corner_radius_bottom_left = 7
 anti_aliasing = false
 
 [sub_resource type="LabelSettings" id="LabelSettings_cwp5w"]
-font = ExtResource("1_htqcd")
+font = ExtResource("3_gondt")
 font_size = 10
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -28,7 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_cgvli")
+script = ExtResource("1_p1vb6")
 
 [node name="HistoryTrails" type="Control" parent="."]
 anchors_preset = 0
@@ -50,13 +51,13 @@ alignment = 2
 [node name="SPC" type="Label" parent="Datablock"]
 visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_cwp5w")
+theme_override_fonts/font = ExtResource("2_ysxbh")
 theme_override_font_sizes/font_size = 14
 text = "CA"
 
 [node name="AircraftID" type="Label" parent="Datablock"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_cwp5w")
+theme_override_fonts/font = ExtResource("2_ysxbh")
 theme_override_font_sizes/font_size = 14
 text = "SWA231"
 
@@ -66,26 +67,26 @@ theme_override_constants/separation = 6
 
 [node name="Altitude" type="Label" parent="Datablock/HBC"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_cwp5w")
+theme_override_fonts/font = ExtResource("2_ysxbh")
 theme_override_font_sizes/font_size = 14
 text = "010"
 
 [node name="Speed" type="Label" parent="Datablock/HBC"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_cwp5w")
+theme_override_fonts/font = ExtResource("2_ysxbh")
 theme_override_font_sizes/font_size = 14
 text = "23"
 
 [node name="WTC" type="Label" parent="Datablock/HBC"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_cwp5w")
+theme_override_fonts/font = ExtResource("2_ysxbh")
 theme_override_font_sizes/font_size = 14
 text = "F"
 
 [node name="AircraftType" type="Label" parent="Datablock/HBC"]
 visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_cwp5w")
+theme_override_fonts/font = ExtResource("2_ysxbh")
 theme_override_font_sizes/font_size = 14
 text = "B737"
 
