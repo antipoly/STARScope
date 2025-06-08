@@ -183,11 +183,6 @@ func get_wind() -> Vector2:
 
 #region Cmd Parsing
 
-# Going to parse commands from a JSON file, which will define aliases, description, parameters, etc
-# We'll use this JSON file to handle autocomplete later
-func parse_command_args(track, args: Array) -> void:
-  pass
-
 func execute_command(track, code) -> void:
   pass
 

@@ -43,19 +43,41 @@ theme_override_constants/separation = 170
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Date-Altimeter" type="Label" parent="PC/MC/HBC/VBC/VBC"]
+[node name="HBC" type="HBoxContainer" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
-text = "1500/21  30.22"
+theme_override_constants/separation = 15
 
-[node name="Range-PTL" type="Label" parent="PC/MC/HBC/VBC/VBC"]
+[node name="Time" type="Label" parent="PC/MC/HBC/VBC/VBC/HBC"]
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
 theme_override_font_sizes/font_size = 15
-text = "15NM  PTL: 3.0"
+text = "1500/21"
+
+[node name="Altimeter" type="Label" parent="PC/MC/HBC/VBC/VBC/HBC"]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
+text = "30.22"
+
+[node name="HBC2" type="HBoxContainer" parent="PC/MC/HBC/VBC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Range" type="Label" parent="PC/MC/HBC/VBC/VBC/HBC2"]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
+text = "15NM"
+
+[node name="PTL" type="Label" parent="PC/MC/HBC/VBC/VBC/HBC2"]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
+theme_override_font_sizes/font_size = 15
+text = "PTL: 3.0"
 
 [node name="AltitudeFilters" type="Label" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
@@ -64,7 +86,7 @@ theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
 theme_override_font_sizes/font_size = 15
 text = "001 160 U 001 160 A"
 
-[node name="FacilityInfo" type="Label" parent="PC/MC/HBC/VBC/VBC"]
+[node name="FacilitiesInfo" type="Label" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)

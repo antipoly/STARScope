@@ -33,6 +33,13 @@ func to_page(index: int) -> void:
 
 func _on_next_button_pressed() -> void:
   if page_index == 3:
+
+    var scenario = {
+      "system_time": Time.get_unix_time_from_system()
+    };
+
+    Simulation.load_scenario(scenario);
+
     get_tree().change_scene_to_file("res://scenes/radar/tcw.tscn");
   else:
     to_page(page_index + 1);

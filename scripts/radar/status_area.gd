@@ -4,7 +4,12 @@ extends Control
 @export var date = Time.get_date_dict_from_system();
 
 # Nodes
-@onready var range_ptl = $"PC/MC/HBC/VBC/VBC/Range-PTL"
+@onready var time = $PC/MC/HBC/VBC/VBC/HBC/Time;
+@onready var altimeter = $PC/MC/HBC/VBC/VBC/HBC/Altimeter;
+@onready var dcb_range = $PC/MC/HBC/VBC/VBC/HBC2/Range;
+@onready var ptl = $PC/MC/HBC/VBC/VBC/HBC2/PTL;
+@onready var altitude_filters = $PC/MC/HBC/VBC/VBC/AltitudeFilters;
+@onready var facilities_info = $PC/MC/HBC/VBC/VBC/FacilitiesInfo;
 
 @onready var response_area = $PC/MC/HBC/VBC/Commands/Response;
 @onready var preview_area = $PC/MC/HBC/VBC/Commands/Preview;
@@ -12,7 +17,13 @@ extends Control
 var preview_text = "";
 
 func _ready() -> void:
-  camera.connect("range_changed", Callable(func(new_range): range_ptl.text = "%dNM  PTL: 3.0" % new_range));
+  camera.connect("range_changed", Callable(func(new_range):
+    dcb_range.text = "%dNM" % new_range
+  ));
+
+func _process(delta: float) -> void:
+  var system_time = Time.get_datetime_dict_from_unix_time(Simulation.get_system_time());
+  time.text = "%s%s/%s" % [system_time["hours"], system_time["minutes"], system_time["seconds"]];
 
 func _input(event: InputEvent) -> void:
   if event is InputEventKey and event.is_pressed() and not event.is_echo():
@@ -36,10 +47,19 @@ func parse_command(cmd: String) -> void:
   var acft_id = args[0];
 
   var track = AircraftManager.get_track(acft_id);
-  # todo: check if the first arg was a scope command, before giving this err
-  if track == null:
-    response_area.text = "Invalid aircraft id";
-    return;
+  var scope_cmd = Simulation.find_command(args[0], "scope");
 
-  response_area.text = "%s %s" % [track["id"], track["track"]["model_name"]];
-  AircraftManager.parse_command_args(track, args.slice(1));
+  if track == null and scope_cmd == null:
+    response_area.text = "Invalid aircraft id";
+    return ;
+
+  if scope_cmd:
+    response_area.text = "%s" % [scope_cmd["name"]];
+    var result = Simulation.scope_command(scope_cmd, args.slice(1));
+    
+    if result[1]:
+      response_area.text = result[1];
+
+  else:
+    response_area.text = "%s %s" % [track["id"], track["track"]["model_name"]];
+    Simulation.aircraft_command(track, args.slice(1));

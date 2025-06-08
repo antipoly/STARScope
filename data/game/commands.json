@@ -8,7 +8,8 @@
       "params": [
         {
           "name": "bearing",
-          "value": "heading"
+          "value": "heading",
+          "required": true
         }
       ],
       "subcommands": [
@@ -19,7 +20,8 @@
           "params": [
             {
               "name": "by",
-              "value": "heading"
+              "value": "heading",
+              "required": true
             }
           ]
         },
@@ -30,7 +32,8 @@
           "params": [
             {
               "name": "by",
-              "value": "heading"
+              "value": "heading",
+              "required": true
             }
           ]
         }
@@ -38,6 +41,30 @@
     }
   ],
   "scope": [
-
+    {
+      "name": "Pause",
+      "description": "Pause the simulation",
+      "command": "P",
+      "aliases": ["PAUSE"]
+    },
+    {
+      "name": "Resume",
+      "description": "Resume the simulation",
+      "command": "R",
+      "aliases": ["RESUME"]
+    },
+    {
+      "name": "Speed",
+      "description": "Change the simulation speed",
+      "command": "S",
+      "aliases": ["SPEED"],
+      "params": [
+        {
+          "name": "rate",
+          "value": "float",
+          "required": true
+        }
+      ]
+    }
   ]
 }
