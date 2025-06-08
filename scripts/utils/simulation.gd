@@ -36,8 +36,9 @@ func _process(delta: float) -> void:
 func set_running_state(running: bool) -> void:
   paused = !running;
 
-func set_simulation_speed(speed: float) -> void:
-  simulation_rate = speed;
+func set_simulation_speed(speed: float) -> float:
+  simulation_rate = clampf(speed, 0.2, 5.0);
+  return simulation_rate;
 
 func get_system_time() -> int:
   return shift_start_time + int(elapsed_time);
@@ -61,12 +62,14 @@ func validate_params(command: Dictionary, args: Array) -> Variant:
   if !command.has("params"): return;
   var sanitized = [];
   
-  for i in range(command["params"].length()):
+  for i in range(command["params"].size()):
     var param = command["params"][i] as Dictionary;
-    var arg = args[i];
+    var arg = null;
+    if args.size() > i:
+      arg = args[i];
 
-    if !param.has("type"): continue;
-    var type = param["type"];
+    if !param.has("value"): continue;
+    var value = param["value"];
 
     if !param.has("required"): continue;
     var required = param["required"];
@@ -74,7 +77,7 @@ func validate_params(command: Dictionary, args: Array) -> Variant:
     if (not arg) && required:
       return "Required param %d was missing" % i;
 
-    match type:
+    match value:
       "float":
         if arg is String and arg.is_valid_float():
           sanitized.push_back(float(arg));
@@ -89,19 +92,28 @@ func aircraft_command(track, args: Array) -> void:
   pass
 
 func scope_command(command: Dictionary, args: Array) -> Array:
-  if !command.has("name"): return [false, "Invalid command"];
-
   match command["name"]:
     "Pause":
       set_running_state(false);
+      return [true, "Pause"];
     "Resume":
       set_running_state(true);
+      return [true, "Resume"];
+    "Notepad":
+      var params = validate_params(command, [" ".join(args)]);
+      if params is String:
+        return [false, params];
+      
+      return [true, params[0]]
     "Speed":
       var params = validate_params(command, args);
       if params is String:
         return [false, params];
 
-      set_simulation_speed(params[0]);
+      var new_rate = set_simulation_speed(params[0]);
+      return [true, "Speed %fx" % new_rate]
+    "Clear":
+      pass
     _:
       return [false, "Command '%s' not found" % command["name"]]
 

@@ -54,6 +54,25 @@
       "aliases": ["RESUME"]
     },
     {
+      "name": "Clear",
+      "description": "Clears the preview area",
+      "command": "C",
+      "aliases": ["CLR", "CLEAR"]
+    },
+    {
+      "name": "Notepad",
+      "description": "Displays the text entered in the preview area",
+      "command": "N",
+      "aliases": ["NOTE", "NP"],
+      "params": [
+        {
+          "name": "note",
+          "value": "string",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "Speed",
       "description": "Change the simulation speed",
       "command": "S",

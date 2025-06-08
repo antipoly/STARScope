@@ -23,18 +23,24 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
   var system_time = Time.get_datetime_dict_from_unix_time(Simulation.get_system_time());
-  time.text = "%s%s/%s" % [system_time["hours"], system_time["minutes"], system_time["seconds"]];
+  var hours = (str(system_time["hour"])).pad_zeros(2);
+  var minutes = (str(system_time["minute"])).pad_zeros(2);
+  var seconds = (str(system_time["second"])).pad_zeros(2);
+
+  time.text = "%s%s/%s" % [hours, minutes, seconds];
 
 func _input(event: InputEvent) -> void:
-  if event is InputEventKey and event.is_pressed() and not event.is_echo():
+  if event is InputEventKey and event.is_pressed():
     var character = OS.get_keycode_string(event.keycode);
 
     if character.length() == 1: # Printable characters only
       preview_text += character;
     elif event.keycode == KEY_BACKSPACE and preview_text.length() > 0:
       preview_text = preview_text.left(preview_text.length() - 1);
-    elif event.keycode == KEY_SPACE and preview_text.length() > 0 and preview_text[preview_text.length() - 1] != " ":
+    elif event.keycode == KEY_SPACE and preview_text.length() > 0 and preview_text[preview_text.length() - 1] != " ": # Todo allow echo for backspace and maybe ctrl backspace
       preview_text += " ";
+    elif event.keycode == KEY_PERIOD and preview_text.length() > 0 and preview_text[preview_text.length() - 1] != ".": # Todo check if last word contains periods 
+      preview_text += ".";
     elif event.keycode == KEY_ENTER and preview_text.length() > 0:
       parse_command(preview_text);
       preview_text = "";
@@ -54,10 +60,15 @@ func parse_command(cmd: String) -> void:
     return ;
 
   if scope_cmd:
-    response_area.text = "%s" % [scope_cmd["name"]];
-    var result = Simulation.scope_command(scope_cmd, args.slice(1));
-    
-    if result[1]:
+    if !scope_cmd.has("name"):
+      response_area.text = "Invalid command";
+      return;
+
+    if scope_cmd["name"] == "Clear":
+      response_area.text = "";
+
+    var result = Simulation.scope_command(scope_cmd, args.slice(1)) as Array;
+    if result.size() > 1:
       response_area.text = result[1];
 
   else:
