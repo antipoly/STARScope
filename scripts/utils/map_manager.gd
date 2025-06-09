@@ -41,7 +41,7 @@ static func draw_line(node: Control, points: PackedVector2Array) -> void:
   line.points = points;
   line.width = 1;
   line.antialiased = true;
-  line.default_color = Color.from_ok_hsl(0, 0, 0.7, 0.8)
+  line.default_color = Color.from_ok_hsl(0, 0, 0.7, 0.5)
   node.add_child(line);
 
 # static func draw_point(node: Control, coordinates: Array) -> void:

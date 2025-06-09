@@ -1,0 +1,15 @@
+[
+  {
+    "id": "ZNY",
+    "type": "ARTCC",
+    "name": "New York ARTCC",
+    "facilities": [
+      {
+        "id": "N90",
+        "type": "TRACON",
+        "name": "New York TRACON",
+        "scenarios": []
+      }
+    ]
+  }
+]

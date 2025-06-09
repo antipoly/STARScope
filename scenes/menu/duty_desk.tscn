@@ -168,19 +168,39 @@ theme_override_constants/margin_right = 200
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Facility" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
+[node name="ARTCC" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="OptionButton" type="OptionButton" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Facility"]
+[node name="OptionButton" type="OptionButton" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/ARTCC"]
 layout_mode = 2
 theme_type_variation = &"OptionButtonSpecial"
 selected = 0
 item_count = 1
-popup/item_0/text = "[KDAB] Daytona Beach Intl (9)"
+popup/item_0/text = "[ZNY] New York ARTCC"
 popup/item_0/id = 0
 
-[node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Facility"]
+[node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/ARTCC"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+autowrap_mode = 2
+
+[node name="TRACON" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="OptionButton" type="OptionButton" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/TRACON"]
+layout_mode = 2
+theme_type_variation = &"OptionButtonSpecial"
+selected = 0
+item_count = 1
+popup/item_0/text = "[N90] New York TRACON (9)"
+popup/item_0/id = 0
+
+[node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/TRACON"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
@@ -219,7 +239,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"HeaderSmall"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Runways: 3"
+text = "Airports: 3"
 autowrap_mode = 2
 
 [node name="SIDs" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/HBC2"]
@@ -244,6 +264,27 @@ autowrap_mode = 2
 
 [node name="Control" type="Control" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
 layout_mode = 2
+
+[node name="Scenario" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="OptionButton" type="OptionButton" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Scenario"]
+layout_mode = 2
+theme_type_variation = &"OptionButtonSpecial"
+selected = 0
+item_count = 1
+popup/item_0/text = "KJFK Depart 22R/31L Arrive 22L/31R"
+popup/item_0/id = 0
+
+[node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Scenario"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+autowrap_mode = 2
 
 [node name="Sectors" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
 layout_mode = 2

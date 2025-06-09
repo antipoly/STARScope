@@ -11,11 +11,11 @@ var rr_enabled = false;
 var range_enabled = false;
 
 func _ready() -> void:
-  dcb_range.text = "Range\n%d" % camera.current_range;
+  dcb_range.text = "RANGE\n%d" % camera.current_range;
   camera.connect("range_changed", Callable(self, "_on_range_changed"));
 
 func _on_range_changed(new_range: int) -> void:
-  dcb_range.text = "Range\n%d" % new_range
+  dcb_range.text = "RANGE\n%d" % new_range
 
 func _on_range_toggled(toggled_on: bool) -> void:
   range_enabled = toggled_on;

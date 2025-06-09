@@ -11,7 +11,7 @@ var radar_pass: Timer;
 
 @onready var dcb = %DisplayControlBoard
 
-var center_coordinates := [-74.12753592427075, 40.68075933728596]; # Will be defined based on scenario
+var center_coordinates := [-72.58065,40.33685 ]#[-74.12753592427075, 40.68075933728596]; # Will be defined based on scenario
 
 func _ready() -> void:
   Input.set_default_cursor_shape(Input.CURSOR_CROSS);
@@ -25,6 +25,7 @@ func _ready() -> void:
   MapManager.loadVideoMap(video_maps, "ZNY/01G66ETNBBVPD0812MB31HJCBZ", center_coordinates);
   MapManager.loadVideoMap(video_maps, "ZNY/01G90NPTFQ2DK0CXJB8Q3GBPE4", center_coordinates);
   MapManager.loadVideoMap(video_maps, "ZNY/01G90QP1RZH8T82E79EXHPZG0B", center_coordinates);
+  MapManager.loadVideoMap(video_maps, "ZNY/01H9BZDN3TSZT8TSGD8CTXB65X", center_coordinates);
 
   # Hardcoded Aircraft Spawns
   AircraftManager.spawn_arrival(tracks, "LCXX");
@@ -58,7 +59,6 @@ func _redraw_range_rings() -> void:
     var ring = Line2D.new();
     ring.width = 1.0;
     ring.default_color = Color.from_ok_hsl(0, 0, 0.35, 0.5);
-    # ring.antialiased = true;
 
     var points = PackedVector2Array();
     for angle in range(0, 360, 5):

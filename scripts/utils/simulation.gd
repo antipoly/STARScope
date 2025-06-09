@@ -1,18 +1,19 @@
 # Autoloaded
 extends Node
 
-# Going to manage the current scenario, time, weather, etc
-
 @export var paused: bool = false;
 @export var simulation_rate: float = 1.0; ## The speed of the simulation
 
 var shift_start_time: int; ## The shift start time epoch (seconds)
 var elapsed_time: float = 0.0;
 
+var ARTCCs := {}; # An dict containing nav/[ARTCC].json files
+var ARTCCData := []; # The game/ARTCCs.json helper file
 var aircraft_commands := [];
 var scope_commands := [];
 
 func _init() -> void:
+  # Load Commands
   var commands = ResourceManager.load_json("res://data/game/commands.json") as Dictionary;
   if commands == null:
     push_error("Failed to load commands");
@@ -23,6 +24,35 @@ func _init() -> void:
 
   if commands.has("scope"):
     scope_commands = commands["scope"];
+
+  # Load ARTCCs
+  var artccs = ResourceManager.load_json("res://data/game/ARTCCs.json") as Array;
+  if artccs == null:
+    push_error("Failed to load ARTCCs");
+    return;
+
+  if artccs.size() == 0:
+    push_warning("No ARTCCs present in file");
+
+  # Read ARTCCs folder
+  var dir = DirAccess.open("res://data/nav/ARTCCs");
+  if dir:
+    dir.list_dir_begin();
+    var file_name = dir.get_next();
+    
+    while file_name != "":
+      if not dir.current_is_dir() and file_name.ends_with(".json"):
+        var artcc_data = ResourceManager.load_json("res://data/nav/ARTCCs/" + file_name);
+        if !artcc_data: continue;
+
+        ARTCCs[artcc_data["id"]] = artcc_data;
+      file_name = dir.get_next();
+
+    dir.list_dir_end();
+  else:
+    push_error("Failed to open ARTCCs directory");
+
+  ARTCCData = artccs;
 
 func load_scenario(scenario: Dictionary) -> void:
   if scenario.has("system_time"):

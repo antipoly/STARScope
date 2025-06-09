@@ -3,9 +3,12 @@ extends PanelContainer
 var page_index = 0;
 var pages = ["ModeSelection", "FacilitySelection", "Weather&Time", "Traffic"];
 
+@onready var topbar = $"../../Topbar";
 @onready var next_button = $MC/HBC/RightColumn/NextButton;
 @onready var page_container = $MC/HBC;
-@onready var topbar = $"../../Topbar" # %Topbar;
+
+@onready var artcc_option = $MC/HBC/FacilitySelection/SC/VBC/MC/VBC/ARTCC/OptionButton;
+@onready var tracon_option = $MC/HBC/FacilitySelection/SC/VBC/MC/VBC/TRACON/OptionButton;
 
 func _ready() -> void:
   topbar.connect("current_menu_pressed", Callable(self, "_on_current_menu_pressed"));
@@ -28,7 +31,12 @@ func to_page(index: int) -> void:
   Utils.fade_alpha(target_page, "in");
 
   page_index = index;
-  if page_index == 3:
+  
+  if page_index == 1:
+    facility_selection();
+  elif page_index == 2:
+    pass
+  elif page_index == 3:
     next_button.text = "Begin Duty";
 
 func _on_next_button_pressed() -> void:
@@ -49,3 +57,14 @@ func _on_current_menu_pressed() -> void:
     get_tree().change_scene_to_file("res://scenes/menu.tscn");
   else:
     to_page(page_index - 1);
+
+# Page Scripts
+
+func get_current_artcc() -> String:
+  var selected = artcc_option.selected;
+  # artcc_option.item
+
+func facility_selection() -> void:
+  # var tracon_facilities = 
+  print(Simulation.ARTCCData)
+  print(Simulation.ARTCCs["ZNY"]["facility"]["childFacilities"].map(func (a): a["name"]))
