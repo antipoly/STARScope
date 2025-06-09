@@ -45,26 +45,51 @@ func get_system_time() -> int:
 
 #region Commands
 func find_command(arg: String, type: String) -> Variant:
-  var cmds = scope_commands if type == "scope" else aircraft_commands;
+  var cmds = null;
+
+  if type == "scope":
+    cmds = scope_commands;
+  elif type == "aircraft":
+    cmds = aircraft_commands;
+  else:
+    return null;
 
   for cmd in cmds:
-    if cmd["command"] == arg:
+    if matches_command(cmd, arg):
       return cmd;
-
-    if cmd.has("aliases"):
-      for alias in cmd["aliases"]:
-        if alias == arg:
-          return cmd;
 
   return null;
 
+func matches_command(command: Dictionary, arg: String) -> bool:
+  if command.has("command"):
+    if command["command"] == arg:
+      return true;
+
+  if command.has("aliases"):
+    for alias in command["aliases"]:
+      if alias == arg:
+        return true;
+
+  return false;
+
 func validate_params(command: Dictionary, args: Array) -> Variant:
-  if !command.has("params"): return;
+  if !command.has("params") && !command.has("subcommands"): return;
+  var params = command["params"] if command.has("params") else null;
+  var subcommands = command["subcommands"] if command.has("subcommands") else null;
   var sanitized = [];
-  
-  for i in range(command["params"].size()):
-    var param = command["params"][i] as Dictionary;
+
+  # Checks if the first argument could be a subcommand, then parses that instead
+  if subcommands:
+    for subcmd in subcommands:
+      if args.size() > 0:
+        if matches_command(subcmd, args[0]):
+          return validate_params(subcmd, args.slice(1));
+
+  for i in range(params.size()):
+    var param = params[i] as Dictionary;
+    var param_name = str(i + 1); #param["name"].to_upper() if param.has("name") else str(i);
     var arg = null;
+
     if args.size() > i:
       arg = args[i];
 
@@ -75,47 +100,73 @@ func validate_params(command: Dictionary, args: Array) -> Variant:
     var required = param["required"];
 
     if (not arg) && required:
-      return "Required param %d was missing" % i;
+      return "MISSING PARAM %s" % param_name
 
     match value:
       "float":
-        if arg is String and arg.is_valid_float():
+        if arg.is_valid_float():
           sanitized.push_back(float(arg));
         else:
-          return "Param %d, got string, expected float" % i
+          return "PARAM %s: EXPECTED FLOAT" % param_name
+      "bearing":
+        if arg.is_valid_int() && arg.length() == 3:
+          sanitized.push_back(int(arg));
+        else:
+          return "PARAM %s: EXPECTED 3-DIGIT BEARING" % param_name
       _:
         sanitized.push_back(arg);
 
   return sanitized;
 
-func aircraft_command(track, args: Array) -> void:
-  pass
+func aircraft_command(track: Dictionary, command: Dictionary, args: Array) -> Array:
+  if !command.has("name"):
+    print_debug("Command has no 'name' prop");
+    return [false, "ERR"];
+
+  match command["name"]:
+    "Heading":
+      var params = validate_params(command, args);
+      if params is String:
+        return [false, params];
+
+      print(params);
+
+  return [true];
+
 
 func scope_command(command: Dictionary, args: Array) -> Array:
+  if !command.has("name"):
+    print_debug("Command has no 'name' prop");
+    return [false, "ERR"];
+
   match command["name"]:
     "Pause":
       set_running_state(false);
-      return [true, "Pause"];
+      return [true, "PAUSE"];
+
     "Resume":
       set_running_state(true);
-      return [true, "Resume"];
+      return [true, "RESUME"];
+
     "Notepad":
       var params = validate_params(command, [" ".join(args)]);
       if params is String:
         return [false, params];
-      
+
       return [true, params[0]]
+
     "Speed":
       var params = validate_params(command, args);
       if params is String:
         return [false, params];
 
       var new_rate = set_simulation_speed(params[0]);
-      return [true, "Speed %fx" % new_rate]
+      return [true, "SPEED %fx" % new_rate];
+
     "Clear":
       pass
     _:
-      return [false, "Command '%s' not found" % command["name"]]
+      return [false, "ILLEGAL SCOPE CMD"]
 
   return [true];
 #endregion

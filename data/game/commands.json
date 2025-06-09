@@ -7,8 +7,8 @@
       "aliases": ["HDG", "HEADING", "TURN", "T", "FH"],
       "params": [
         {
-          "name": "bearing",
-          "value": "heading",
+          "name": "heading",
+          "value": "bearing",
           "required": true
         }
       ],
@@ -20,7 +20,7 @@
           "params": [
             {
               "name": "by",
-              "value": "heading",
+              "value": "bearing",
               "required": true
             }
           ]
@@ -32,7 +32,7 @@
           "params": [
             {
               "name": "by",
-              "value": "heading",
+              "value": "bearing",
               "required": true
             }
           ]

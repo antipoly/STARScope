@@ -42,27 +42,28 @@ func _input(event: InputEvent) -> void:
     elif event.keycode == KEY_PERIOD and preview_text.length() > 0 and preview_text[preview_text.length() - 1] != ".": # Todo check if last word contains periods 
       preview_text += ".";
     elif event.keycode == KEY_ENTER and preview_text.length() > 0:
-      parse_command(preview_text);
-      preview_text = "";
+      var result = parse_command(preview_text);
+      if result: preview_text = "";
 
     preview_area.text = preview_text;
 
 ## Aircraft Commands: Must start with a valid aircraft identifier.
-func parse_command(cmd: String) -> void:
+func parse_command(cmd: String) -> bool:
   var args = cmd.split(" ");
   var acft_id = args[0];
 
   var track = AircraftManager.get_track(acft_id);
   var scope_cmd = Simulation.find_command(args[0], "scope");
+  var aircraft_cmd = Simulation.find_command(args[1] if args.size() > 1 else "", "aircraft");
 
   if track == null and scope_cmd == null:
-    response_area.text = "Invalid aircraft id";
-    return ;
+    response_area.text = "ILLEGAL ACFT ID";
+    return false;
 
   if scope_cmd:
     if !scope_cmd.has("name"):
-      response_area.text = "Invalid command";
-      return;
+      response_area.text = "ILLEGAL SCOPE CMD";
+      return false;
 
     if scope_cmd["name"] == "Clear":
       response_area.text = "";
@@ -71,6 +72,27 @@ func parse_command(cmd: String) -> void:
     if result.size() > 1:
       response_area.text = result[1];
 
+    if !result[0]:
+      return false;
+
   else:
+    args = args.slice(1); # Remove the aircraft identifier
+
+    if args.size() < 1:
+      response_area.text = "EXPECTED ACFT CMD";
+      return false;
+
+    if !aircraft_cmd:
+      response_area.text = "ILLEGAL ACFT CMD";
+      return false;
+
     response_area.text = "%s %s" % [track["id"], track["track"]["model_name"]];
-    Simulation.aircraft_command(track, args.slice(1));
+    var result = Simulation.aircraft_command(track, aircraft_cmd, args.slice(1));
+    
+    if result.size() > 1:
+      response_area.text = result[1];
+
+    if !result[0]:
+      return false;
+
+  return true;
