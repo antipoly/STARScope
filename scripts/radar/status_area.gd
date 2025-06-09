@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 
   time.text = "%s%s/%s" % [hours, minutes, seconds];
 
+# Todo store a history buffer for up/down arrow navigation
 func _input(event: InputEvent) -> void:
   if event is InputEventKey and event.is_pressed():
     var character = OS.get_keycode_string(event.keycode);

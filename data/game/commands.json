@@ -38,6 +38,19 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Altitude",
+      "description": "",
+      "command": "A",
+      "aliases": ["CLIMB", "DESCEND", "C", "D"],
+      "params": [
+        {
+          "name": "to",
+          "value": "flightlevel",
+          "required": true
+        }
+      ]
     }
   ],
   "scope": [

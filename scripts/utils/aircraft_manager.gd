@@ -183,7 +183,25 @@ func get_wind() -> Vector2:
 
 #region Cmd Parsing
 
-func execute_command(track, code) -> void:
-  pass
+func execute_command(track: Dictionary, command: Array) -> Variant:
+  if !track.has("node"):
+    print("Node not found");
+    return false;
+  
+  var aircraft = track["node"];
+  var cmd = command[0];
+  var param = command[1];
+
+  match cmd:
+    "H":
+      return aircraft.turn_to(param);
+    "L":
+      return aircraft.turn_by(-param);
+    "R":
+      return aircraft.turn_by(param);
+    "A":
+      return aircraft.altitude_to(param * 100, 2000);
+
+  return true;
 
 #endregion

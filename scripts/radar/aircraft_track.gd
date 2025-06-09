@@ -31,6 +31,7 @@ const G = 9.80665;
 @onready var track_target = $Target as Panel;
 @onready var position_symbol = $Target/PositionSymbol as Label;
 @onready var trail_parent = $HistoryTrails as Control;
+var camera: Camera2D;
 
 var trail_length = 5;
 var trail_phase = 1;
@@ -49,6 +50,7 @@ func _ready() -> void:
   target_heading = aircraft_heading;
   target_altitude = aircraft_altitude_msl;
 
+  camera = get_viewport().get_camera_2d();
   update_datablock();
 
   # await get_tree().create_timer(1.0).timeout
@@ -56,6 +58,9 @@ func _ready() -> void:
   # turn_by(90);
 
 func _process(delta: float) -> void:
+  if camera:
+    self.scale = Vector2(1.1, 1.1) / camera.zoom;
+
   # Target Aircraft Heading
   if target_heading != aircraft_heading:
     # This does not work
@@ -97,7 +102,6 @@ func _process(delta: float) -> void:
 
   ptl.position = Vector2(ptl_x, ptl_y);
 
-
 func calc_groundspeed(heading: float, airspeed: float) -> Vector2:
   var direction_rad = Math.normalize_bearing(heading);
   var speed := Math.vectorize(direction_rad, airspeed);
@@ -110,15 +114,19 @@ func update_position() -> void:
 
   if trail_phase >= 6:
     var trail = Panel.new();
-    trail.position = position;
-    trail.size = Vector2(5, 5);
+    trail.top_level = true;
+    trail.position = global_position + (track_target.size / 2);
+    trail.size = Vector2(8, 8);
+    trail.pivot_offset = trail.size / 2;
+    trail.z_index = -1;
 
     var style = StyleBoxFlat.new();
-    style.bg_color = Color(1, 0, 0, 1);
+    style.bg_color = Color.from_rgba8(51, 51, 159, 180);
     style.corner_radius_top_left = 5;
     style.corner_radius_top_right = 5;
     style.corner_radius_bottom_left = 5;
     style.corner_radius_bottom_right = 5;
+    style.anti_aliasing = false;
 
     trail.add_theme_stylebox_override("panel", style);
 
@@ -143,17 +151,29 @@ func update_datablock() -> void:
   datablock_phase += 1;
 
 ## Turns the track to a specified heating (+/-) the current heading
-func turn_by(deg: int) -> void:
-  target_heading = abs((int(aircraft_heading) + deg) % 360);
-  print("[HEADING CHANGE]: %f to %f" % [aircraft_heading, target_heading])
+func turn_by(deg: int) -> int:
+  target_heading = (int(aircraft_heading) + deg) % 360;
+  if target_heading < 0: target_heading += 360;
 
-func altitude_to(msl: int, vs: float) -> void:
-  if vs <= 0: return;
-  if msl <= 100: return;
+  print("[HEADING CHANGE %s]: %f to %f" % [name, aircraft_heading, target_heading])
+  return int(target_heading);
+
+## Turns the track to the specified bearing
+func turn_to(bearing: int) -> void:
+  var delta = int((bearing - int(aircraft_heading) + 360) % 360)
+  if delta > 180: delta -= 360
+  
+  return turn_by(delta)
+
+func altitude_to(msl: int, vs: float) -> int:
+  if vs <= 0: return target_altitude;
+  if msl <= 100: return target_altitude;
 
   print("[ALTITUDE CHANGE]: %f to %f at %f ft/m" % [aircraft_altitude_msl, msl, vs]);
   target_altitude = msl;
   vertical_speed = vs;
+
+  return target_altitude;
 
 # Iteration 2
 # To increase altitude:

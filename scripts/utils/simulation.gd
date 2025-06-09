@@ -113,23 +113,49 @@ func validate_params(command: Dictionary, args: Array) -> Variant:
           sanitized.push_back(int(arg));
         else:
           return "PARAM %s: EXPECTED 3-DIGIT BEARING" % param_name
+      "flightlevel":
+        if arg.begins_with("FL"):
+          var fl = arg.substr(2);
+          
+          if fl.is_valid_int():
+            var int_fl = int(fl);
+            if int_fl > 0 && int_fl < 500:
+              sanitized.push_back(int_fl);
+            else:
+              # todo fix this mess
+              return "PARAM %s: EXPECTED FLIGHT LEVEL" % param_name
+          else:
+            return "PARAM %s: EXPECTED FLIGHT LEVEL" % param_name
+        else:
+          return "PARAM %s: EXPECTED FLIGHT LEVEL" % param_name
       _:
         sanitized.push_back(arg);
 
-  return sanitized;
+  return {
+    "cmd": command,
+    "args": sanitized
+  }
 
 func aircraft_command(track: Dictionary, command: Dictionary, args: Array) -> Array:
   if !command.has("name"):
     print_debug("Command has no 'name' prop");
     return [false, "ERR"];
 
+  var params = validate_params(command, args);
+  if params is String:
+    return [false, params];
+
+  var cmd = [params["cmd"]["command"], params["args"][0]];
+
   match command["name"]:
     "Heading":
-      var params = validate_params(command, args);
-      if params is String:
-        return [false, params];
+      var res = AircraftManager.execute_command(track, cmd);
+      return [true, "HEADING %d" % res];
 
-      print(params);
+    "Altitude":
+      # Todo determine v/s
+      var res = AircraftManager.execute_command(track, cmd);
+      return [true, "ALTITUDE %d" % res];
 
   return [true];
 
@@ -153,14 +179,14 @@ func scope_command(command: Dictionary, args: Array) -> Array:
       if params is String:
         return [false, params];
 
-      return [true, params[0]]
+      return [true, params["args"][0]]
 
     "Speed":
       var params = validate_params(command, args);
       if params is String:
         return [false, params];
 
-      var new_rate = set_simulation_speed(params[0]);
+      var new_rate = set_simulation_speed(params["args"][0]);
       return [true, "SPEED %fx" % new_rate];
 
     "Clear":
