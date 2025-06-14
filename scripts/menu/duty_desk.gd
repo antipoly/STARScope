@@ -9,6 +9,7 @@ var pages = ["ModeSelection", "FacilitySelection", "Weather&Time", "Traffic"];
 
 @onready var artcc_option = $MC/HBC/FacilitySelection/SC/VBC/MC/VBC/ARTCC/OptionButton;
 @onready var tracon_option = $MC/HBC/FacilitySelection/SC/VBC/MC/VBC/TRACON/OptionButton;
+@onready var position_option = $MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Position/OptionButton;
 
 func _ready() -> void:
   topbar.connect("current_menu_pressed", Callable(self, "_on_current_menu_pressed"));
@@ -31,6 +32,7 @@ func to_page(index: int) -> void:
   Utils.fade_alpha(target_page, "in");
 
   page_index = index;
+  next_button.text = "Next";
   
   if page_index == 1:
     facility_selection();
@@ -40,15 +42,16 @@ func to_page(index: int) -> void:
     next_button.text = "Begin Duty";
 
 func _on_next_button_pressed() -> void:
-  if page_index == 3:
+  if page_index == 3: # Last Page
 
     var scenario = {
-      "system_time": Time.get_unix_time_from_system()
+      "system_time": Time.get_unix_time_from_system(),
+      "artcc": artcc_option.get_selected_metadata(),
+      "tracon": tracon_option.get_selected_id(),
+      "position": position_option.get_selected_id(),
     };
 
     Simulation.load_scenario(scenario);
-
-    get_tree().change_scene_to_file("res://scenes/radar/tcw.tscn");
   else:
     to_page(page_index + 1);
 
@@ -58,13 +61,42 @@ func _on_current_menu_pressed() -> void:
   else:
     to_page(page_index - 1);
 
-# Page Scripts
-
-func get_current_artcc() -> String:
-  var selected = artcc_option.selected;
-  # artcc_option.item
+#region Facility
 
 func facility_selection() -> void:
-  # var tracon_facilities = 
-  print(Simulation.ARTCCData)
-  print(Simulation.ARTCCs["ZNY"]["facility"]["childFacilities"].map(func (a): a["name"]))
+  # Populate ARTCC Option Button
+  artcc_option.clear();
+
+  for key in Simulation.ARTCCs:
+    var artcc = Simulation.ARTCCs[key];
+    var id = artcc_option.item_count;
+
+    artcc_option.add_item("[%s] %s" % [key, artcc["facility"]["name"]], id);
+    artcc_option.set_item_metadata(id, key);
+
+  _on_artcc_item_selected();
+
+func _on_artcc_item_selected() -> void:
+  var tracon_facilities = Simulation.ARTCCs[artcc_option.get_selected_metadata()]["facility"]["childFacilities"];
+  tracon_option.clear();
+
+  for tracon in tracon_facilities:
+    var id = tracon_option.item_count;
+    var facility_level = 9; # Placeholder
+
+    tracon_option.add_item("[%s] %s (%d)" % [tracon["id"], tracon["name"], facility_level]);
+    tracon_option.set_item_metadata(id, tracon["id"]);
+  
+  _on_tracon_item_selected(tracon_option.get_selected_id());
+
+func _on_tracon_item_selected(index: int) -> void:
+  var positions = Simulation.ARTCCs[artcc_option.get_selected_metadata()]["facility"]["childFacilities"][index]["positions"];
+  position_option.clear();
+
+  for pos in positions:
+    var id = position_option.item_count;
+
+    position_option.add_item("[%s] %s" % [pos["callsign"], pos["radioName"]]);
+    position_option.set_item_metadata(id, pos["id"]);
+
+#endregion

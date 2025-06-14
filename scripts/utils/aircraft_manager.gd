@@ -68,10 +68,13 @@ func spawn_track(radar: Node, track: Dictionary, props: Dictionary) -> void:
 # This function will then take the aicraft type and flight number/registration and assign the altitude/heading/speed props
 # Iteration 2: This function will then assign a STAR and other flight plan information
 func spawn_arrival(radar: Node, code: String = "LCXX") -> void:
-  var tracks: Array[Dictionary] = filter_by_code(code);
-  if tracks.size() == 0:
-    push_error("No matching aircrafts for code: %s" % code);
-    return ;
+  # var tracks: Array[Dictionary] = filter_by_code(code);
+  # if tracks.size() == 0:
+  #   push_error("No matching aircrafts for code: %s" % code);
+  #   return ;
+
+  # todo: check if the code is actually commercial
+  var acft_model := get_fleet();
 
   var props = {
     "position": Vector2(randf_range(-500, 500), randf_range(-500, 500)),
@@ -83,7 +86,16 @@ func spawn_arrival(radar: Node, code: String = "LCXX") -> void:
 
   # Iteration 2: Use a defined spawn pattern to describe an aircraft's course, position, altitude, navigation aids etc
   # Todo: Make sure aircraft id's are unique
-  var track := tracks[randi_range(0, tracks.size() - 1)];
+  var track_index = aircraft_list.find_custom(func(a):
+    return a["model_name"] == acft_model;
+  );
+
+  if track_index == -1:
+    push_error("No aircraft %s found" % acft_model);
+    return;
+
+  var track = aircraft_list[track_index];
+
   match track["code"][1]:
     # Commercial Aircraft
     "C":
@@ -118,6 +130,27 @@ func filter_by_code(code: String) -> Array[Dictionary]:
       filtered_aircraft.push_back(aircraft);
 
   return filtered_aircraft;
+
+## Returns a random aircraft from the fleet of an airline using a weighted distribution.
+## todo: option to select region destination which the airline must service
+func get_fleet() -> String:
+  var airline = airline_list[randi_range(0, airline_list.size() - 1)];
+  var fleet = airline["fleet"];
+
+  var weight_total: int = 0;
+  for acft in fleet:
+    weight_total += acft["count"];
+
+  var rand = randi_range(1, weight_total);
+  var cumulative_weight: int = 0;
+
+  for acft in fleet:
+    cumulative_weight += acft["count"];
+
+    if rand <= cumulative_weight:
+      return acft["model_name"];
+
+  return "";
 
 ## Generates flight numbers for commercial aviation to:
 ## - Avoid aircraft type (eg: 737)

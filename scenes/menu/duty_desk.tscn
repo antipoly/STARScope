@@ -175,10 +175,6 @@ theme_override_constants/separation = 25
 [node name="OptionButton" type="OptionButton" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/ARTCC"]
 layout_mode = 2
 theme_type_variation = &"OptionButtonSpecial"
-selected = 0
-item_count = 1
-popup/item_0/text = "[ZNY] New York ARTCC"
-popup/item_0/id = 0
 
 [node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/ARTCC"]
 custom_minimum_size = Vector2(150, 0)
@@ -195,12 +191,24 @@ theme_override_constants/separation = 25
 [node name="OptionButton" type="OptionButton" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/TRACON"]
 layout_mode = 2
 theme_type_variation = &"OptionButtonSpecial"
-selected = 0
-item_count = 1
-popup/item_0/text = "[N90] New York TRACON (9)"
-popup/item_0/id = 0
 
 [node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/TRACON"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+autowrap_mode = 2
+
+[node name="Position" type="VBoxContainer" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="OptionButton" type="OptionButton" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Position"]
+layout_mode = 2
+theme_type_variation = &"OptionButtonSpecial"
+
+[node name="Description" type="Label" parent="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Position"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
@@ -410,4 +418,6 @@ offset_right = 120.0
 offset_bottom = 82.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_rn3on")
 
+[connection signal="item_selected" from="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/ARTCC/OptionButton" to="." method="_on_artcc_item_selected"]
+[connection signal="item_selected" from="MC/HBC/FacilitySelection/SC/VBC/MC/VBC/TRACON/OptionButton" to="." method="_on_tracon_item_selected"]
 [connection signal="pressed" from="MC/HBC/RightColumn/NextButton" to="." method="_on_next_button_pressed"]

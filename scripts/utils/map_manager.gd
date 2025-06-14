@@ -4,7 +4,7 @@ extends Object
 const EARTH_RADIUS = 6378137;
 const SCALE_FACTOR = 120;
 
-static func loadVideoMap(node: Control, video_map: String, center: Array) -> Variant:
+static func loadVideoMap(node: Control, video_map: String) -> Variant:
   var map_path = "res://data/nav/VideoMaps/%s.geojson" % video_map
   var geojson = ResourceManager.load_json(map_path);
 
@@ -25,15 +25,41 @@ static func loadVideoMap(node: Control, video_map: String, center: Array) -> Var
       "LineString":
         var points: PackedVector2Array = PackedVector2Array();
         for coord in coordinates:
-          var rel = to_relative(coord[0], coord[1], center);
+          var rel = to_relative(coord[0], coord[1], Simulation.center_coordinates);
           var scaled = scale_coordinates(rel[0], rel[1]);
 
           points.append(Vector2(scaled[0], scaled[1]));
 
         draw_line(node, points);
-      # "Point":
-      #   draw_point(node, coordinates);
+      # Todo: impl Point, Polygon
   
+  return true;
+
+static func loadMapGroup(node: Control, id: String) -> Variant:
+  var map_groups = Simulation.tracon["starsConfiguration"]["mapGroups"];
+  var map_group_i = map_groups.find_custom(func(g): return g["id"] == id);
+
+  if map_group_i == -1:
+    push_error("Could not load map group: %s" % id);
+    return;
+  
+  var map_group = map_groups[map_group_i];
+
+  for map in map_group["mapIds"]:
+    if map != null:
+      var video_maps = Simulation.artcc["videoMaps"];
+      var video_map_i = video_maps.find_custom(func(m):
+        if not m.has("starsId"): return false
+        else: return m["starsId"] == map
+      );
+
+      if video_map_i == -1:
+        push_warning("Could not load video map: %s" % map);
+        continue;
+
+      var video_map = video_maps[video_map_i];
+      loadVideoMap(node, "%s/%s" % [Simulation.artcc["id"], video_map["id"]]);
+
   return true;
 
 static func draw_line(node: Control, points: PackedVector2Array) -> void:
@@ -41,17 +67,15 @@ static func draw_line(node: Control, points: PackedVector2Array) -> void:
   line.points = points;
   line.width = 1;
   line.antialiased = true;
-  line.default_color = Color.from_ok_hsl(0, 0, 0.7, 0.5)
+  line.default_color = Color.from_ok_hsl(0, 0, 0.7, 0.3)
   node.add_child(line);
 
-# static func draw_point(node: Control, coordinates: Array) -> void:
-#   var circle = 
 
 static func scale_coordinates(x, y) -> Array:
   return [x / SCALE_FACTOR, -y / SCALE_FACTOR];
 
 static func to_relative(lng, lat, center_coordinates) -> Array[float]:
-  var center_projected = to_mercator(center_coordinates[0], center_coordinates[1]);
+  var center_projected = to_mercator(center_coordinates["lon"], center_coordinates["lat"]);
   var target_projected = to_mercator(lng, lat);
 
   return [

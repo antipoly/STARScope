@@ -9,7 +9,9 @@ extends Control
 @onready var dcb_range = $PC/MC/HBC/VBC/VBC/HBC2/Range;
 @onready var ptl = $PC/MC/HBC/VBC/VBC/HBC2/PTL;
 @onready var altitude_filters = $PC/MC/HBC/VBC/VBC/AltitudeFilters;
-@onready var facilities_info = $PC/MC/HBC/VBC/VBC/FacilitiesInfo;
+@onready var facilities = $PC/MC/HBC/VBC/VBC/Facilities;
+@onready var tower_lists = $PC/MC/HBC/VBC/TowerLists;
+@onready var flight_plans = $PC/MC/HBC/MC/VBC2/FlightPlans/MC/List;
 
 @onready var response_area = $PC/MC/HBC/VBC/Commands/Response;
 @onready var preview_area = $PC/MC/HBC/VBC/Commands/Preview;
@@ -20,6 +22,52 @@ func _ready() -> void:
   camera.connect("range_changed", Callable(func(new_range):
     dcb_range.text = "%dNM" % new_range
   ));
+
+  # Clear children of ssa facilities list
+  for c in facilities.get_children():
+    c.queue_free();
+
+  var ssaAirports = Simulation.area["ssaAirports"];
+  for arpt in ssaAirports:
+    # Fetch metar information from api if online
+    # Calculate and or use random data if offline
+    var barometric = "29.92";
+
+    var label = Label.new();
+    label.text = "%s %s" % [arpt, barometric];
+    label.theme = load("res://assets/themes/menu.tres");
+    label.theme_type_variation = "TCW";
+    facilities.add_child(label);
+
+  # Clear children of ssa tower list
+  for c in tower_lists.get_children():
+    c.queue_free();
+
+  var towerListConfig = Simulation.area["towerListConfigurations"];
+  for twr_list in towerListConfig:
+    var list_vbc = VBoxContainer.new();
+    list_vbc.add_theme_constant_override("separation", 8);
+
+    var mc = MarginContainer.new();
+    mc.add_theme_constant_override("margin_left", 15);
+    mc.add_child(list_vbc);
+
+    var label = Label.new();
+    label.text = "%s TOWER" % twr_list["airportId"];
+    label.theme = load("res://assets/themes/menu.tres");
+    label.theme_type_variation = "TCW";
+    tower_lists.add_child(label);
+
+    var vbc = VBoxContainer.new();
+    vbc.name = twr_list["id"];
+    vbc.add_theme_constant_override("separation", 10);
+    vbc.add_child(mc);
+
+    tower_lists.add_child(vbc);
+  
+  for c in flight_plans.get_children():
+    c.queue_free();
+
 
 func _process(delta: float) -> void:
   var system_time = Time.get_datetime_dict_from_unix_time(Simulation.get_system_time());

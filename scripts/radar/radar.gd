@@ -11,8 +11,6 @@ var radar_pass: Timer;
 
 @onready var dcb = %DisplayControlBoard
 
-var center_coordinates := [-72.58065,40.33685 ]#[-74.12753592427075, 40.68075933728596]; # Will be defined based on scenario
-
 func _ready() -> void:
   Input.set_default_cursor_shape(Input.CURSOR_CROSS);
   radar_pass = Timer.new();
@@ -22,10 +20,11 @@ func _ready() -> void:
   add_child(radar_pass);
 
   # Hardcoded Videomaps
-  MapManager.loadVideoMap(video_maps, "ZNY/01G66ETNBBVPD0812MB31HJCBZ", center_coordinates);
-  MapManager.loadVideoMap(video_maps, "ZNY/01G90NPTFQ2DK0CXJB8Q3GBPE4", center_coordinates);
-  MapManager.loadVideoMap(video_maps, "ZNY/01G90QP1RZH8T82E79EXHPZG0B", center_coordinates);
-  MapManager.loadVideoMap(video_maps, "ZNY/01H9BZDN3TSZT8TSGD8CTXB65X", center_coordinates);
+  # MapManager.loadVideoMap(video_maps, "ZNY/01G66ETNBBVPD0812MB31HJCBZ");
+  # MapManager.loadVideoMap(video_maps, "ZNY/01G90NPTFQ2DK0CXJB8Q3GBPE4");
+  # MapManager.loadVideoMap(video_maps, "ZNY/01G90QP1RZH8T82E79EXHPZG0B");
+  # MapManager.loadVideoMap(video_maps, "ZNY/01H9BZDN3TSZT8TSGD8CTXB65X");
+  MapManager.loadMapGroup(video_maps, "01H5JPZ67G9YVWF9PPNKD64C55");
 
   # Hardcoded Aircraft Spawns
   AircraftManager.spawn_arrival(tracks, "LCXX");

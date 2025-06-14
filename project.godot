@@ -15,7 +15,6 @@ config/description="STARScope is a gameified STARS (Standard Terminal Automation
 config/version="0.1.0-dev"
 run/main_scene="uid://d3oqpoewd74ve"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 

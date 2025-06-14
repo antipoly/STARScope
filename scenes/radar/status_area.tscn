@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh3n6od3lud3l"]
+[gd_scene load_steps=4 format=3 uid="uid://bh3n6od3lud3l"]
 
-[ext_resource type="FontFile" uid="uid://bvnm0kyjog80g" path="res://assets/fonts/OxygenMono-Regular.ttf" id="1_i0cju"]
 [ext_resource type="Theme" uid="uid://b0ahbsqigdcpj" path="res://assets/themes/menu.tres" id="1_yuec1"]
 [ext_resource type="Script" uid="uid://jgd5yh4aogus" path="res://scripts/radar/status_area.gd" id="2_4ghwy"]
 
@@ -15,7 +14,6 @@ offset_top = 90.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_yuec1")
 script = ExtResource("2_4ghwy")
 
 [node name="PC" type="PanelContainer" parent="."]
@@ -37,125 +35,291 @@ layout_mode = 2
 [node name="VBC" type="VBoxContainer" parent="PC/MC/HBC"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-theme_override_constants/separation = 170
+theme_override_constants/separation = 180
 
 [node name="VBC" type="VBoxContainer" parent="PC/MC/HBC/VBC"]
 layout_mode = 2
-theme_override_constants/separation = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 5
 
 [node name="HBC" type="HBoxContainer" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 15
 
 [node name="Time" type="Label" parent="PC/MC/HBC/VBC/VBC/HBC"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
 text = "1500/21"
+uppercase = true
 
 [node name="Altimeter" type="Label" parent="PC/MC/HBC/VBC/VBC/HBC"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
 text = "30.22"
+uppercase = true
 
 [node name="HBC2" type="HBoxContainer" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 15
 
 [node name="Range" type="Label" parent="PC/MC/HBC/VBC/VBC/HBC2"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
 text = "15NM"
+uppercase = true
 
 [node name="PTL" type="Label" parent="PC/MC/HBC/VBC/VBC/HBC2"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
 text = "PTL: 3.0"
+uppercase = true
 
 [node name="AltitudeFilters" type="Label" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
+size_flags_horizontal = 0
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
 text = "001 160 U 001 160 A"
+uppercase = true
 
-[node name="FacilitiesInfo" type="Label" parent="PC/MC/HBC/VBC/VBC"]
+[node name="Facilities" type="GridContainer" parent="PC/MC/HBC/VBC/VBC"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
-text = "EWR 29.81 LGA 29.81 JFK 29.82
-CDW 29.81 MMU 29.81 TEB 29.80
-HPN 29.80 DXR 29.81 FRG 29.81"
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 5
+columns = 3
 
-[node name="FlightPlans" type="Label" parent="PC/MC/HBC/VBC"]
+[node name="FacilitiesInfo" type="Label" parent="PC/MC/HBC/VBC/VBC/Facilities"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
-text = "FLIGHT PLANS
-    ENY3172 6521 053   D
-     N890NE 6416 053   F"
+size_flags_horizontal = 0
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "EWR 29.81"
+uppercase = true
+
+[node name="FacilitiesInfo2" type="Label" parent="PC/MC/HBC/VBC/VBC/Facilities"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "EWR 29.81"
+uppercase = true
+
+[node name="FacilitiesInfo3" type="Label" parent="PC/MC/HBC/VBC/VBC/Facilities"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "EWR 29.81"
+uppercase = true
+
+[node name="FacilitiesInfo4" type="Label" parent="PC/MC/HBC/VBC/VBC/Facilities"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "EWR 29.81"
+uppercase = true
+
+[node name="FacilitiesInfo5" type="Label" parent="PC/MC/HBC/VBC/VBC/Facilities"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "EWR 29.81"
+uppercase = true
+
+[node name="FacilitiesInfo6" type="Label" parent="PC/MC/HBC/VBC/VBC/Facilities"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "EWR 29.81"
+uppercase = true
+
+[node name="FacilitiesInfo7" type="Label" parent="PC/MC/HBC/VBC/VBC/Facilities"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "EWR 29.81"
+uppercase = true
+
+[node name="FacilitiesInfo8" type="Label" parent="PC/MC/HBC/VBC/VBC/Facilities"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "EWR 29.81"
+uppercase = true
+
+[node name="FacilitiesInfo9" type="Label" parent="PC/MC/HBC/VBC/VBC/Facilities"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "EWR 29.81"
+uppercase = true
 
 [node name="Commands" type="VBoxContainer" parent="PC/MC/HBC/VBC"]
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 0
 
 [node name="Response" type="Label" parent="PC/MC/HBC/VBC/Commands"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_fonts/font = ExtResource("1_i0cju")
-theme_override_font_sizes/font_size = 15
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+uppercase = true
 
 [node name="Preview" type="Label" parent="PC/MC/HBC/VBC/Commands"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_fonts/font = ExtResource("1_i0cju")
-theme_override_font_sizes/font_size = 15
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+uppercase = true
+
+[node name="TowerLists" type="VBoxContainer" parent="PC/MC/HBC/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="TowerList1" type="VBoxContainer" parent="PC/MC/HBC/VBC/TowerLists"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="PC/MC/HBC/VBC/TowerLists/TowerList1"]
+layout_mode = 2
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "LGA TOWER"
+uppercase = true
+
+[node name="MC" type="MarginContainer" parent="PC/MC/HBC/VBC/TowerLists/TowerList1"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="List" type="VBoxContainer" parent="PC/MC/HBC/VBC/TowerLists/TowerList1/MC"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FlightPlan1" type="Label" parent="PC/MC/HBC/VBC/TowerLists/TowerList1/MC/List"]
+layout_mode = 2
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "AAL100  CRJ7"
+uppercase = true
+
+[node name="FlightPlan2" type="Label" parent="PC/MC/HBC/VBC/TowerLists/TowerList1/MC/List"]
+layout_mode = 2
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "SWA850  B738"
+uppercase = true
 
 [node name="Control" type="Control" parent="PC/MC/HBC"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBC2" type="VBoxContainer" parent="PC/MC/HBC"]
+[node name="MC" type="MarginContainer" parent="PC/MC/HBC"]
 layout_mode = 2
-theme_override_constants/separation = 205
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_bottom = 60
 
-[node name="SignOnList" type="Label" parent="PC/MC/HBC/VBC2"]
+[node name="VBC2" type="VBoxContainer" parent="PC/MC/HBC/MC"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
-text = "SIGN ON
-1N  127.4  ABQ_APP AI
-1S  123.9  ABQ_APP AI"
+theme_override_constants/separation = 80
 
-[node name="TowerLists" type="VBoxContainer" parent="PC/MC/HBC/VBC2"]
+[node name="FlightPlans" type="VBoxContainer" parent="PC/MC/HBC/MC/VBC2"]
 layout_mode = 2
-theme_override_constants/separation = 25
+size_flags_vertical = 3
+theme_override_constants/separation = 10
 
-[node name="TowerList" type="Label" parent="PC/MC/HBC/VBC2/TowerLists"]
+[node name="Title" type="Label" parent="PC/MC/HBC/MC/VBC2/FlightPlans"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
-text = "LGA TOWER
-AAL100   CRJ7"
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "FLIGHT PLAN"
+uppercase = true
 
-[node name="TowerList2" type="Label" parent="PC/MC/HBC/VBC2/TowerLists"]
-visible = false
+[node name="MC" type="MarginContainer" parent="PC/MC/HBC/MC/VBC2/FlightPlans"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.145098, 0.6, 0.145098, 1)
-theme_override_font_sizes/font_size = 15
-text = "LGA TOWER
-AAL100   CRJ7"
+theme_override_constants/margin_left = 15
+
+[node name="List" type="VBoxContainer" parent="PC/MC/HBC/MC/VBC2/FlightPlans/MC"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FlightPlan1" type="Label" parent="PC/MC/HBC/MC/VBC2/FlightPlans/MC/List"]
+layout_mode = 2
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "ENY3172 6521 053   D"
+uppercase = true
+
+[node name="FlightPlan2" type="Label" parent="PC/MC/HBC/MC/VBC2/FlightPlans/MC/List"]
+layout_mode = 2
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "N890NE 6416 053   F"
+uppercase = true
+
+[node name="CoastSuspend" type="VBoxContainer" parent="PC/MC/HBC/MC/VBC2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="PC/MC/HBC/MC/VBC2/CoastSuspend"]
+layout_mode = 2
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "COAST/SUSPEND"
+uppercase = true
+
+[node name="MC" type="MarginContainer" parent="PC/MC/HBC/MC/VBC2/CoastSuspend"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="List" type="VBoxContainer" parent="PC/MC/HBC/MC/VBC2/CoastSuspend/MC"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VFRList" type="VBoxContainer" parent="PC/MC/HBC/MC/VBC2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="PC/MC/HBC/MC/VBC2/VFRList"]
+layout_mode = 2
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "VFR LIST"
+uppercase = true
+
+[node name="MC" type="MarginContainer" parent="PC/MC/HBC/MC/VBC2/VFRList"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="List" type="VBoxContainer" parent="PC/MC/HBC/MC/VBC2/VFRList/MC"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SPCTracks" type="VBoxContainer" parent="PC/MC/HBC/MC/VBC2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="PC/MC/HBC/MC/VBC2/SPCTracks"]
+layout_mode = 2
+theme = ExtResource("1_yuec1")
+theme_type_variation = &"TCW"
+text = "LA/CA/MCI"
+uppercase = true
+
+[node name="MC" type="MarginContainer" parent="PC/MC/HBC/MC/VBC2/SPCTracks"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="List" type="VBoxContainer" parent="PC/MC/HBC/MC/VBC2/SPCTracks/MC"]
+layout_mode = 2
+theme_override_constants/separation = 8

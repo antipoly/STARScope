@@ -26,7 +26,6 @@ func _on_range_gui_input(event: InputEvent) -> void:
 func _on_range_rings_toggled(toggled_on: bool) -> void:
   rr_enabled = toggled_on;
 
-
 func _on_range_rings_gui_input(event: InputEvent) -> void:
   if !rr_enabled: return;
 

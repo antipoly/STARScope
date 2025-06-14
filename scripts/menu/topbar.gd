@@ -15,6 +15,10 @@ func _ready() -> void:
 func _on_menu_changed(menu_name: String) -> void:
   var tween = game_title.create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT);
   tween.tween_property(game_title, "position:x", 0.0, 0.5);
+
+  current_menu.modulate = Color(1, 1, 1, 0);
+  current_menu.show();
+  
   await tween.finished;
 
   var player = ResourceManager.get_player();
@@ -26,8 +30,6 @@ func _on_menu_changed(menu_name: String) -> void:
   player_name.text = "%s | %s %s" % [player.player_name, spec.acr, level.name];
   facility_level.text = "Facility Level %d" % player.facility_level;
 
-  current_menu.modulate = Color(1, 1, 1, 0);
-  current_menu.show();
 
   player_info.modulate = Color(1, 1, 1, 0);
   player_info.show();

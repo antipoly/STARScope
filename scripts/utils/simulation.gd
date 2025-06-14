@@ -12,6 +12,13 @@ var ARTCCData := []; # The game/ARTCCs.json helper file
 var aircraft_commands := [];
 var scope_commands := [];
 
+var artcc: Dictionary;
+var tracon: Dictionary;
+var position: Dictionary;
+var area: Dictionary;
+
+var center_coordinates: Dictionary;
+
 func _init() -> void:
   # Load Commands
   var commands = ResourceManager.load_json("res://data/game/commands.json") as Dictionary;
@@ -55,8 +62,21 @@ func _init() -> void:
   ARTCCData = artccs;
 
 func load_scenario(scenario: Dictionary) -> void:
-  if scenario.has("system_time"):
-    shift_start_time = scenario["system_time"];
+  if !scenario.has("system_time") or !scenario.has("artcc") or !scenario.has("tracon") or !scenario.has("position"):
+    push_error("Could not load scenario");
+    return;
+
+  shift_start_time = scenario["system_time"];
+
+  artcc = Simulation.ARTCCs[scenario["artcc"]];
+  tracon = artcc["facility"]["childFacilities"][scenario["tracon"]];
+  position = tracon["positions"][scenario["position"]];
+
+  var area_index = tracon["starsConfiguration"]["areas"].find_custom(func (ar): return ar["id"] == position["starsConfiguration"]["areaId"]);
+  area = tracon["starsConfiguration"]["areas"][area_index];
+  center_coordinates = area["visibilityCenter"];
+
+  get_tree().change_scene_to_file("res://scenes/radar/tcw.tscn");
 
 func _process(delta: float) -> void:
   if not paused:
