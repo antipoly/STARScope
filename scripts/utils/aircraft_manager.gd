@@ -234,6 +234,8 @@ func execute_command(track: Dictionary, command: Array) -> Variant:
       return aircraft.turn_by(param);
     "A":
       return aircraft.altitude_to(param * 100, 2000);
+    "S":
+      return aircraft.speed_to(param);
 
   return true;
 

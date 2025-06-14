@@ -51,6 +51,19 @@
           "required": true
         }
       ]
+    },
+    {
+      "name": "Speed",
+      "description": "",
+      "command": "S",
+      "aliases": ["SPEED", "SPD"],
+      "params": [
+        {
+          "name": "to",
+          "value": "knots",
+          "required": true
+        }
+      ]
     }
   ],
   "scope": [

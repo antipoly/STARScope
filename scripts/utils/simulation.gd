@@ -178,6 +178,15 @@ func validate_params(command: Dictionary, args: Array) -> Variant:
             return "PARAM %s: EXPECTED FLIGHT LEVEL" % param_name
         else:
           return "PARAM %s: EXPECTED FLIGHT LEVEL" % param_name
+      "knots":
+        if arg.is_valid_int():
+          var val = int(arg);
+          if val > 350 or val < 60:
+            return "PARAM %s: OUTSIDE ACCEPTED RANGE" % param_name
+          
+          sanitized.push_back(val);
+        else:
+          return "PARAM %s: EXPECTED INT" % param_name
       _:
         sanitized.push_back(arg);
 
@@ -206,6 +215,10 @@ func aircraft_command(track: Dictionary, command: Dictionary, args: Array) -> Ar
       # Todo determine v/s
       var res = AircraftManager.execute_command(track, cmd);
       return [true, "ALTITUDE %d" % res];
+
+    "Speed":
+      var res = AircraftManager.execute_command(track, cmd);
+      return [true, "SPEED %d" % res];
 
   return [true];
 
