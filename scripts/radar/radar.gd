@@ -6,7 +6,7 @@ extends Control
 
 var radar_pass: Timer;
 @onready var range_rings = $RangeRings;
-@onready var video_maps = $VideoMaps;
+@onready var video_maps = %VideoMaps;
 @onready var tracks = $Tracks;
 
 @onready var dcb = %DisplayControlBoard
@@ -18,13 +18,6 @@ func _ready() -> void:
   radar_pass.autostart = true;
   radar_pass.connect("timeout", Callable(self, "_update_radar"));
   add_child(radar_pass);
-
-  # Hardcoded Videomaps
-  # MapManager.loadVideoMap(video_maps, "ZNY/01G66ETNBBVPD0812MB31HJCBZ");
-  # MapManager.loadVideoMap(video_maps, "ZNY/01G90NPTFQ2DK0CXJB8Q3GBPE4");
-  # MapManager.loadVideoMap(video_maps, "ZNY/01G90QP1RZH8T82E79EXHPZG0B");
-  # MapManager.loadVideoMap(video_maps, "ZNY/01H9BZDN3TSZT8TSGD8CTXB65X");
-  MapManager.loadMapGroup(video_maps, "01H5JPZ67G9YVWF9PPNKD64C55");
 
   # Hardcoded Aircraft Spawns
   AircraftManager.spawn_arrival(tracks, "LCXX");

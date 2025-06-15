@@ -78,6 +78,22 @@ func load_scenario(scenario: Dictionary) -> void:
 
   get_tree().change_scene_to_file("res://scenes/radar/tcw.tscn");
 
+func get_video_map(stars_id) -> Variant:
+  if stars_id == null:
+    return;
+
+  var video_maps = Simulation.artcc["videoMaps"];
+  var video_map_i = video_maps.find_custom(func(m):
+    if not m.has("starsId"): return false
+    else: return m["starsId"] == stars_id
+  );
+
+  if video_map_i == -1:
+    push_warning("Could not find video map: %d" % stars_id);
+    return null;
+
+  return video_maps[video_map_i];
+
 func _process(delta: float) -> void:
   if not paused:
     elapsed_time += delta * simulation_rate;

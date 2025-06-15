@@ -64,6 +64,7 @@ func _process(delta: float) -> void:
   if camera:
     self.scale = Vector2(1.1, 1.1) / camera.zoom;
 
+  # Todo: The farther the camera is zoomed, it should fade in transparency
   for c in trail_parent.get_children():
     c.scale = Vector2(1.1, 1.1) / camera.zoom;
 
@@ -80,7 +81,7 @@ func _process(delta: float) -> void:
   if target_altitude != aircraft_altitude_msl:
     var altitude_diff = target_altitude - aircraft_altitude_msl;
     var max_change: float = vertical_speed * (delta / 60);
-    
+
     var altitude_change = clampf(altitude_diff, -max_change, max_change);
     aircraft_altitude_msl += altitude_change;
   else:

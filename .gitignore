@@ -3,8 +3,6 @@
 /android/
 .nomedia
 .builds/
-
-# Godot-specific ignores
 .import/
 *.import
 export.cfg
@@ -20,3 +18,5 @@ mono_crash.*.json
 
 # game
 data/nav/
+
+.vscode/

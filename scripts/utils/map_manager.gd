@@ -4,18 +4,25 @@ extends Object
 const EARTH_RADIUS = 6378137;
 const SCALE_FACTOR = 120;
 
-static func loadVideoMap(node: Control, video_map: String) -> Variant:
-  var map_path = "res://data/nav/VideoMaps/%s.geojson" % video_map
+static func load_video_map(node: Control, video_map: String) -> Variant:
+  var map_path = "res://data/nav/VideoMaps/%s/%s.geojson" % [Simulation.artcc["id"], video_map]
   var geojson = ResourceManager.load_json(map_path);
 
   if geojson == null: return null;
-
   var features = geojson["features"];
+  
+  if node.find_child(video_map, false, false):
+    push_warning("Video map %s already loaded" % video_map);
+    return;
 
   if !features:
     push_error("Invalid .geojson file: %s" % map_path);
     return null;
   
+  var map_parent = Control.new();
+  map_parent.name = video_map;
+  node.add_child(map_parent);
+
   for feature in features:
     var geometry = feature["geometry"];
     var coordinates = geometry["coordinates"];
@@ -30,12 +37,20 @@ static func loadVideoMap(node: Control, video_map: String) -> Variant:
 
           points.append(Vector2(scaled[0], scaled[1]));
 
-        draw_line(node, points);
+        draw_line(map_parent, points);
       # Todo: impl Point, Polygon
   
   return true;
 
-static func loadMapGroup(node: Control, id: String) -> Variant:
+static func toggle_video_map(node: Control, video_map: String) -> void:
+  var existing = node.find_child(video_map, false, false);
+  
+  if existing:
+    existing.queue_free();
+  else:
+    load_video_map(node, video_map);
+
+static func load_map_group(node: Control, id: String) -> Variant:
   var map_groups = Simulation.tracon["starsConfiguration"]["mapGroups"];
   var map_group_i = map_groups.find_custom(func(g): return g["id"] == id);
 
@@ -45,20 +60,12 @@ static func loadMapGroup(node: Control, id: String) -> Variant:
   
   var map_group = map_groups[map_group_i];
 
-  for map in map_group["mapIds"]:
-    if map != null:
-      var video_maps = Simulation.artcc["videoMaps"];
-      var video_map_i = video_maps.find_custom(func(m):
-        if not m.has("starsId"): return false
-        else: return m["starsId"] == map
-      );
+  for stars_id in map_group["mapIds"]:
+    if stars_id != null:
+      var video_map = Simulation.get_video_map(stars_id);
 
-      if video_map_i == -1:
-        push_warning("Could not load video map: %s" % map);
-        continue;
-
-      var video_map = video_maps[video_map_i];
-      loadVideoMap(node, "%s/%s" % [Simulation.artcc["id"], video_map["id"]]);
+      if video_map != null:
+        load_video_map(node, video_map["id"]);
 
   return true;
 
