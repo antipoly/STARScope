@@ -12,8 +12,8 @@ var pages = ["ModeSelection", "FacilitySelection", "Weather&Time", "Traffic"];
 @onready var position_option = $MC/HBC/FacilitySelection/SC/VBC/MC/VBC/Position/OptionButton;
 
 func _ready() -> void:
+  Simulation._init();
   topbar.connect("current_menu_pressed", Callable(self, "_on_current_menu_pressed"));
-  pass
 
 func to_page(index: int) -> void:
   if (index < 0) or (index + 1 > pages.size()): return ;

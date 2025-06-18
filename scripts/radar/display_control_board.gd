@@ -37,6 +37,7 @@ func load_maps(map_group: Dictionary) -> void:
       map_box.text = "%d\n%s" % [map_star_id, video_map["shortName"]];
       map_box.connect("toggled", Callable(self, "toggle_video_map").bind(map_star_id))
     else:
+      map_box.disabled = true;
       map_box.text = "";
   
   for map_box in map_menu.get_children():
@@ -50,6 +51,7 @@ func load_maps(map_group: Dictionary) -> void:
       map_box.text = "%d\n%s" % [map_star_id, video_map["shortName"]];
       map_box.connect("toggled", Callable(self, "toggle_video_map").bind(map_star_id))
     else:
+      map_box.disabled = true;
       map_box.text = "";
 
 #endregion
@@ -61,7 +63,7 @@ func set_visibility_to_the_right(index: int, shouldHide: bool = true) -> void:
     if c.get_index() > index and !c.name.ends_with("Menu"):
       c.visible = !shouldHide;
 
-func toggle_video_map(toggle, stars_id) -> void:
+func toggle_video_map(_toggle, stars_id) -> void:
   var video_map = Simulation.get_video_map(stars_id);
   
   if video_map != null:

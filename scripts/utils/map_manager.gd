@@ -10,7 +10,7 @@ static func load_video_map(node: Control, video_map: String) -> Variant:
 
   if geojson == null: return null;
   var features = geojson["features"];
-  
+
   if node.find_child(video_map, false, false):
     push_warning("Video map %s already loaded" % video_map);
     return;
@@ -18,7 +18,7 @@ static func load_video_map(node: Control, video_map: String) -> Variant:
   if !features:
     push_error("Invalid .geojson file: %s" % map_path);
     return null;
-  
+
   var map_parent = Control.new();
   map_parent.name = video_map;
   node.add_child(map_parent);
@@ -39,12 +39,12 @@ static func load_video_map(node: Control, video_map: String) -> Variant:
 
         draw_line(map_parent, points);
       # Todo: impl Point, Polygon
-  
+
   return true;
 
 static func toggle_video_map(node: Control, video_map: String) -> void:
   var existing = node.find_child(video_map, false, false);
-  
+
   if existing:
     existing.queue_free();
   else:
@@ -57,7 +57,7 @@ static func load_map_group(node: Control, id: String) -> Variant:
   if map_group_i == -1:
     push_error("Could not load map group: %s" % id);
     return;
-  
+
   var map_group = map_groups[map_group_i];
 
   for stars_id in map_group["mapIds"]:

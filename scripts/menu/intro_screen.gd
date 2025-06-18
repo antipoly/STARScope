@@ -15,6 +15,11 @@ func _ready() -> void:
   updateSignHereButtonState();
   Utils.fade_opaque(get_parent(), "in", 1);
 
+  # VERY temporary
+  ResourceManager.download_artcc("ZNY");
+  await get_tree().create_timer(2.0).timeout
+  ResourceManager.download_maps("ZNY");
+
 func _input(event):
   if enable_input && event is InputEventKey:
     enable_input = false;

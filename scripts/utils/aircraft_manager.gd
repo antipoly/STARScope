@@ -131,6 +131,7 @@ func filter_by_code(code: String) -> Array[Dictionary]:
 
   return filtered_aircraft;
 
+# todo: fix: this is broken. saw an airline with an aircraft outside its fleet
 ## Returns a random aircraft from the fleet of an airline using a weighted distribution.
 ## todo: option to select region destination which the airline must service
 func get_fleet() -> String:

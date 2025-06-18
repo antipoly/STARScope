@@ -4,6 +4,12 @@ extends Node
 var player: Player = null;
 var specialisations: Array;
 
+const MAX_CONCURRENT = 8;
+var request_queue = [];
+var active_requests = 0;
+
+#region Loading
+
 func load_json(path: String) -> Variant:
   if !FileAccess.file_exists(path):
     push_error("File does not exist: %s" % path);
@@ -19,6 +25,80 @@ func load_json(path: String) -> Variant:
 
   print_debug("Loaded %s" % path);
   return data;
+
+func queue_download(url, local):
+  var req_data = {
+    "url": url,
+    "local": local
+  };
+
+  request_queue.append(req_data);
+  _process_request_queue();
+
+func _process_request_queue():
+  while active_requests < MAX_CONCURRENT and request_queue.size() > 0:
+    var req = request_queue.pop_front();
+    var http = HTTPRequest.new();
+    add_child(http);
+
+    active_requests += 1;
+    http.connect("request_completed", Callable(self, "_on_request_completed").bind(req["local"], req["url"], http));
+    var err = http.request(req["url"]);
+
+    if err != OK:
+      push_error("HTTP Request failed: %s" % err);
+      http.queue_free();
+      active_requests -= 1;
+
+func _on_request_completed(_result, code, _headers, body, local, url, http_req):
+  http_req.queue_free();
+
+  if code != 200:
+    push_error("HTTP %d: %s" % [code, url])
+    return;
+
+  var file = FileAccess.open(local, FileAccess.WRITE);
+  if not file:
+    push_error("Failed to open local file for writing: %s" % local);
+    return;
+
+  file.store_buffer(body);
+  file.close();
+
+  print("Downloaded %s" % url);
+  active_requests -= 1;
+  _process_request_queue();
+
+func download_maps(artcc: String):
+  var artcc_path = "res://data/nav/ARTCCs/%s.json" % artcc;
+  var artcc_json = load_json(artcc_path);
+
+  if not artcc_json:
+    push_error("Could not fetch map list from %s ARTCC file" % artcc);
+    return null;
+
+  var map_dir = "res://data/nav/VideoMaps/%s" % artcc;
+
+  if not DirAccess.dir_exists_absolute("res://data/nav/VideoMaps/%s" % artcc):
+    DirAccess.make_dir_recursive_absolute(map_dir);
+
+  var maps = artcc_json["videoMaps"];
+  for map in maps:
+    var map_id = map["id"];
+    var remote_url = "https://data-api.vnas.vatsim.net/Files/VideoMaps/%s/%s.geojson" % [artcc, map_id];
+    var local_url = "res://data/nav/VideoMaps/%s/%s.geojson" % [artcc, map_id];
+
+    queue_download(remote_url, local_url);
+
+func download_artcc(artcc):
+  var local_url = "res://data/nav/ARTCCs/%s.json" % artcc;
+  var remote_url = "https://data-api.vnas.vatsim.net/api/artccs/%s" % artcc;
+
+  queue_download(remote_url, local_url);
+
+#endregion
+
+#region Player Resources
 
 ## Returns a Player resource, or null
 ## @param force - Forces returning a Player resource no matter if it didn't exist
@@ -67,3 +147,5 @@ func get_specialisation() -> Dictionary:
   return spec;
 
 # Todo: optimize to not load from json each time (?)
+
+#endregion
