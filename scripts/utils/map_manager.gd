@@ -5,7 +5,7 @@ const EARTH_RADIUS = 6378137;
 const SCALE_FACTOR = 120;
 
 static func load_video_map(node: Control, video_map: String) -> Variant:
-  var map_path = "res://data/nav/VideoMaps/%s/%s.geojson" % [Simulation.artcc["id"], video_map]
+  var map_path = "user://nav/VideoMaps/%s/%s.geojson" % [Simulation.artcc["id"], video_map]
   var geojson = ResourceManager.load_json(map_path);
 
   if geojson == null: return null;

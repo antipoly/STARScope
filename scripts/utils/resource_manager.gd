@@ -70,29 +70,32 @@ func _on_request_completed(_result, code, _headers, body, local, url, http_req):
   _process_request_queue();
 
 func download_maps(artcc: String):
-  var artcc_path = "res://data/nav/ARTCCs/%s.json" % artcc;
+  var artcc_path = "user://nav/ARTCCs/%s.json" % artcc;
   var artcc_json = load_json(artcc_path);
 
   if not artcc_json:
     push_error("Could not fetch map list from %s ARTCC file" % artcc);
     return null;
 
-  var map_dir = "res://data/nav/VideoMaps/%s" % artcc;
+  var map_dir = "user://nav/VideoMaps/%s" % artcc;
 
-  if not DirAccess.dir_exists_absolute("res://data/nav/VideoMaps/%s" % artcc):
+  if not DirAccess.dir_exists_absolute(map_dir):
     DirAccess.make_dir_recursive_absolute(map_dir);
 
   var maps = artcc_json["videoMaps"];
   for map in maps:
     var map_id = map["id"];
     var remote_url = "https://data-api.vnas.vatsim.net/Files/VideoMaps/%s/%s.geojson" % [artcc, map_id];
-    var local_url = "res://data/nav/VideoMaps/%s/%s.geojson" % [artcc, map_id];
+    var local_url = "user://nav/VideoMaps/%s/%s.geojson" % [artcc, map_id];
 
     queue_download(remote_url, local_url);
 
 func download_artcc(artcc):
-  var local_url = "res://data/nav/ARTCCs/%s.json" % artcc;
+  var local_url = "user://nav/ARTCCs/%s.json" % artcc;
   var remote_url = "https://data-api.vnas.vatsim.net/api/artccs/%s" % artcc;
+
+  if not DirAccess.dir_exists_absolute("user://nav/ARTCCs"):
+    DirAccess.make_dir_recursive_absolute("user://nav/ARTCCs");
 
   queue_download(remote_url, local_url);
 

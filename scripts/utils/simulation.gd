@@ -42,14 +42,14 @@ func _init() -> void:
     push_warning("No ARTCCs present in file");
 
   # Read ARTCCs folder
-  var dir = DirAccess.open("res://data/nav/ARTCCs");
+  var dir = DirAccess.open("user://nav/ARTCCs");
   if dir:
     dir.list_dir_begin();
     var file_name = dir.get_next();
     
     while file_name != "":
       if not dir.current_is_dir() and file_name.ends_with(".json"):
-        var artcc_data = ResourceManager.load_json("res://data/nav/ARTCCs/" + file_name);
+        var artcc_data = ResourceManager.load_json("user://nav/ARTCCs/" + file_name);
         if !artcc_data: continue;
 
         ARTCCs[artcc_data["id"]] = artcc_data;
