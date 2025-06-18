@@ -2,7 +2,7 @@
   "aircraft": [
     {
       "name": "Heading",
-      "description": "",
+      "description": "Turn an aircraft to the target heading",
       "command": "H",
       "aliases": ["HDG", "HEADING", "TURN", "T", "FH"],
       "params": [
@@ -41,7 +41,7 @@
     },
     {
       "name": "Altitude",
-      "description": "",
+      "description": "Climb or descend the aircraft to the target flight level",
       "command": "A",
       "aliases": ["CLIMB", "DESCEND", "C", "D"],
       "params": [
@@ -54,7 +54,7 @@
     },
     {
       "name": "Speed",
-      "description": "",
+      "description": "Accelerate or decelerate the aircraft to the target speed",
       "command": "S",
       "aliases": ["SPEED", "SPD"],
       "params": [
@@ -99,10 +99,10 @@
       ]
     },
     {
-      "name": "Speed",
-      "description": "Change the simulation speed",
-      "command": "S",
-      "aliases": ["SPEED"],
+      "name": "Rate",
+      "description": "Change the simulation rate",
+      "command": "RATE",
+      "aliases": [],
       "params": [
         {
           "name": "rate",

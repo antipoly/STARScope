@@ -39,7 +39,7 @@ func load_maps(map_group: Dictionary) -> void:
     else:
       map_box.disabled = true;
       map_box.text = "";
-  
+
   for map_box in map_menu.get_children():
     var i = map_box.get_index();
     var map_index = (i % 16) * 2 + int(float(i) / 16) # 16-column row-major to 2-row column-major grid

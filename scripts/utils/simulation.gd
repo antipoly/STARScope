@@ -102,7 +102,7 @@ func _process(delta: float) -> void:
 func set_running_state(running: bool) -> void:
   paused = !running;
 
-func set_simulation_speed(speed: float) -> float:
+func set_simulation_rate(speed: float) -> float:
   simulation_rate = clampf(speed, 0.2, 5.0);
   return simulation_rate;
 
@@ -260,13 +260,13 @@ func scope_command(command: Dictionary, args: Array) -> Array:
 
       return [true, params["args"][0]]
 
-    "Speed":
+    "Rate":
       var params = validate_params(command, args);
       if params is String:
         return [false, params];
 
-      var new_rate = set_simulation_speed(params["args"][0]);
-      return [true, "SPEED %fx" % new_rate];
+      var new_rate = set_simulation_rate(params["args"][0]);
+      return [true, "RATE %fx" % new_rate];
 
     "Clear":
       pass

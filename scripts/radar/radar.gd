@@ -33,16 +33,20 @@ func _ready() -> void:
   # rr_spacing = 50.0;
   # _redraw_range_rings()
 
-func _update_radar() -> void:
-  var tracks = get_tree().get_nodes_in_group("track");
+func _input(event: InputEvent) -> void:
+  if event.is_action_pressed("tcw_back"):
+    get_tree().change_scene_to_file("res://scenes/menu.tscn");
 
-  for track in tracks:
+func _update_radar() -> void:
+  if Simulation.paused:
+    return;
+
+  for track in tracks.get_children():
     if track.has_method("update_position"): track.update_position();
     if track.has_method("update_datablock"): track.update_datablock();
 
 # Todo fix the arc on the right side; its incomplete
 func _redraw_range_rings() -> void:
-  print('redrawing')
   for c in range_rings.get_children():
     c.queue_free();
 

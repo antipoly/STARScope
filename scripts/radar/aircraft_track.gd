@@ -61,6 +61,10 @@ func _ready() -> void:
 
 # Todo: abstract the logic into functions
 func _process(delta: float) -> void:
+  delta *= Simulation.simulation_rate;
+  if Simulation.paused:
+    return;
+
   if camera:
     self.scale = Vector2(1.1, 1.1) / camera.zoom;
 
