@@ -28,6 +28,10 @@ func _init() -> void:
   aircraft_list = json_aircraft;
   airline_list = json_airlines;
 
+## Returns the associated aircraft track, or [null]. [br]
+##
+## Returns [AircraftTrack] [br]
+## Returns [null]
 func get_track(aircraft_id: String) -> Variant:
   for track in global_tracks:
     if track["id"] == aircraft_id:

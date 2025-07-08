@@ -89,7 +89,6 @@ https://www.youtube.com/watch?v=lylTmuhfLME
 https://www.youtube.com/@ATCpro
 
 
-
 [^stars]: https://en.wikipedia.org/wiki/Standard_Terminal_Automation_Replacement_System
 [^tracon]: https://en.wikipedia.org/wiki/Air_traffic_control#Approach_and_terminal_control
 [^stars_faa]: https://www.faa.gov/about/office_org/headquarters_offices/ang/offices/tc/library/storyboard/detailedwebpages/stars.html

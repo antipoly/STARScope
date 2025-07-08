@@ -106,44 +106,35 @@ func parse_command(cmd: String) -> bool:
   var track = AircraftManager.get_track(acft_id);
   var scope_cmd = Simulation.find_command(args[0], "scope");
   var aircraft_cmd = Simulation.find_command(args[1] if args.size() > 1 else "", "aircraft");
+  
+  # Scope Commands: Removes the command identifier
+  # Aircraft Commands: Removes the track identifier
+  args = args.slice(1);
 
+  # If its an aicraft command and a track was not provided
   if track == null and scope_cmd == null:
     response_area.text = "ILLEGAL ACFT ID";
     return false;
 
   if scope_cmd:
-    if !scope_cmd.has("name"):
-      response_area.text = "ILLEGAL SCOPE CMD";
-      return false;
-
     if scope_cmd["name"] == "Clear":
       response_area.text = "";
 
-    var result = Simulation.scope_command(scope_cmd, args.slice(1)) as Array;
-    if result.size() > 1:
-      response_area.text = result[1];
+    var result = Simulation.scope_command(scope_cmd, args) as Array;
 
-    if !result[0]:
-      return false;
+    if result.size() > 1: response_area.text = result[1];
+    if !result.get(0): return false; # If the command execution wasn't successful
 
-  else:
-    args = args.slice(1); # Remove the aircraft identifier
-
-    if args.size() < 1:
-      response_area.text = "EXPECTED ACFT CMD";
-      return false;
-
-    if !aircraft_cmd:
-      response_area.text = "ILLEGAL ACFT CMD";
-      return false;
-
-    response_area.text = "%s %s" % [track["id"], track["track"]["model_name"]];
-    var result = Simulation.aircraft_command(track, aircraft_cmd, args.slice(1));
+  elif aircraft_cmd:
+    var result = Simulation.multicommand(args, track);
     
-    if result.size() > 1:
-      response_area.text = result[1];
+    if result.size() > 1: response_area.text = result[1];
+    if !result.get(0): return false; # If the command execution wasn't successful
 
-    if !result[0]:
-      return false;
+  # Has to be an aircraft command at this point
+  # No aircraft_cmd, so we respond saying an illegal one was provided
+  else:
+    response_area.text = "ILLEGAL/EXPECTED ACFT CMD";
+    return false;
 
   return true;

@@ -47,14 +47,14 @@ visible = false
 layout_mode = 2
 theme_type_variation = &"TCW"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 15
 text = "CA"
 
 [node name="AircraftID" type="Label" parent="Datablock"]
 layout_mode = 2
 theme_type_variation = &"TCW"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 15
 text = "SWA231"
 
 [node name="HBC" type="HBoxContainer" parent="Datablock"]
@@ -65,21 +65,21 @@ theme_override_constants/separation = 6
 layout_mode = 2
 theme_type_variation = &"TCW"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 15
 text = "010"
 
 [node name="Speed" type="Label" parent="Datablock/HBC"]
 layout_mode = 2
 theme_type_variation = &"TCW"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 15
 text = "23"
 
 [node name="WTC" type="Label" parent="Datablock/HBC"]
 layout_mode = 2
 theme_type_variation = &"TCW"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 15
 text = "F"
 
 [node name="AircraftType" type="Label" parent="Datablock/HBC"]
@@ -87,7 +87,7 @@ visible = false
 layout_mode = 2
 theme_type_variation = &"TCW"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 15
 text = "B737"
 
 [node name="PTL" type="Panel" parent="."]
