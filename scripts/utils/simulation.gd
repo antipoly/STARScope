@@ -103,6 +103,10 @@ func set_running_state(running: bool) -> void:
   paused = !running;
 
 func set_simulation_rate(speed: float) -> float:
+  # var radar = get_node("../TerminalControlWorkstation/Radar");
+  # if radar:
+  #   radar.update_interval /= Simulation.simulation_rate;
+
   simulation_rate = clampf(speed, 0.2, 5.0);
   return simulation_rate;
 
@@ -110,6 +114,10 @@ func get_system_time() -> int:
   return shift_start_time + int(elapsed_time);
 
 #region Commands
+
+## Returns the [Command] that matches the string provided under the specified type [br]
+## Returns [Command] [br]
+## Returns [null] - When no command was found
 func find_command(arg: String, type: String) -> Variant:
   var cmds = null;
 
@@ -126,6 +134,8 @@ func find_command(arg: String, type: String) -> Variant:
 
   return null;
 
+## Checks if a string matches the name or any of the aliases of a command [br]
+## Returns [bool]
 func matches_command(command: Dictionary, arg: String) -> bool:
   if command.has("command"):
     if command["command"] == arg:
@@ -138,6 +148,11 @@ func matches_command(command: Dictionary, arg: String) -> bool:
 
   return false;
 
+## Parses and validates the arguments provided to a command and sanitizes the arguments
+## to conform to the expected type structure [br]
+##
+## Returns [Dictionary { cmd: Dictionary, sanitized: Array }] [br]
+## Returns [String] - The error message
 func validate_params(command: Dictionary, args: Array) -> Variant:
   if !command.has("params") && !command.has("subcommands"): return;
   var params = command["params"] if command.has("params") else null;
@@ -211,6 +226,8 @@ func validate_params(command: Dictionary, args: Array) -> Variant:
     "args": sanitized
   }
 
+## Executes an aircraft command on the provided track with the args passed, and returns the status [br]
+## Returns [Array(success: bool, message: String)]
 func aircraft_command(track: Dictionary, command: Dictionary, args: Array) -> Array:
   if !command.has("name"):
     print_debug("Command has no 'name' prop");
@@ -238,7 +255,8 @@ func aircraft_command(track: Dictionary, command: Dictionary, args: Array) -> Ar
 
   return [true];
 
-
+## Executes a scope command with the args passed, and returns the status [br]
+## Returns [Array(success: bool, message: String)]
 func scope_command(command: Dictionary, args: Array) -> Array:
   if !command.has("name"):
     print_debug("Command has no 'name' prop");

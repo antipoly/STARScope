@@ -200,6 +200,16 @@
     "engine_type": "Jet"
   },
   {
+    "model_name": "767-300ER",
+    "code": "LC2J",
+    "WTC": "H",
+    "designator": "B763",
+    "manufacturer": "BOEING",
+    "class": "LandPlane",
+    "engine_count": 2,
+    "engine_type": "Jet"
+  },
+  {
     "model_name": "767-400",
     "code": "LC2J",
     "WTC": "H",

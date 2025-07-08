@@ -68,8 +68,7 @@ func _ready() -> void:
   for c in flight_plans.get_children():
     c.queue_free();
 
-
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
   var system_time = Time.get_datetime_dict_from_unix_time(Simulation.get_system_time());
   var hours = (str(system_time["hour"])).pad_zeros(2);
   var minutes = (str(system_time["minute"])).pad_zeros(2);
@@ -86,9 +85,9 @@ func _input(event: InputEvent) -> void:
       preview_text += character;
     elif event.keycode == KEY_BACKSPACE and preview_text.length() > 0:
       preview_text = preview_text.left(preview_text.length() - 1);
-    elif event.keycode == KEY_SPACE and preview_text.length() > 0 and preview_text[preview_text.length() - 1] != " ": # Todo allow echo for backspace and maybe ctrl backspace
+    elif event.keycode == KEY_SPACE and preview_text.length() > 0 and preview_text[preview_text.length() - 1] != " ": # Todo allow ctrl backspace maybe
       preview_text += " ";
-    elif event.keycode == KEY_PERIOD and preview_text.length() > 0 and preview_text[preview_text.length() - 1] != ".": # Todo check if last word contains periods 
+    elif event.keycode == KEY_PERIOD and preview_text.length() > 0 and preview_text[preview_text.length() - 1] != ".": # Todo check if last word contains periods
       preview_text += ".";
     elif event.keycode == KEY_ENTER and preview_text.length() > 0:
       var result = parse_command(preview_text);
@@ -96,7 +95,10 @@ func _input(event: InputEvent) -> void:
 
     preview_area.text = preview_text;
 
-## Aircraft Commands: Must start with a valid aircraft identifier.
+## Parses the raw command string received from typing in the preview area.
+## Aircraft Commands must start with a valid aircraft identifier, before the actual command.
+## Scope Commands just begin with the name or alias of the command. [br]
+## Returns [bool]
 func parse_command(cmd: String) -> bool:
   var args = cmd.split(" ");
   var acft_id = args[0];

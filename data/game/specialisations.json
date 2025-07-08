@@ -3,46 +3,29 @@
     "id": 0,
     "name": "Clearance Delivery",
     "acr": "CD",
-    "levels": [
-      { "name": "Student Controller", "threshold": 0 },
-      { "name": "Developmental Controller [DC 1]", "threshold": 250 },
-      { "name": "Developmental Controller [DC 2]", "threshold": 450 },
-      { "name": "Certified Professional Controller [CPC]", "threshold": 700 },
-      { "name": "Supervisor", "threshold": 2500 }
-    ]
+    "levels": []
   },
   {
     "id": 1,
     "name": "Ground",
     "acr": "ATCT",
-    "levels": [
-      { "name": "Student Controller", "threshold": 0 },
-      { "name": "Developmental Controller [DC 1]", "threshold": 250 },
-      { "name": "Developmental Controller [DC 2]", "threshold": 450 },
-      { "name": "Certified Professional Controller [CPC]", "threshold": 700 },
-      { "name": "Supervisor", "threshold": 2500 }
-    ]
+    "levels": []
   },
   {
     "id": 2,
     "name": "Tower",
     "acr": "ATCT",
-    "levels": [
-      { "name": "Student Controller", "threshold": 0 },
-      { "name": "Developmental Controller [DC 1]", "threshold": 250 },
-      { "name": "Developmental Controller [DC 2]", "threshold": 450 },
-      { "name": "Certified Professional Controller [CPC]", "threshold": 700 },
-      { "name": "Supervisor", "threshold": 2500 }
-    ]
+    "levels": []
   },
   {
     "id": 3,
     "name": "Terminal Area Control",
     "acr": "TRACON",
     "levels": [
-      { "name": "Student Controller", "threshold": 0 },
+      { "name": "Academy Graduate [AG]", "threshold": 0 },
       { "name": "Developmental Controller [DC 1]", "threshold": 250 },
       { "name": "Developmental Controller [DC 2]", "threshold": 450 },
+      { "name": "Developmental Controller [DC 3]", "threshold": 450 },
       { "name": "Certified Professional Controller [CPC]", "threshold": 700 },
       { "name": "Supervisor", "threshold": 2500 }
     ]
@@ -51,12 +34,6 @@
     "id": 4,
     "name": "Area Control",
     "acr": "ARTCC",
-    "levels": [
-      { "name": "Student Controller", "threshold": 0 },
-      { "name": "Developmental Controller [DC 1]", "threshold": 250 },
-      { "name": "Developmental Controller [DC 2]", "threshold": 450 },
-      { "name": "Certified Professional Controller [CPC]", "threshold": 700 },
-      { "name": "Supervisor", "threshold": 2500 }
-    ]
+    "levels": []
   }
 ]

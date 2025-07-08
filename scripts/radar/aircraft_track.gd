@@ -114,7 +114,7 @@ func calc_groundspeed(heading: float, airspeed: float) -> Vector2:
 func update_position() -> void:
   position = aircraft_position;
 
-  if trail_phase >= 6:
+  if trail_phase >= int(6 / Simulation.simulation_rate):
     var trail = Panel.new();
     trail.top_level = true;
     trail.position = global_position + (track_target.size / 2);
@@ -146,7 +146,7 @@ func update_datablock() -> void:
   db_speed.text = str(int(aircraft_groundspeed) / 10).pad_zeros(2);
   db_altitude.text = str(int(aircraft_altitude_msl) / 100).pad_zeros(3);
 
-  if datablock_phase == 2:
+  if datablock_phase >= int(2 / Simulation.simulation_rate):
     db_speed.visible = !db_speed.visible;
     db_wtc.visible = !db_wtc.visible;
     db_aircraft_type.visible = !db_aircraft_type.visible;
